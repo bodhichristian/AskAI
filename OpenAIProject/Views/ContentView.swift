@@ -149,13 +149,10 @@ struct ContentView: View {
                         .opacity(request.isEmpty || response.isEmpty ? 0 : 1)
                     
                     Spacer()
-                    
-                    
                 }
             }
             .padding()
             .navigationTitle("Ask ChatGPT")
-            
         }
     }
 }
