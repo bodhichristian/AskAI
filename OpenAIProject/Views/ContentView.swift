@@ -8,6 +8,7 @@
 import SwiftUI
 import OpenAISwift
 
+// "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
 let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY")
 
 struct ContentView: View {
@@ -40,7 +41,6 @@ struct ContentView: View {
                         VStack(spacing: 8) {
                             Button {
                                 withAnimation {
-                                request = ""
                                 response = ""
                                 isLoading = false
                                 editing = false
@@ -49,7 +49,7 @@ struct ContentView: View {
                                 ZStack {
                                     Circle()
                                         .frame(width: 40)
-                                        .foregroundColor(response.isEmpty ? .secondary : .red.opacity(0.7))
+                                        .foregroundColor(response.isEmpty ? .secondary.opacity(0.3) : .red.opacity(0.7))
                                         
                                         .offset(y: 5)
                                     Image(systemName: "trash")
@@ -57,10 +57,11 @@ struct ContentView: View {
                                         .foregroundColor(.white)
                                 }
                             }
+                            .disabled(request.isEmpty)
                             ZStack{
                                 Circle()
                                     .frame(width: 40)
-                                    .foregroundColor(response.isEmpty ? .secondary : .green.opacity(0.7))
+                                    .foregroundColor(response.isEmpty ? .secondary.opacity(0.3) : .green.opacity(0.7))
                                     .padding(4)
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.white)
