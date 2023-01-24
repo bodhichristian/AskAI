@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
+		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
+		AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */; };
+		AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F7297C732A0086700E /* ChatGPTService.swift */; };
 		AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */; };
-		AAD98F5A29710CC100954C6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5929710CC100954C6F /* ContentView.swift */; };
+		AAD98F5A29710CC100954C6F /* ChatGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5929710CC100954C6F /* ChatGPTView.swift */; };
 		AAD98F5C29710CC200954C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD98F5B29710CC200954C6F /* Assets.xcassets */; };
 		AAD98F5F29710CC200954C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD98F5E29710CC200954C6F /* Preview Assets.xcassets */; };
 		AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6529710CFA00954C6F /* OpenAISwift.swift */; };
@@ -21,9 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
+		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AA1DF2F7297C732A0086700E /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
 		AAD98F5429710CC100954C6F /* OpenAIProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenAIProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIProjectApp.swift; sourceTree = "<group>"; };
-		AAD98F5929710CC100954C6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AAD98F5929710CC100954C6F /* ChatGPTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTView.swift; sourceTree = "<group>"; };
 		AAD98F5B29710CC200954C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAD98F5E29710CC200954C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAD98F6529710CFA00954C6F /* OpenAISwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAISwift.swift; sourceTree = "<group>"; };
@@ -46,6 +54,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA1DF2EE2979D16C0086700E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA1DF2EF2979D17D0086700E /* ResponseView.swift */,
+				AA1DF2F12979D73A0086700E /* RequestView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AA1DF2F52979DCD60086700E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA1DF2F6297C731D0086700E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA1DF2F7297C732A0086700E /* ChatGPTService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		AAD98F4B29710CC100954C6F = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +101,8 @@
 				AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */,
 				AAD98F6729710CFA00954C6F /* Models */,
 				AAD98F7529710FA300954C6F /* Views */,
+				AA1DF2F52979DCD60086700E /* ViewModels */,
+				AA1DF2F6297C731D0086700E /* Services */,
 				AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */,
 				AAD98F6529710CFA00954C6F /* OpenAISwift.swift */,
 				AAD98F5B29710CC200954C6F /* Assets.xcassets */,
@@ -98,7 +133,8 @@
 		AAD98F7529710FA300954C6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAD98F5929710CC100954C6F /* ContentView.swift */,
+				AAD98F5929710CC100954C6F /* ChatGPTView.swift */,
+				AA1DF2EE2979D16C0086700E /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,13 +215,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */,
 				AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */,
-				AAD98F5A29710CC100954C6F /* ContentView.swift in Sources */,
+				AAD98F5A29710CC100954C6F /* ChatGPTView.swift in Sources */,
+				AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */,
 				AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */,
 				AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */,
 				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,
+				AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
 				AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */,
+				AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */,
 				AAD98F7129710CFA00954C6F /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

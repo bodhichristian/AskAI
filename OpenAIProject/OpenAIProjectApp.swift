@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct OpenAIProjectApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ChatGPTView()
         }
     }
 }
