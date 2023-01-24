@@ -8,9 +8,6 @@
 import SwiftUI
 import OpenAISwift
 
-// "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let openAI = OpenAISwift(authToken: "PLACEHOLDER TEXT")
-
 struct ChatGPTView: View {
     @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
         
@@ -37,7 +34,6 @@ struct ChatGPTView: View {
                         Task {
                             await viewModel.submitRequest(viewModel.request)
                         }
-                        
                     } label: {
                         Label("Submit", systemImage: "terminal")
                             .fontWeight(.semibold)
