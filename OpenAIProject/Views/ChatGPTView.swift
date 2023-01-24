@@ -9,7 +9,7 @@ import SwiftUI
 import OpenAISwift
 
 // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let openAI = OpenAISwift(authToken: "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")
+let openAI = OpenAISwift(authToken: "PLACEHOLDER TEXT")
 
 struct ChatGPTView: View {
     @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
