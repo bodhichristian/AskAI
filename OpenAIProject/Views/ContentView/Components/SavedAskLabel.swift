@@ -26,9 +26,10 @@ struct SavedAskLabel: View {
                 
             }
             Text(date, format: .dateTime.month().day().year())
-                .font(.footnote)
+                .font(.caption)
                 .foregroundColor(.secondary)
                 .padding(.bottom, 4)
+            
             HStack(alignment: .center) {
                     ZStack {
                         Circle()
@@ -40,9 +41,10 @@ struct SavedAskLabel: View {
                             .frame(width: 25, height: 25)
                             .foregroundColor(.white)
                     }
+                
                 Text(response.trimmingCharacters(in: .whitespacesAndNewlines))
-                        .font(.subheadline)
-                        .lineLimit(3)
+                    .font(.subheadline)
+                        .lineLimit(2)
                     
                 
             }

@@ -14,11 +14,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-
                 Section(header: Text("AI Toolkit"))  {
                     NavigationLink {
                         ChatGPTView(viewModel: viewModel, savedChats: savedChats)
-
                     } label: {
                         Label {
                             Text("Ask ChatGPT")
@@ -38,7 +36,6 @@ struct ContentView: View {
                     
                     NavigationLink {
                         Text("Coming soon.")
-
                     } label: {
                         Label {
                             Text("Ask Stable Diffusion (Coming soon)")
@@ -53,22 +50,25 @@ struct ContentView: View {
                                     .scaledToFit()
                                     .padding(-4)
                             }
-                           
                         }
                     }
                 }
                 
                 Section(header: Text("Saved Chats")) {
-                    ForEach(savedChats.chats) { chat in
-                        NavigationLink {
-                            VStack {
-                                Text(chat.request)
-                                Text(chat.response)
-                            }
-                        } label: {
-                            SavedAskLabel(request: chat.request, response: chat.response, image: "ChatGPT", date: chat.date)
+                    if savedChats.chats.isEmpty {
+                        Text("You haven't saved any chats yet.")
+                    } else {
+                        ForEach(savedChats.chats) { chat in
+                            NavigationLink {
+                                VStack {
+                                    Text(chat.request)
+                                    Text(chat.response)
+                                }
+                            } label: {
+                                SavedAskLabel(request: chat.request, response: chat.response, image: "ChatGPT", date: chat.date)
                             }
                         }
+                    }
                 }
             }
             .font(.subheadline)
