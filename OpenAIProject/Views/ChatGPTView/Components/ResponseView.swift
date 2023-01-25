@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResponseView: View {
     @ObservedObject var viewModel: ChatViewModel
+    @ObservedObject var savedChats: SavedChats
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -39,6 +40,11 @@ extension ResponseView {
             Rectangle()
                 .foregroundColor(.clear)
             VStack(spacing: 8) {
+                
+                // TRASH CAN BUTTON
+                // sets request and response to empty strings
+                // sets isLoading to false so any bound views animate accordingly
+                // disabled if request is an empty string
                 Button {
                     withAnimation(.linear(duration: 0.1)) {
                         viewModel.request = ""
@@ -47,11 +53,9 @@ extension ResponseView {
                     }
                 } label : {
                     ZStack {
-                        // trash can button
                         Circle()
                             .frame(width: 40)
                             .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .red.opacity(0.7))
-                        
                             .offset(y: 5)
                         Image(systemName: "trash")
                             .offset(y: 5)
@@ -60,14 +64,24 @@ extension ResponseView {
                 }
                 .disabled(viewModel.request.isEmpty)
                 
-                ZStack{
-                    // checkmark button
-                    Circle()
-                        .frame(width: 40)
-                        .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .green.opacity(0.7))
-                        .padding(4)
-                    Image(systemName: "checkmark")
-                        .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                // checkmark button
+                Button {
+                    //save function
+                    let chat = Chat(request: viewModel.request, response: viewModel.response)
+                    savedChats.add(chat)
+                    
+                    
+                    
+                } label : {
+                    ZStack {
+                        
+                        Circle()
+                            .frame(width: 40)
+                            .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .green.opacity(0.7))
+                            .padding(4)
+                        Image(systemName: "checkmark")
+                            .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                    }
                 }
             }
             .padding(4)
@@ -78,7 +92,7 @@ extension ResponseView {
 struct ResponseView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     static var previews: some View {
-        ResponseView(viewModel: viewModel)
+        ResponseView(viewModel: viewModel, savedChats: SavedChats())
         
     }
 }

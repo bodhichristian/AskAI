@@ -11,6 +11,10 @@
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
 		AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */; };
 		AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F7297C732A0086700E /* ChatGPTService.swift */; };
+		AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDA2980D54700C5A5CD /* SavedChats.swift */; };
+		AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */; };
+		AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* ContentView.swift */; };
+		AA567EE52980EC0700C5A5CD /* SavedAskLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE42980EC0700C5A5CD /* SavedAskLabel.swift */; };
 		AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */; };
 		AAD98F5A29710CC100954C6F /* ChatGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5929710CC100954C6F /* ChatGPTView.swift */; };
 		AAD98F5C29710CC200954C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD98F5B29710CC200954C6F /* Assets.xcassets */; };
@@ -29,6 +33,10 @@
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		AA1DF2F7297C732A0086700E /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
+		AA567EDA2980D54700C5A5CD /* SavedChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChats.swift; sourceTree = "<group>"; };
+		AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		AA567EE12980DE0200C5A5CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA567EE42980EC0700C5A5CD /* SavedAskLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAskLabel.swift; sourceTree = "<group>"; };
 		AAD98F5429710CC100954C6F /* OpenAIProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenAIProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIProjectApp.swift; sourceTree = "<group>"; };
 		AAD98F5929710CC100954C6F /* ChatGPTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTView.swift; sourceTree = "<group>"; };
@@ -79,6 +87,40 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		AA567EDC2980D59E00C5A5CD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA567EDF2980D99000C5A5CD /* ChatGPTView */ = {
+			isa = PBXGroup;
+			children = (
+				AAD98F5929710CC100954C6F /* ChatGPTView.swift */,
+				AA1DF2EE2979D16C0086700E /* Components */,
+			);
+			path = ChatGPTView;
+			sourceTree = "<group>";
+		};
+		AA567EE02980DDE700C5A5CD /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				AA567EE12980DE0200C5A5CD /* ContentView.swift */,
+				AA567EE32980EB6500C5A5CD /* Components */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		AA567EE32980EB6500C5A5CD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA567EE42980EC0700C5A5CD /* SavedAskLabel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		AAD98F4B29710CC100954C6F = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +144,7 @@
 				AAD98F6729710CFA00954C6F /* Models */,
 				AAD98F7529710FA300954C6F /* Views */,
 				AA1DF2F52979DCD60086700E /* ViewModels */,
+				AA567EDC2980D59E00C5A5CD /* Extensions */,
 				AA1DF2F6297C731D0086700E /* Services */,
 				AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */,
 				AAD98F6529710CFA00954C6F /* OpenAISwift.swift */,
@@ -126,6 +169,7 @@
 				AAD98F6929710CFA00954C6F /* OpenAI.swift */,
 				AAD98F6A29710CFA00954C6F /* Instruction.swift */,
 				AAD98F6B29710CFA00954C6F /* Command.swift */,
+				AA567EDA2980D54700C5A5CD /* SavedChats.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,8 +177,8 @@
 		AAD98F7529710FA300954C6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAD98F5929710CC100954C6F /* ChatGPTView.swift */,
-				AA1DF2EE2979D16C0086700E /* Components */,
+				AA567EE02980DDE700C5A5CD /* ContentView */,
+				AA567EDF2980D99000C5A5CD /* ChatGPTView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA567EE52980EC0700C5A5CD /* SavedAskLabel.swift in Sources */,
+				AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */,
 				AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */,
 				AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */,
 				AAD98F5A29710CC100954C6F /* ChatGPTView.swift in Sources */,
@@ -222,8 +268,10 @@
 				AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */,
 				AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */,
 				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,
+				AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */,
 				AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
+				AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */,
 				AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */,
 				AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */,
 				AAD98F7129710CFA00954C6F /* Command.swift in Sources */,

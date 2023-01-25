@@ -8,8 +8,7 @@
 import Foundation
 import OpenAISwift
 
-@MainActor
-class ChatViewModel: ObservableObject {
+@MainActor class ChatViewModel: ObservableObject {
     // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
     let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY")
     

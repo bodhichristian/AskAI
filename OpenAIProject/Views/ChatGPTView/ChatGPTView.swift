@@ -9,12 +9,13 @@ import SwiftUI
 import OpenAISwift
 
 struct ChatGPTView: View {
-    @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
+    @ObservedObject var viewModel: ChatViewModel
+    @ObservedObject var savedChats: SavedChats
         
     var body: some View {
-        NavigationView {
+        
             VStack {
-                ResponseView(viewModel: viewModel)
+                ResponseView(viewModel: viewModel, savedChats: savedChats)
                 
                 Section {
                     RequestView(viewModel: viewModel)
@@ -69,16 +70,16 @@ struct ChatGPTView: View {
                     Spacer()
                 }
             }
-            .padding()
+            .padding(8)
             .navigationTitle("Ask ChatGPT")
         }
     }
-}
+
 
 struct ChatGPTView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     
     static var previews: some View {
-        ChatGPTView(viewModel: viewModel)
+        ChatGPTView(viewModel: viewModel, savedChats: SavedChats())
     }
 }

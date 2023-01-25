@@ -12,7 +12,7 @@ struct OpenAIProjectApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ChatGPTView()
+            ContentView()
         }
     }
 }
