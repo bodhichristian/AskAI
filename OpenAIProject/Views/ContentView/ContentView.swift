@@ -37,7 +37,7 @@ struct ContentView: View {
                     }
                     
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats)
+                        Text("Coming soon.")
 
                     } label: {
                         Label {
