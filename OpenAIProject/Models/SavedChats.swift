@@ -15,6 +15,7 @@ class Chat: Identifiable, Codable {
     var notes = ""
     fileprivate(set) var isFavorite = false
     
+    
     init(id: UUID = UUID(), request: String, response: String, date: Foundation.Date = Date.now, notes: String = "", isFavorite: Bool = false) {
         self.id = id
         self.request = request

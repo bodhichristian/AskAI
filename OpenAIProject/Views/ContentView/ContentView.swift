@@ -65,7 +65,44 @@ struct ContentView: View {
                                     Text(chat.response)
                                 }
                             } label: {
-                                SavedAskLabel(request: chat.request, response: chat.response, image: "ChatGPT", date: chat.date)
+                                SavedChatLabel(request: chat.request, response: chat.response, image: "ChatGPT", date: chat.date, isFavorite: chat.isFavorite)
+                            }
+                            .contextMenu {
+                                Button {
+                                    savedChats.toggleFavorite(chat)
+                                } label: {
+                                    if chat.isFavorite {
+                                        Label("Unmark as favorite", systemImage: "seal")
+                                    } else {
+                                        Label("Mark as Favorite", systemImage: "checkmark.seal")
+                                    }
+                                }
+                                
+                                Button(role: .destructive) {
+                                    savedChats.delete(chat)
+                                } label: {
+                                    Label("Delete chat", systemImage: "trash")
+                                }
+                            }
+                            .swipeActions {
+                                Button {
+                                    savedChats.delete(chat)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }.tint(.red)
+                            }
+                            .swipeActions(edge: .leading) {
+                                
+                                Button {
+                                    savedChats.toggleFavorite(chat)
+                                } label: {
+                                    if chat.isFavorite {
+                                        Label("Mark as Favorite", systemImage: "checkmark.seal")
+                                    } else {
+                                        Label("Unmark as Favorite", systemImage: "seal")
+                                    }
+                                }
+                                .tint(chat.isFavorite ? .yellow : .blue)
                             }
                         }
                     }
@@ -76,6 +113,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
