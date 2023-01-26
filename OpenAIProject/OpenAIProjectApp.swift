@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct OpenAIProjectApp: App {
-    
+    @StateObject var savedChats = SavedChats()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(savedChats)
         }
     }
 }

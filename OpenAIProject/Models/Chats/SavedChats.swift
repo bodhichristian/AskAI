@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-class Chat: Identifiable, Codable {
-    var id = UUID()
-    var request: String
-    var response: String
-    var date = Date.now
-    var notes = ""
-    fileprivate(set) var isFavorite = false
-    
-    
-    init(id: UUID = UUID(), request: String, response: String, date: Foundation.Date = Date.now, notes: String = "", isFavorite: Bool = false) {
-        self.id = id
-        self.request = request
-        self.response = response
-        self.date = date
-        self.notes = notes
-        self.isFavorite = isFavorite
-    }
-}
-
 @MainActor class SavedChats: ObservableObject {
     @Published private(set) var chats: [Chat]
     

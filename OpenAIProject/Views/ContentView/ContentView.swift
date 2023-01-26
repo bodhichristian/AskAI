@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var savedChats = SavedChats()
+    @EnvironmentObject var savedChats: SavedChats
     @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
     
     var body: some View {
@@ -34,24 +34,24 @@ struct ContentView: View {
                         }
                     }
                     
-                    NavigationLink {
-                        Text("Coming soon.")
-                    } label: {
-                        Label {
-                            Text("Ask Stable Diffusion (Coming soon)")
-                        } icon: {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 30)
-                                    .foregroundColor(.white)
-                                    .shadow(color: .secondary, radius: 2)
-                                Image("StabilityAI")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(-4)
-                            }
-                        }
-                    }
+//                    NavigationLink {
+//                        Text("Coming soon.")
+//                    } label: {
+//                        Label {
+//                            Text("Ask Stable Diffusion (Coming soon)")
+//                        } icon: {
+//                            ZStack {
+//                                Circle()
+//                                    .frame(width: 30)
+//                                    .foregroundColor(.white)
+//                                    .shadow(color: .secondary, radius: 2)
+//                                Image("StabilityAI")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .padding(-4)
+//                            }
+//                        }
+//                    }
                 }
                 
                 Section(header: Text("Saved Chats")) {
@@ -65,7 +65,7 @@ struct ContentView: View {
                                     Text(chat.response)
                                 }
                             } label: {
-                                SavedChatLabel(request: chat.request, response: chat.response, image: "ChatGPT", date: chat.date, isFavorite: chat.isFavorite)
+                                SavedChatLabel(chat: chat)
                             }
                             .contextMenu {
                                 Button {
@@ -108,15 +108,19 @@ struct ContentView: View {
                     }
                 }
             }
+            
             .font(.subheadline)
             .navigationTitle("AskAI")
         }
+        .environmentObject(savedChats)
     }
+    
 }
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(SavedChats())
     }
 }
