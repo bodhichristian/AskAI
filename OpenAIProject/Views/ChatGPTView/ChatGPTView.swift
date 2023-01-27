@@ -11,7 +11,9 @@ import OpenAISwift
 struct ChatGPTView: View {
     @ObservedObject var viewModel: ChatViewModel
     @ObservedObject var savedChats: SavedChats
-        
+    
+    @State var engine: String
+    
     var body: some View {
         
             VStack {
@@ -33,7 +35,7 @@ struct ChatGPTView: View {
                         viewModel.isLoading = true
                         viewModel.firstRequest = false
                         Task {
-                            await viewModel.submitRequest(viewModel.request)
+                            await viewModel.submitRequest(viewModel.request, engine: engine)
                         }
                     } label: {
                         Label("Submit", systemImage: "terminal")
@@ -80,6 +82,6 @@ struct ChatGPTView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     
     static var previews: some View {
-        ChatGPTView(viewModel: viewModel, savedChats: SavedChats())
+        ChatGPTView(viewModel: viewModel, savedChats: SavedChats(), engine: "davinci")
     }
 }

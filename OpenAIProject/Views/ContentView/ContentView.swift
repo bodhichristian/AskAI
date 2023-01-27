@@ -14,25 +14,103 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("AI Toolkit"))  {
+                Section(header: Text("ChatGPT Engines"))  {
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats)
+                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "davinci")
                     } label: {
                         Label {
-                            Text("Ask ChatGPT")
-                        } icon: {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 30)
-                                    .foregroundColor(.white)
-                                    .shadow(color: .secondary, radius: 2)
-                                Image("ChatGPT")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.white)
+                            VStack(alignment: .leading) {
+                                Text("Ask DaVinci")
+                                    .font(.headline)
+                                Text("Most capable")
+                                    .font(.caption)
+                                    .italic()
+                                    .foregroundColor(.mint)
                             }
+                            .padding(.leading, 45)
+                        } icon: {
+                                Image("davinci")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
+                                    .shadow(color: .secondary, radius: 7)
+                                    .padding(.leading, 35)
                         }
                     }
+                    
+                    NavigationLink {
+                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "curie")
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text("Ask Curie")
+                                    .font(.headline)
+                                Text("Powerful, yet fast")
+                                    .font(.caption)
+                                    .italic()
+                                    .foregroundColor(.purple)
+                            }
+                            .padding(.leading, 45)
+                        } icon: {
+                                Image("curie")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
+                                    .shadow(color: .secondary, radius: 7)
+                                    .padding(.leading, 35)
+                        }
+                    }
+                    NavigationLink {
+                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "babbage")
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text("Ask Babbage")
+                                    .font(.headline)
+                                Text("Straightforward tasks")
+                                    .font(.caption)
+                                    .italic()
+                                    .foregroundColor(.green)
+                            }
+                            .padding(.leading, 45)
+                        } icon: {
+                                Image("babbage")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
+                                    .shadow(color: .secondary, radius: 7)
+                                    .padding(.leading, 35)
+                        }
+                    }
+                    NavigationLink {
+                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "ada")
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text("Ask Ada")
+                                    .font(.headline)
+                                Text("Fast and simple")
+                                    .font(.caption)
+                                    .italic()
+                                    .foregroundColor(Color(red: 3, green: 0.2, blue: 0.6))
+                            }
+                            .padding(.leading, 45)
+                        } icon: {
+                                Image("ada")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
+                                    .shadow(color: .secondary, radius: 7)
+                                    .padding(.leading, 35)
+                        }
+                    }
+                    
+                    
+                    
                     
 //                    NavigationLink {
 //                        Text("Coming soon.")
@@ -58,7 +136,7 @@ struct ContentView: View {
                     if savedChats.chats.isEmpty {
                         Text("You haven't saved any chats yet.")
                     } else {
-                        ForEach(savedChats.chats) { chat in
+                        ForEach(savedChats.chats.reversed()) { chat in
                             NavigationLink {
                                 VStack {
                                     Text(chat.request)

@@ -14,7 +14,8 @@ import OpenAISwift
     
     // 1 token = approx 4 characters, or 0.75 English words.
     // total length limit (request + response) is 2048 tokens - about 1500 words
-    let maxTokens = 1000
+    let maxTokens = 2048
+    let davinciMaxTokens = 4000
     
     @Published var request: String
     @Published var response: String
@@ -31,15 +32,37 @@ import OpenAISwift
     
     static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", isLoading: false, firstRequest: false)
     
-    // takes a request string, and sets response equal to the return value from sendCompletion()
-    // takes optional parameter model to select level of fine tuning
-    // model: .gpt(.davinci) up to 4000 tokens*, most capable model
-    // model: .gpt(.curie) extremely powerful, yet very fast
-    // model: .gpt(.babbage) straightforward tasks like simple classification
-    // model: .gpt(.ada) usually the fastest model. performance can be improved with more context
-    func submitRequest(_ request: String) async -> () {
+    enum Engine: String {
+        // most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
+        case davinci = "davinci"
+        // very capable, but faster and lower cost than Davinci.
+        case curie = "curie"
+        // capable of straightforward tasks, very fast, and lower cost.
+        case babbage = "babbage"
+        // capable of very simple tasks, usually the fastest model and lowest cost.
+        case ada = "ada"
+        
+        var model: OpenAIModelType.GPT3 {
+            switch self {
+                case .davinci: return .davinci
+                case .curie: return .curie
+                case .babbage: return .babbage
+                case .ada: return .ada
+            }
+        }
+    }
+
+    // sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
+    func submitRequest(_ request: String, engine: String) async -> () {
         do {
-            let result = try await openAI.sendCompletion(with: request, model: .gpt3(.davinci),  maxTokens: maxTokens)
+            guard let engine = Engine(rawValue: engine) else {
+                response = "Invalid engine specified"
+                return
+            }
+            let result = try await openAI.sendCompletion(
+                with: request, model: .gpt3(engine.model),
+                maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens
+            )
             response = result.choices.first?.text ?? ""
         } catch {
             response = error.localizedDescription
