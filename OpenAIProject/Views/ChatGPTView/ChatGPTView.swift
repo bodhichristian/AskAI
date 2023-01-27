@@ -14,10 +14,19 @@ struct ChatGPTView: View {
     
     @State var engine: String
     
+    private var engineName: String {
+        switch engine {
+        case "davinci": return "Davinci"
+        case "curie": return "Curie"
+        case "babbage": return "Babbage"
+        default: return "Ada"
+        }
+    }
+    
     var body: some View {
         
             VStack {
-                ResponseView(viewModel: viewModel, savedChats: savedChats)
+                ResponseView(viewModel: viewModel, savedChats: savedChats, engine: engine)
                 
                 Section {
                     RequestView(viewModel: viewModel)
@@ -73,7 +82,7 @@ struct ChatGPTView: View {
                 }
             }
             .padding(8)
-            .navigationTitle("Ask ChatGPT")
+            .navigationTitle("Ask \(engineName)")
         }
     }
 

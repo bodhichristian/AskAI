@@ -18,118 +18,26 @@ struct ContentView: View {
                     NavigationLink {
                         ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "davinci")
                     } label: {
-                        Label {
-                            VStack(alignment: .leading) {
-                                Text("Ask DaVinci")
-                                    .font(.headline)
-                                Text("Most capable")
-                                    .font(.caption)
-                                    .italic()
-                                    .foregroundColor(.mint)
-                            }
-                            .padding(.leading, 45)
-                        } icon: {
-                                Image("davinci")
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
-                                    .shadow(color: .secondary, radius: 7)
-                                    .padding(.leading, 35)
-                        }
+                        EngineLabelView(engine: "davinci")
                     }
                     
                     NavigationLink {
                         ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "curie")
                     } label: {
-                        Label {
-                            VStack(alignment: .leading) {
-                                Text("Ask Curie")
-                                    .font(.headline)
-                                Text("Powerful, yet fast")
-                                    .font(.caption)
-                                    .italic()
-                                    .foregroundColor(.purple)
-                            }
-                            .padding(.leading, 45)
-                        } icon: {
-                                Image("curie")
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
-                                    .shadow(color: .secondary, radius: 7)
-                                    .padding(.leading, 35)
-                        }
+                        EngineLabelView(engine: "curie")
                     }
+                    
                     NavigationLink {
                         ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "babbage")
                     } label: {
-                        Label {
-                            VStack(alignment: .leading) {
-                                Text("Ask Babbage")
-                                    .font(.headline)
-                                Text("Straightforward tasks")
-                                    .font(.caption)
-                                    .italic()
-                                    .foregroundColor(.green)
-                            }
-                            .padding(.leading, 45)
-                        } icon: {
-                                Image("babbage")
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
-                                    .shadow(color: .secondary, radius: 7)
-                                    .padding(.leading, 35)
-                        }
+                        EngineLabelView(engine: "babbage")
                     }
+                    
                     NavigationLink {
                         ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "ada")
                     } label: {
-                        Label {
-                            VStack(alignment: .leading) {
-                                Text("Ask Ada")
-                                    .font(.headline)
-                                Text("Fast and simple")
-                                    .font(.caption)
-                                    .italic()
-                                    .foregroundColor(Color(red: 3, green: 0.2, blue: 0.6))
-                            }
-                            .padding(.leading, 45)
-                        } icon: {
-                                Image("ada")
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(.white, lineWidth: 0.8))
-                                    .shadow(color: .secondary, radius: 7)
-                                    .padding(.leading, 35)
-                        }
+                        EngineLabelView(engine: "ada")
                     }
-                    
-                    
-                    
-                    
-//                    NavigationLink {
-//                        Text("Coming soon.")
-//                    } label: {
-//                        Label {
-//                            Text("Ask Stable Diffusion (Coming soon)")
-//                        } icon: {
-//                            ZStack {
-//                                Circle()
-//                                    .frame(width: 30)
-//                                    .foregroundColor(.white)
-//                                    .shadow(color: .secondary, radius: 2)
-//                                Image("StabilityAI")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .padding(-4)
-//                            }
-//                        }
-//                    }
                 }
                 
                 Section(header: Text("Saved Chats")) {
