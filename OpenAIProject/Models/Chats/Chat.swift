@@ -8,23 +8,24 @@
 import SwiftUI
 
 class Chat: Identifiable, Codable, ObservableObject {
-    var id = UUID()
+    var id: UUID
     var request: String
     var response: String
-    var date = Date.now
+    var date: Date
+    var engine: String
     var notes = ""
-    var image = "ChatGPT"
     @Published var isFavorite: Bool
     
     enum CodingKeys: CodingKey {
-        case id, request, response, date, notes, isFavorite
+        case id, request, response, date, engine, notes, isFavorite
     }
     
-    init(id: UUID = UUID(), request: String, response: String, date: Date = Date.now, notes: String = "", isFavorite: Bool = false) {
-        self.id = UUID()
+    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engineUsed: String, notes: String = "", isFavorite: Bool = false) {
+        self.id = id
         self.request = request
         self.response = response
-        self.date = Date.now
+        self.date = .now
+        self.engine = engineUsed
         self.notes = ""
         self.isFavorite = false
     }
@@ -35,6 +36,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.request = try container.decode(String.self, forKey: .request)
         self.response = try container.decode(String.self, forKey: .response)
         self.date = try container.decode(Date.self, forKey: .date)
+        self.engine = try container.decode(String.self, forKey: .engine)
         self.notes = try container.decode(String.self, forKey: .notes)
         self.isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
     }
@@ -45,9 +47,10 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(request, forKey: .request)
         try container.encode(response, forKey: .response)
         try container.encode(date, forKey: .date)
+        try container.encode(engine, forKey: .engine)
         try container.encode(notes, forKey: .notes)
         try container.encode(isFavorite, forKey: .isFavorite)
     }
     
-    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.")
+    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engineUsed: "davinci")
 }

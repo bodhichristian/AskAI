@@ -14,6 +14,7 @@ struct RequestView: View {
     var body: some View {
         VStack{
             TextEditor(text: $viewModel.request)
+            
                 .frame(height: 100)
                 .cornerRadius(10)
                 .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)

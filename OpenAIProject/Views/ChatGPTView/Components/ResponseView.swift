@@ -78,7 +78,7 @@ extension ResponseView {
                 
                 // checkmark button
                 Button {
-                    let chat = Chat(request: viewModel.request, response: viewModel.response)
+                    let chat = Chat(request: viewModel.request, response: viewModel.response, engineUsed: engine)
                     savedChats.add(chat)
                     
                     

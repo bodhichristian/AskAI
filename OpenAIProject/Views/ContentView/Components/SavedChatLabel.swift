@@ -35,17 +35,8 @@ struct SavedChatLabel: View {
                     .opacity(chat.isFavorite ? 1 : 0)
             }
             
-            HStack(alignment: .center) {
-                ZStack {
-                    Circle()
-                        .frame(width: 30)
-                        .foregroundColor(.white)
-                        .shadow(color: .secondary, radius: 2)
-                    Image(chat.image)
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(.white)
-                }
+            HStack() {
+                CircleImage(engine: chat.engine, width: 25, height: 25)
                 
                 Text(chat.response.trimmingCharacters(in: .whitespacesAndNewlines))
                     .font(.caption)
@@ -54,6 +45,7 @@ struct SavedChatLabel: View {
                 
                 
             }
+            .offset(x: -30)
         }
     }
     

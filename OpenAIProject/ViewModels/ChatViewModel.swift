@@ -10,11 +10,11 @@ import OpenAISwift
 
 @MainActor class ChatViewModel: ObservableObject {
     // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-    let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY ")
+    let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY")
     
     // 1 token = approx 4 characters, or 0.75 English words.
     // total length limit (request + response) is 2048 tokens - about 1500 words
-    let maxTokens = 2048
+    let maxTokens = 1000
     let davinciMaxTokens = 4000
     
     @Published var request: String
