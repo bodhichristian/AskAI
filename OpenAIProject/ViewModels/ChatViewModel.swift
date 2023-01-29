@@ -63,7 +63,7 @@ import OpenAISwift
                 with: request, model: .gpt3(engine.model),
                 maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens
             )
-            response = result.choices.first?.text ?? ""
+            response = result.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         } catch {
             response = error.localizedDescription
         }

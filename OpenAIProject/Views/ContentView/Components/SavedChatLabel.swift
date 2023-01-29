@@ -37,7 +37,7 @@ struct SavedChatLabel: View {
             
             HStack() {
                 CircleImage(engine: chat.engine, width: 25, height: 25)
-                
+                    .padding(.leading, 35)
                 Text(chat.response.trimmingCharacters(in: .whitespacesAndNewlines))
                     .font(.caption)
                 //.italic()

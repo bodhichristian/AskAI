@@ -46,10 +46,7 @@ struct ContentView: View {
                     } else {
                         ForEach(savedChats.chats.reversed()) { chat in
                             NavigationLink {
-                                VStack {
-                                    Text(chat.request)
-                                    Text(chat.response)
-                                }
+                                SavedChatView(chat: chat)
                             } label: {
                                 SavedChatLabel(chat: chat)
                             }

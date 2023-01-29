@@ -19,7 +19,8 @@ struct CircleImage: View {
             .clipShape(Circle())
             .overlay(Circle().stroke(.white, lineWidth: 1))
             .shadow(color: .secondary, radius: 3)
-            .padding(.leading, 35)
+            // leading padding to sit well in list. compensate negative 35 elsewhere
+            
     }
 }
 

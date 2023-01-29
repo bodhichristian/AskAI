@@ -85,7 +85,6 @@ extension ResponseView {
                     
                 } label : {
                     ZStack {
-                        
                         Circle()
                             .frame(width: 40)
                             .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .green.opacity(0.7))
@@ -94,6 +93,7 @@ extension ResponseView {
                             .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
                     }
                 }
+                .disabled(viewModel.response.isEmpty)
             }
             .padding(4)
         }

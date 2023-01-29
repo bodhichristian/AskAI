@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5622985A3C200CC0F53 /* SavedChatView.swift */; };
+		AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */; };
 		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
 		AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA11B5622985A3C200CC0F53 /* SavedChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatView.swift; sourceTree = "<group>"; };
+		AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -68,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA11B5642985A65400CC0F53 /* SavedChatView */ = {
+			isa = PBXGroup;
+			children = (
+				AA11B5622985A3C200CC0F53 /* SavedChatView.swift */,
+			);
+			path = SavedChatView;
+			sourceTree = "<group>";
+		};
 		AA1DF2EE2979D16C0086700E /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */,
+				AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -171,6 +184,7 @@
 				AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */,
 				AAD98F6729710CFA00954C6F /* Models */,
 				AAD98F7529710FA300954C6F /* Views */,
+				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA1DF2F52979DCD60086700E /* ViewModels */,
 				AA567EDC2980D59E00C5A5CD /* Extensions */,
 				AA1DF2F6297C731D0086700E /* Services */,
@@ -300,6 +314,8 @@
 				AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */,
 				AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */,
 				AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */,
+				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,
+				AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */,
 				AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */,
 				AAD98F7129710CFA00954C6F /* Command.swift in Sources */,
 				AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */,
