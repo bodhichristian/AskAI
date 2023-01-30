@@ -5,5 +5,5 @@ AskAI provides an approachable experience for interfacing with ChatGPT, and savi
 Uses OpenAI API Client Library in Swift from https://github.com/adamrushy/OpenAISwift 
 
 
-![AskAI Showcase 1 001](https://user-images.githubusercontent.com/110639779/214598791-361c0aaf-daea-4539-ae43-931b2610249c.jpeg)
 
+![AskAI Showcase 2 0 001](https://user-images.githubusercontent.com/110639779/215608530-96b12033-1b13-4361-a69b-4c26473b00a4.jpeg)
