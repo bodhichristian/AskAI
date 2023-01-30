@@ -8,7 +8,7 @@
 import SwiftUI
 import OpenAISwift
 
-struct ChatGPTView: View {
+struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     @ObservedObject var savedChats: SavedChats
     
@@ -82,8 +82,10 @@ struct ChatGPTView: View {
                 }
             }
             .padding(8)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Ask \(engineName)")
         }
+    
     }
 
 
@@ -91,6 +93,6 @@ struct ChatGPTView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     
     static var previews: some View {
-        ChatGPTView(viewModel: viewModel, savedChats: SavedChats(), engine: "davinci")
+        ChatView(viewModel: viewModel, savedChats: SavedChats(), engine: "davinci")
     }
 }

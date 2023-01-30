@@ -11,30 +11,32 @@ struct ContentView: View {
     @EnvironmentObject var savedChats: SavedChats
     @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
     
+    @State private var isShowingMenu = false
+    
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("ChatGPT Engines"))  {
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "davinci")
+                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "davinci")
                     } label: {
                         EngineLabelView(engine: "davinci")
                     }
                     
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "curie")
+                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "curie")
                     } label: {
                         EngineLabelView(engine: "curie")
                     }
                     
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "babbage")
+                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "babbage")
                     } label: {
                         EngineLabelView(engine: "babbage")
                     }
                     
                     NavigationLink {
-                        ChatGPTView(viewModel: viewModel, savedChats: savedChats, engine: "ada")
+                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "ada")
                     } label: {
                         EngineLabelView(engine: "ada")
                     }
@@ -94,6 +96,16 @@ struct ContentView: View {
             
             .font(.subheadline)
             .navigationTitle("AskAI")
+            .toolbar {
+                Button {
+                    isShowingMenu.toggle()
+                } label: {
+                    Image(systemName: "gear")
+                }
+            }
+            .sheet(isPresented: $isShowingMenu) {
+                SettingsView()
+            }
         }
         .environmentObject(savedChats)
     }

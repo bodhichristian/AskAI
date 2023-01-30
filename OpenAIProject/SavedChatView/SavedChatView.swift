@@ -86,6 +86,7 @@ struct SavedChatView: View {
                 }
                 .padding(.horizontal)
             .navigationTitle(Text(chat.date, format: .dateTime.month().day().year()))
+            .navigationBarTitleDisplayMode(.inline)
             }
         }
         

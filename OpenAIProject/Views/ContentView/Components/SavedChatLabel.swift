@@ -11,7 +11,7 @@ struct SavedChatLabel: View {
     @ObservedObject var chat: Chat
     
     let formatter = DateFormatter()
-    
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack {
@@ -47,8 +47,9 @@ struct SavedChatLabel: View {
             }
             .offset(x: -30)
         }
+        
     }
-    
+
 }
 
 struct SavedAskLabel_Previews: PreviewProvider {
