@@ -12,7 +12,7 @@ struct ResponseView: View {
     @ObservedObject var savedChats: SavedChats
     @State var engine: String
     
-    private var accentColor: Color {
+    private var chatColor: Color {
         switch engine {
         case "davinci": return .mint
         case "curie": return .purple
@@ -24,7 +24,7 @@ struct ResponseView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(accentColor).opacity(0.5)
+                .foregroundColor(chatColor).opacity(0.5)
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {

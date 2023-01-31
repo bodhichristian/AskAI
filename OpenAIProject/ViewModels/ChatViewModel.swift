@@ -5,12 +5,15 @@
 //  Created by christian on 1/19/23.
 //
 
+import SwiftUI
 import Foundation
 import OpenAISwift
 
 @MainActor class ChatViewModel: ObservableObject {
     // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
     let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY")
+    
+    let engines = ["davinci", "curie", "babbage", "ada"]
     
     // 1 token = approx 4 characters, or 0.75 English words.
     // total length limit (request + response) is 2048 tokens - about 1500 words
@@ -50,8 +53,18 @@ import OpenAISwift
                 case .ada: return .ada
             }
         }
+        
+        var color: Color {
+            switch self {
+            case .davinci: return .mint
+            case .curie: return .purple
+            case .babbage: return .green
+            case .ada: return Color(red: 3, green: 0.2, blue: 0.6)
+            }
+        }
     }
-
+    
+    
     // sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
     func submitRequest(_ request: String, engine: String) async -> () {
         do {

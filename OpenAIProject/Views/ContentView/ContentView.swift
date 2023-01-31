@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var savedChats: SavedChats
-    @StateObject var viewModel = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
-    
+    @StateObject var davinciVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
+    @StateObject var curieVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
+    @StateObject var babbageVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
+    @StateObject var adaVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
+
     @State private var isShowingMenu = false
     
     var body: some View {
@@ -18,25 +21,25 @@ struct ContentView: View {
             List {
                 Section(header: Text("ChatGPT Engines"))  {
                     NavigationLink {
-                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "davinci")
+                        ChatView(viewModel: davinciVM, savedChats: savedChats, engine: "davinci")
                     } label: {
                         EngineLabelView(engine: "davinci")
                     }
                     
                     NavigationLink {
-                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "curie")
+                        ChatView(viewModel: curieVM, savedChats: savedChats, engine: "curie")
                     } label: {
                         EngineLabelView(engine: "curie")
                     }
                     
                     NavigationLink {
-                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "babbage")
+                        ChatView(viewModel: babbageVM, savedChats: savedChats, engine: "babbage")
                     } label: {
                         EngineLabelView(engine: "babbage")
                     }
                     
                     NavigationLink {
-                        ChatView(viewModel: viewModel, savedChats: savedChats, engine: "ada")
+                        ChatView(viewModel: adaVM, savedChats: savedChats, engine: "ada")
                     } label: {
                         EngineLabelView(engine: "ada")
                     }
@@ -100,11 +103,11 @@ struct ContentView: View {
                 Button {
                     isShowingMenu.toggle()
                 } label: {
-                    Image(systemName: "gear")
+                    Image(systemName: "info.circle")
                 }
             }
             .sheet(isPresented: $isShowingMenu) {
-                SettingsView()
+                InfoView()
             }
         }
         .environmentObject(savedChats)

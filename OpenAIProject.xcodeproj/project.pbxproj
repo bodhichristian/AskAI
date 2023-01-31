@@ -10,7 +10,7 @@
 		AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5622985A3C200CC0F53 /* SavedChatView.swift */; };
 		AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */; };
 		AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56729884A5200CC0F53 /* ChatView.swift */; };
-		AA11B56A29884CE200CC0F53 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56929884CE200CC0F53 /* SettingsView.swift */; };
+		AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56929884CE200CC0F53 /* InfoView.swift */; };
 		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
 		AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */; };
@@ -38,7 +38,7 @@
 		AA11B5622985A3C200CC0F53 /* SavedChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatView.swift; sourceTree = "<group>"; };
 		AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		AA11B56729884A5200CC0F53 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		AA11B56929884CE200CC0F53 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA11B56929884CE200CC0F53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -82,12 +82,12 @@
 			path = SavedChatView;
 			sourceTree = "<group>";
 		};
-		AA11B56B29884D0000CC0F53 /* SettingsView */ = {
+		AA11B56B29884D0000CC0F53 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
-				AA11B56929884CE200CC0F53 /* SettingsView.swift */,
+				AA11B56929884CE200CC0F53 /* InfoView.swift */,
 			);
-			path = SettingsView;
+			path = InfoView;
 			sourceTree = "<group>";
 		};
 		AA1DF2EE2979D16C0086700E /* Components */ = {
@@ -227,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				AA567EE02980DDE700C5A5CD /* ContentView */,
-				AA11B56B29884D0000CC0F53 /* SettingsView */,
+				AA11B56B29884D0000CC0F53 /* InfoView */,
 				AA567EDF2980D99000C5A5CD /* ChatView */,
 			);
 			path = Views;
@@ -316,7 +316,7 @@
 				AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */,
 				AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */,
 				AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */,
-				AA11B56A29884CE200CC0F53 /* SettingsView.swift in Sources */,
+				AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */,
 				AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */,
 				AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */,
 				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,

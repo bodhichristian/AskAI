@@ -14,22 +14,13 @@ struct ChatView: View {
     
     @State var engine: String
     
-    private var engineName: String {
-        switch engine {
-        case "davinci": return "Davinci"
-        case "curie": return "Curie"
-        case "babbage": return "Babbage"
-        default: return "Ada"
-        }
-    }
-    
     var body: some View {
         
             VStack {
                 ResponseView(viewModel: viewModel, savedChats: savedChats, engine: engine)
                 
                 Section {
-                    RequestView(viewModel: viewModel)
+                    RequestView(viewModel: viewModel, engine: engine)
                 } header: {
                     Text("Chat with Artificial Intelligence.")
                         .font(.caption)
@@ -83,13 +74,13 @@ struct ChatView: View {
             }
             .padding(8)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Ask \(engineName)")
+            .navigationTitle("Ask \(engine.capitalizeFirst())")
         }
     
     }
 
 
-struct ChatGPTView_Previews: PreviewProvider {
+struct ChatView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     
     static var previews: some View {

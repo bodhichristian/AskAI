@@ -10,18 +10,18 @@ import SwiftUI
 struct RequestView: View {
     @ObservedObject var viewModel: ChatViewModel
     @FocusState private var isEditing: Bool
+    @State var engine: String
     
     var body: some View {
         VStack{
             TextEditor(text: $viewModel.request)
-            
                 .frame(height: 100)
                 .cornerRadius(10)
                 .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
                 .padding(.bottom, 8)
                 .overlay {
                     withAnimation {
-                        Text("Ask ChatGPT")
+                        Text("Ask \(engine.capitalizeFirst())")
                             .opacity(isEditing || !viewModel.request.isEmpty ? 0 : 1)
                             .offset(y: -8)
                             .foregroundColor(.blue)
@@ -40,6 +40,6 @@ struct RequestView: View {
 struct RequestView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     static var previews: some View {
-        RequestView(viewModel: viewModel)
+        RequestView(viewModel: viewModel, engine: "davinci")
     }
 }
