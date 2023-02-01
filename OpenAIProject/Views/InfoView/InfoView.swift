@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct InfoView: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
     let defaultURL = URL(string: "https://www.google.com")!
-    let youtubeURL = URL(string: "https://www.youtube.com/c/swiftfulthinking")!
-    let coffeeURL = URL(string: "https://www.buymeacoffee.com/nicksarno")!
-    let coingeckoURL = URL(string: "https://wwww.coingecko.com")!
+    let openAIURL = URL(string: "https://openai.com/")!
+    let chatGPTURL = URL(string: "https://chat.openai.com/")!
+    let openAIAPIURL = URL(string: "https://openai.com/api/")!
     let githubURL = URL(string: "https://www.github.com/bodhichristian")!
     let twitterURL = URL(string: "https://twitter.com/bodhichristian")!
     
     var body: some View {
         NavigationView {
             List {
+                openAICredits
                 developerCredits
                 appLinks
             }
-            
-            .tint(.blue)
-            //.listStyle(GroupedListStyle())
+            //.tint(.blue)
             .navigationTitle("Info")
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -48,9 +48,6 @@ struct InfoView_Previews: PreviewProvider {
 }
 
 extension InfoView {
-    
-    
-    
     private var developerCredits: some View {
         Section {
             HStack {
@@ -68,30 +65,47 @@ extension InfoView {
             HStack {
                 Link(destination: githubURL, label: {
                     HStack{
-                        Image("github-mark")
+                        Image(colorScheme == .light ? "github-mark" : "github-mark-white")
                             .resizable().scaledToFit()
                             .frame(width: 20)
-                        Image("github")
+                        Image(colorScheme == .light ? "github" : "github-white")
                             .resizable().scaledToFit()
-                            .frame(width: 80)
+                            .frame(width: 65)
                         Text("/bodhichristian")
                     }
                 })
             }
             HStack {
-                Link(destination: githubURL, label: {
+                Link(destination: twitterURL, label: {
                     HStack{
                         Image("twitter")
                             .resizable().scaledToFit()
                             .frame(width: 20)
                         Text("Twitter")
-                            .fontWeight(.bold)
+                            .fontWeight(.black)
                             .padding(.leading, 4)
+                            .foregroundColor(Color("TwitterBlue"))
                         Text("@bodhichristian")
                     }
                 })
             }        } header: {
             Text("Developer")
+        }
+    }
+    
+    private var openAICredits: some View {
+        Section {
+            HStack {
+                Text("OpenAI has created a model called ChatGPT which is trained to interact in a conversational way.")
+                CircleImage(engine: "ChatGPT", width: 80, height: 80)
+            }
+            Link("OpenAI", destination: openAIURL)
+            Link("ChatGPT", destination: chatGPTURL)
+            Link("OpenAI API", destination: openAIAPIURL)
+
+
+        } header: {
+            Text("OpenAI")
         }
     }
     
@@ -105,6 +119,5 @@ extension InfoView {
         } header: {
             Text("More")
         }
-
     }
 }

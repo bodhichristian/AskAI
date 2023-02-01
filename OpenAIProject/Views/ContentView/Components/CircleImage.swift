@@ -13,14 +13,19 @@ struct CircleImage: View {
     @State var height: CGFloat
     
     var body: some View {
-        Image(engine)
-            .resizable()
-            .frame(width: width, height: height)
-            .clipShape(Circle())
-            .overlay(Circle().stroke(.white, lineWidth: 1))
-            .shadow(color: .secondary, radius: 3)
-            // leading padding to sit well in list. compensate negative 35 elsewhere
+        ZStack {
+            Circle()
+                .frame(width: width)
+                .foregroundColor(.white)
+                .shadow(color: .secondary, radius: 4)
+            Image(engine)
+                .resizable()
+                .frame(width: width, height: height)
+                .clipShape(Circle())
             
+            .overlay(Circle().stroke(.white, lineWidth: 1))
+        }
+            //.shadow(color: .secondary, radius: 3)            
     }
 }
 

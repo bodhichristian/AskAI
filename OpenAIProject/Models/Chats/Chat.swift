@@ -52,5 +52,5 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(isFavorite, forKey: .isFavorite)
     }
     
-    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engineUsed: "davinci")
+    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engineUsed: "davinci", isFavorite: true)
 }

@@ -26,6 +26,14 @@ struct SavedChatView: View {
                     CircleImage(engine: chat.engine, width: 150, height: 150)
                         .padding(8)
                         .padding(.top, 6)
+                        .overlay {
+                            Image(systemName: "checkmark.seal.fill")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .foregroundColor(.yellow)
+                                .opacity(chat.isFavorite ? 1 : 1)
+                                .offset(x: 60, y: 60)
+                        }
                     ZStack {
                         HStack {
                             Text("Chat with")
@@ -36,13 +44,8 @@ struct SavedChatView: View {
                         .fontWeight(.medium)
                         
                         HStack {
-                            Spacer()
-                            Image(systemName: "checkmark.seal.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.yellow)
-                                .opacity(chat.isFavorite ? 1 : 0)
-                                .offset(x: -20)
+                            
+                            
                         }
                     }
                     VStack(alignment: .leading) {
@@ -51,7 +54,7 @@ struct SavedChatView: View {
                             HStack(spacing: 8) {
                                 Spacer()
                                 
-                                Text(chat.request)
+                                Text(chat.request.trimmingCharacters(in: .whitespacesAndNewlines))
                                     .padding()
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
@@ -67,7 +70,7 @@ struct SavedChatView: View {
                                     .padding()
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(chatColor.opacity(0.5))
+                                            .foregroundColor(chatColor.opacity(0.2))
                                     )
                                 Spacer()
                             }

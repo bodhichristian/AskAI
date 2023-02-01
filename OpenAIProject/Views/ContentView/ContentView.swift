@@ -85,12 +85,12 @@ struct ContentView: View {
                                     savedChats.toggleFavorite(chat)
                                 } label: {
                                     if chat.isFavorite {
-                                        Label("Mark as Favorite", systemImage: "checkmark.seal")
+                                        Label("Unmark as favorite", systemImage: "seal")
                                     } else {
-                                        Label("Unmark as Favorite", systemImage: "seal")
+                                        Label("Mark as Favorite", systemImage: "checkmark.seal")
                                     }
                                 }
-                                .tint(chat.isFavorite ? .yellow : .blue)
+                                .tint(chat.isFavorite ? .blue : .yellow)
                             }
                         }
                     }
