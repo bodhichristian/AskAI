@@ -42,7 +42,7 @@ struct SavedChatView: View {
                                 .resizable()
                                 .frame(width: 35, height: 35)
                                 .foregroundColor(.yellow)
-                                .opacity(chat.isFavorite ? 1 : 1)
+                                .opacity(chat.isFavorite ? 1 : 0)
                                 .offset(x: 60, y: 60)
                         }
                         .offset(dragAmount)
