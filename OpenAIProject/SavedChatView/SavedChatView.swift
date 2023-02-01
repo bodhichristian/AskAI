@@ -19,10 +19,21 @@ struct SavedChatView: View {
         }
     }
     
+    @State private var dragAmount = CGSize.zero
+    let longPress = LongPressGesture().onEnded { _ in
+        //
+    }
+    let drag = DragGesture().onChanged { gesture in
+        //
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
+                    // engine logo
+                    // conditional 'favorite' checkmark
+                    // image is draggable, and resets on release
                     CircleImage(engine: chat.engine, width: 150, height: 150)
                         .padding(8)
                         .padding(.top, 6)
@@ -34,6 +45,18 @@ struct SavedChatView: View {
                                 .opacity(chat.isFavorite ? 1 : 1)
                                 .offset(x: 60, y: 60)
                         }
+                        .offset(dragAmount)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    dragAmount = gesture.translation
+                                }
+                                .onEnded { _ in
+                                    dragAmount = .zero
+                                }
+                        )
+                        .animation(.spring(), value: dragAmount)
+                    
                     ZStack {
                         HStack {
                             Text("Chat with")
@@ -69,8 +92,12 @@ struct SavedChatView: View {
                                 Text(chat.response)
                                     .padding()
                                     .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(chatColor.opacity(0.2))
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundStyle(.ultraThinMaterial)
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(chatColor.opacity(0.2))
+                                        }
                                     )
                                 Spacer()
                             }
