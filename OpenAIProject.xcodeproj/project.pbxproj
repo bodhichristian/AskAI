@@ -21,6 +21,7 @@
 		AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */; };
 		AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF192984568F002F1A62 /* EngineLabelView.swift */; };
 		AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */; };
+		AA940C98298AE4220052376F /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA940C97298AE4220052376F /* ProgressButton.swift */; };
 		AAB586132982E58C004388EC /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB586122982E58C004388EC /* Chat.swift */; };
 		AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */; };
 		AAD98F5C29710CC200954C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD98F5B29710CC200954C6F /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatLabel.swift; sourceTree = "<group>"; };
 		AA75CF192984568F002F1A62 /* EngineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLabelView.swift; sourceTree = "<group>"; };
 		AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		AA940C97298AE4220052376F /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
 		AAB586122982E58C004388EC /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		AAD98F5429710CC100954C6F /* OpenAIProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenAIProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIProjectApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				AA1DF2EF2979D17D0086700E /* ResponseView.swift */,
 				AA1DF2F12979D73A0086700E /* RequestView.swift */,
+				AA940C97298AE4220052376F /* ProgressButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */,
 				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,
 				AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */,
+				AA940C98298AE4220052376F /* ProgressButton.swift in Sources */,
 				AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
 				AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */,

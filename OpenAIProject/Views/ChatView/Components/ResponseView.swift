@@ -38,6 +38,8 @@ struct ResponseView: View {
                     .padding()
             }
         }
+        .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
+
         .overlay {
             // clear and save buttons
             buttonStack
@@ -61,7 +63,8 @@ extension ResponseView {
                     withAnimation(.linear(duration: 0.1)) {
                         viewModel.request = ""
                         viewModel.response = ""
-                        viewModel.isLoading = false
+                        viewModel.inProgress = false
+                        viewModel.complete = false
                     }
                 } label : {
                     ZStack {

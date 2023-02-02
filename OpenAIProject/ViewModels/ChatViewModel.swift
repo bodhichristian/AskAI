@@ -22,15 +22,18 @@ import OpenAISwift
     
     @Published var request: String
     @Published var response: String
-    @Published var isLoading: Bool
+    @Published var inProgress: Bool
+    @Published var complete: Bool
     @Published var firstRequest: Bool
     @Published var errorMessage: String? = nil
     
     init(request: String, response: String, isLoading: Bool, firstRequest: Bool) {
         self.request = ""
         self.response = ""
-        self.isLoading = false
+        self.inProgress = false
+        self.complete = false
         self.firstRequest = true
+        
     }
     
     static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", isLoading: false, firstRequest: false)
@@ -77,8 +80,10 @@ import OpenAISwift
                 maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens
             )
             response = result.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            complete = true
         } catch {
             response = error.localizedDescription
+            complete = true
         }
     }
 }
