@@ -10,6 +10,8 @@ import SwiftUI
 @MainActor class SavedChats: ObservableObject {
     @Published private(set) var chats: [Chat]
     
+    var recentlyDeleted: Chat?
+    
     let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedData")
     
     init() {
@@ -40,9 +42,17 @@ import SwiftUI
         if let index = chats.firstIndex(where: { currentChat in
             currentChat.id == chat.id
         }) {
+            recentlyDeleted = chat
             chats.remove(at: index)
             save()
         }
+    }
+    
+    // when delete function is called, deleted chat is stored in recentlyDeleted, and showingDeleteAlert will become true
+    // when alert is shown, user can acknowledge deletion, or undo.
+    // undoDelete() will append the recentlyDeleted chat, nil coalescing to the example Chat
+    func undoDelete() {
+        chats.append(recentlyDeleted ?? Chat.example)
     }
     
     //sends outs a change notification so views are refreshed

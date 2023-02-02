@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SavedChatLabel: View {
     @ObservedObject var chat: Chat
+    @Binding var showingDeleteAlert: Bool
     
     let formatter = DateFormatter()
         
@@ -48,12 +49,13 @@ struct SavedChatLabel: View {
             .offset(x: -30)
         }
         
+        
     }
 
 }
 
 struct SavedAskLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SavedChatLabel(chat: Chat.example)
+        SavedChatLabel(chat: Chat.example, showingDeleteAlert: .constant(true))
     }
 }

@@ -13,8 +13,12 @@ struct ContentView: View {
     @StateObject var curieVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
     @StateObject var babbageVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
     @StateObject var adaVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
-
+    
     @State private var isShowingMenu = false
+    
+    @State private var showingDeleteAlert = false
+    @State private var deleteAlertTitle = Text("Chat deleted.")
+    //@State private var deleteAlertMessage = Text("Permanently delete this chat. This action cannot be undone.")
     
     var body: some View {
         NavigationView {
@@ -47,14 +51,26 @@ struct ContentView: View {
                 
                 Section(header: Text("Saved Chats")) {
                     if savedChats.chats.isEmpty {
-                        Text("You haven't saved any chats yet.")
+                        Text("No saved chats. Start a new chat above.")
                     } else {
-                        ForEach(savedChats.chats.reversed()) { chat in
+                        ForEach(savedChats.chats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                             NavigationLink {
                                 SavedChatView(chat: chat)
                             } label: {
-                                SavedChatLabel(chat: chat)
+                                SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert)
                             }
+                            .alert(isPresented: $showingDeleteAlert, content: {
+                                Alert(title: deleteAlertTitle,
+                                      
+                                      primaryButton: .destructive(
+                                        Text("Undo"),
+                                        action: {
+                                            savedChats.undoDelete()
+                                        }
+                                      ),
+                                      secondaryButton: .default(Text("OK"))
+                                )
+                            })
                             .contextMenu {
                                 Button {
                                     savedChats.toggleFavorite(chat)
@@ -68,6 +84,7 @@ struct ContentView: View {
                                 
                                 Button(role: .destructive) {
                                     savedChats.delete(chat)
+                                    showingDeleteAlert = true
                                 } label: {
                                     Label("Delete chat", systemImage: "trash")
                                 }
@@ -75,6 +92,7 @@ struct ContentView: View {
                             .swipeActions {
                                 Button {
                                     savedChats.delete(chat)
+                                    showingDeleteAlert = true
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }.tint(.red)
@@ -94,6 +112,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    
                 }
             }
             

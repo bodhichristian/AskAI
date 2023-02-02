@@ -22,6 +22,7 @@
 		AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF192984568F002F1A62 /* EngineLabelView.swift */; };
 		AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */; };
 		AA940C98298AE4220052376F /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA940C97298AE4220052376F /* ProgressButton.swift */; };
+		AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA940C99298C27110052376F /* View-HideKeyboard.swift */; };
 		AAB586132982E58C004388EC /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB586122982E58C004388EC /* Chat.swift */; };
 		AAD98F5829710CC100954C6F /* OpenAIProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */; };
 		AAD98F5C29710CC200954C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD98F5B29710CC200954C6F /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		AA75CF192984568F002F1A62 /* EngineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLabelView.swift; sourceTree = "<group>"; };
 		AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		AA940C97298AE4220052376F /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
+		AA940C99298C27110052376F /* View-HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-HideKeyboard.swift"; sourceTree = "<group>"; };
 		AAB586122982E58C004388EC /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		AAD98F5429710CC100954C6F /* OpenAIProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenAIProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD98F5729710CC100954C6F /* OpenAIProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIProjectApp.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */,
 				AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */,
+				AA940C99298C27110052376F /* View-HideKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 			children = (
 				AA11B56729884A5200CC0F53 /* ChatView.swift */,
 				AA1DF2EE2979D16C0086700E /* Components */,
+				AA1DF2F52979DCD60086700E /* ViewModels */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -198,7 +202,6 @@
 				AAD98F6729710CFA00954C6F /* Models */,
 				AAD98F7529710FA300954C6F /* Views */,
 				AA11B5642985A65400CC0F53 /* SavedChatView */,
-				AA1DF2F52979DCD60086700E /* ViewModels */,
 				AA567EDC2980D59E00C5A5CD /* Extensions */,
 				AA1DF2F6297C731D0086700E /* Services */,
 				AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */,
@@ -325,6 +328,7 @@
 				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,
 				AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */,
 				AA940C98298AE4220052376F /* ProgressButton.swift in Sources */,
+				AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */,
 				AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
 				AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */,

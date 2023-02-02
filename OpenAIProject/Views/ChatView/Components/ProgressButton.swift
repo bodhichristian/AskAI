@@ -46,6 +46,7 @@ struct ProgressButton: View {
     var body: some View {
         ZStack {
             Button {
+                hideKeyboard()
                 viewModel.inProgress = true
                 viewModel.firstRequest = false
                 Task {
