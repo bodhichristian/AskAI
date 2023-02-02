@@ -11,7 +11,6 @@ import OpenAISwift
 struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     @ObservedObject var savedChats: SavedChats
-    
     @State var engine: String
     
     var body: some View {

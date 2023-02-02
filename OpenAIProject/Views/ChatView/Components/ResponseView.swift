@@ -21,6 +21,15 @@ struct ResponseView: View {
         }
     }
     
+    @State private var showingDeleteAlert = false
+    @State private var deleteAlertTitle = Text("Clear Chat")
+    @State private var deleteAlertMessage = Text("Are you sure you want to delete this chat?")
+    @State private var showingSaveAlert = false
+    @State private var saveAlertTitle = Text("Chat saved.")
+    @State private var saveAlertMessage = Text("View in Saved Chats")
+    
+    @State private var chatSaved = false
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
@@ -38,6 +47,8 @@ struct ResponseView: View {
                     .padding()
             }
         }
+        
+        
         .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
 
         .overlay {
@@ -54,17 +65,18 @@ extension ResponseView {
             Rectangle()
                 .foregroundColor(.clear)
             VStack(spacing: 8) {
-                
                 // TRASH CAN BUTTON
-                // sets request and response to empty strings
-                // sets isLoading to false so any bound views animate accordingly
-                // disabled if request is an empty string
                 Button {
-                    withAnimation(.linear(duration: 0.1)) {
-                        viewModel.request = ""
-                        viewModel.response = ""
-                        viewModel.inProgress = false
-                        viewModel.complete = false
+                    if chatSaved {
+                        withAnimation{
+                            viewModel.request = ""
+                            viewModel.response = ""
+                            viewModel.inProgress = false
+                            viewModel.complete = false
+                            chatSaved = false
+                        }
+                    } else {
+                        showingDeleteAlert = true
                     }
                 } label : {
                     ZStack {
@@ -78,14 +90,29 @@ extension ResponseView {
                     }
                 }
                 .disabled(viewModel.request.isEmpty)
+                .alert(isPresented: $showingDeleteAlert, content: {
+                    Alert(
+                        title: deleteAlertTitle,
+                        message: deleteAlertMessage,
+                        primaryButton: .default(Text("Don't clear")),
+                        secondaryButton: .destructive(Text("Delete"), action: {
+                            withAnimation{
+                                viewModel.request = ""
+                                viewModel.response = ""
+                                viewModel.inProgress = false
+                                viewModel.complete = false
+                            }
+                        }))
+                })
                 
                 // checkmark button
                 Button {
+                    showingSaveAlert = true
+                    print("tapped")
                     let chat = Chat(request: viewModel.request, response: viewModel.response, engineUsed: engine)
                     savedChats.add(chat)
                     
-                    
-                    
+  
                 } label : {
                     ZStack {
                         Circle()
@@ -97,6 +124,16 @@ extension ResponseView {
                     }
                 }
                 .disabled(viewModel.response.isEmpty)
+                .alert(isPresented: $showingSaveAlert, content: {
+                    Alert(
+                        title: saveAlertTitle,
+                        message: saveAlertMessage,
+                        dismissButton: .default(Text("OK"), action: {
+                            withAnimation{
+                                chatSaved = true
+                            }
+                        }))
+                })
             }
             .padding(4)
         }
