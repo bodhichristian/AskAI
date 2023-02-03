@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OpenAIProjectApp: App {
+struct AskAIApp: App {
     @StateObject var savedChats = SavedChats()
     var body: some Scene {
         WindowGroup {
