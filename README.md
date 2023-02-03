@@ -16,3 +16,4 @@ Each ChatView instantiates its own ChatViewModel so that request and response da
 
 <b> SavedChatView and InfoView </b>
 ![AskAI Showcase 2 003](https://user-images.githubusercontent.com/110639779/216637878-0a52554f-5010-4272-9d06-3542a7d2bc74.jpeg)
+SavedChatView displays a chat with the interaction date in the navigation bar, engine image (with optional favorite badge), user request, and ChatGPT response. As an easter egg, the user may drag the image around the screen, and it will return to its original position upon release. InfoView provides users with more information about working with each chat engine, and credits/links to OpenAI and connecting with the developer.
