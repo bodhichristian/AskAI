@@ -10,7 +10,9 @@ The app launches into ContentView and provides three major paths of navigation: 
 
 <b> ChatView </b>
 ![AskAI Showcase 2 002](https://user-images.githubusercontent.com/110639779/216637870-d2206aa8-9c26-444b-9f7c-78e68edf47c1.jpeg)
-Submit button adapted from Polly Vern's Slider Button (https://github.com/PollyVern/SwiftUI-Animations)
+Each ChatView instantiates its own ChatViewModel so that request and response data are preserved when user navigates away from the view. This environment is conditionally managed so that the user is sandboxed to the intended implementation. User may not submit an empty request, nor are the save/delete buttons tappable prior to receiving a response or error from ChatGPT. Submit button dismisses the iOS keyboard and animates while waiting for a response, and once it is received. User may clear the chat, with an alert to make sure they meant to. User may save the chat, with an alert notifying success.
+
+*Submit button adapted from Polly Vern's Slider Button (https://github.com/PollyVern/SwiftUI-Animations)
 
 <b> SavedChatView and InfoView </b>
 ![AskAI Showcase 2 003](https://user-images.githubusercontent.com/110639779/216637878-0a52554f-5010-4272-9d06-3542a7d2bc74.jpeg)
