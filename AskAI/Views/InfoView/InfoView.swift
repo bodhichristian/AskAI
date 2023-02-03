@@ -62,7 +62,7 @@ extension InfoView {
                     .frame(height: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 4)
-                Text("AskAI was developed by Christian Lavelle as an approachable way to experience interfacing with OpenAI's ChatGPT")
+                Text("AskAI was developed by Christian Lavelle as an approachable, native to iOS way to experience interfacing with OpenAI's ChatGPT.")
                     .font(.callout)
                     //.foregroundColor(.theme.accent)
             }
@@ -90,7 +90,7 @@ extension InfoView {
                         Text("Twitter")
                             .fontWeight(.black)
                             .padding(.leading, 4)
-                            .foregroundColor(Color("TwitterBlue"))
+                            .foregroundColor(Color("twitterBlue"))
                         Text("@bodhichristian")
                     }
                 })
@@ -104,7 +104,7 @@ extension InfoView {
             HStack {
                 Text("ChatGPT is a model trained by OpenAI to respond to text prompts in a conversational way. OpenAI seeks to make AI systems more natural and safe to interact with. ChatGPT is in a research preview, and you may not get desired results.")
                     .font(.callout)
-                CircleImage(engine: "ChatGPT", width: 80, height: 80)
+                CircleImage(engine: "chatGPT", width: 80, height: 80)
             }
             Link("OpenAI", destination: openAIURL)
             Link("ChatGPT", destination: chatGPTURL)

@@ -33,7 +33,6 @@ import OpenAISwift
         self.inProgress = false
         self.complete = false
         self.firstRequest = true
-        
     }
     
     static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", isLoading: false, firstRequest: false)
