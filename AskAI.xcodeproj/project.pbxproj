@@ -81,7 +81,8 @@
 		AA11B5642985A65400CC0F53 /* SavedChatView */ = {
 			isa = PBXGroup;
 			children = (
-				AA11B5622985A3C200CC0F53 /* SavedChatView.swift */,
+				AAC3783B298D4C650091E1E5 /* Views */,
+				AAB586152982EDBB004388EC /* SavedChatViewModels */,
 			);
 			path = SavedChatView;
 			sourceTree = "<group>";
@@ -170,19 +171,27 @@
 			path = OpenAI;
 			sourceTree = "<group>";
 		};
-		AAB586152982EDBB004388EC /* Chats */ = {
+		AAB586152982EDBB004388EC /* SavedChatViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				AAB586122982E58C004388EC /* Chat.swift */,
 				AA567EDA2980D54700C5A5CD /* SavedChats.swift */,
 			);
-			path = Chats;
+			path = SavedChatViewModels;
+			sourceTree = "<group>";
+		};
+		AAC3783B298D4C650091E1E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA11B5622985A3C200CC0F53 /* SavedChatView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AAD98F4B29710CC100954C6F = {
 			isa = PBXGroup;
 			children = (
-				AAD98F5629710CC100954C6F /* OpenAIProject */,
+				AAD98F5629710CC100954C6F /* AskAI */,
 				AAD98F5529710CC100954C6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -195,7 +204,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AAD98F5629710CC100954C6F /* OpenAIProject */ = {
+		AAD98F5629710CC100954C6F /* AskAI */ = {
 			isa = PBXGroup;
 			children = (
 				AAD98F5729710CC100954C6F /* AskAIApp.swift */,
@@ -208,7 +217,7 @@
 				AAD98F5B29710CC200954C6F /* Assets.xcassets */,
 				AAD98F5D29710CC200954C6F /* Preview Content */,
 			);
-			path = OpenAIProject;
+			path = AskAI;
 			sourceTree = "<group>";
 		};
 		AAD98F5D29710CC200954C6F /* Preview Content */ = {
@@ -223,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				AAB586142982EDAC004388EC /* OpenAI */,
-				AAB586152982EDBB004388EC /* Chats */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -467,9 +475,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OpenAIProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AskAI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AskAI;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -480,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.OpenAIProject;
+				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.AskAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -496,9 +505,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OpenAIProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AskAI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AskAI;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -509,7 +519,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.OpenAIProject;
+				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.AskAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
