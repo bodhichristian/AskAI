@@ -201,7 +201,6 @@
 				AAD98F5729710CC100954C6F /* AskAIApp.swift */,
 				AAD98F6729710CFA00954C6F /* Models */,
 				AAD98F7529710FA300954C6F /* Views */,
-				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA567EDC2980D59E00C5A5CD /* Extensions */,
 				AA1DF2F6297C731D0086700E /* Services */,
 				AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */,
@@ -233,8 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				AA567EE02980DDE700C5A5CD /* ContentView */,
-				AA11B56B29884D0000CC0F53 /* InfoView */,
 				AA567EDF2980D99000C5A5CD /* ChatView */,
+				AA11B5642985A65400CC0F53 /* SavedChatView */,
+				AA11B56B29884D0000CC0F53 /* InfoView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
