@@ -21,7 +21,6 @@ struct SavedChatLabel: View {
                     .fontWeight(.medium)
                     .foregroundColor(.blue)
                     .lineLimit(1)
-                
             }
             
             HStack(alignment: .center) {
@@ -41,17 +40,11 @@ struct SavedChatLabel: View {
                     .padding(.leading, 35)
                 Text(chat.response.trimmingCharacters(in: .whitespacesAndNewlines))
                     .font(.caption)
-                //.italic()
                     .lineLimit(2)
-                
-                
             }
             .offset(x: -30)
         }
-        
-        
     }
-
 }
 
 struct SavedAskLabel_Previews: PreviewProvider {
