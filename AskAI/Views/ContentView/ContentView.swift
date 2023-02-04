@@ -8,21 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    // ContentView is passed a savedChats EnvironmentObject from AskAIApp
     @EnvironmentObject var savedChats: SavedChats
-    @StateObject var davinciVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
-    @StateObject var curieVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
-    @StateObject var babbageVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
-    @StateObject var adaVM = ChatViewModel(request: "", response: "", isLoading: false, firstRequest: true)
     
-    @State private var isShowingMenu = false
+    // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
+    @StateObject var davinciVM = ChatViewModel(request: "", response: "", isLoading: false)
+    @StateObject var curieVM = ChatViewModel(request: "", response: "", isLoading: false)
+    @StateObject var babbageVM = ChatViewModel(request: "", response: "", isLoading: false)
+    @StateObject var adaVM = ChatViewModel(request: "", response: "", isLoading: false)
     
+    // When showingInfoView is toggled, a modal sheet will present InfoView
+    @State private var showingInfoView = false
+    
+    // When showingDeleteAlert is toggled, an alert is presented to confirm action
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Chat deleted.")
-    //@State private var deleteAlertMessage = Text("Permanently delete this chat. This action cannot be undone.")
     
     var body: some View {
         NavigationView {
             List {
+                
+                // ChatGPT Engines
+                // NavigationLink will push to a corresponding ChatView
+                
                 Section(header: Text("ChatGPT Engines"))  {
                     NavigationLink {
                         ChatView(viewModel: davinciVM, savedChats: savedChats, engine: "davinci")
@@ -48,6 +56,10 @@ struct ContentView: View {
                         EngineLabelView(engine: "ada")
                     }
                 }
+                
+                // Saved Chats
+                // If user has saved previous chats, they will display as a list of NavigationLinks
+                // NavigationLink pushes to SavedChatView
                 
                 Section(header: Text("Saved Chats")) {
                     if savedChats.chats.isEmpty {
@@ -120,12 +132,12 @@ struct ContentView: View {
             .navigationTitle("AskAI")
             .toolbar {
                 Button {
-                    isShowingMenu.toggle()
+                    showingInfoView.toggle()
                 } label: {
                     Image(systemName: "info.circle")
                 }
             }
-            .sheet(isPresented: $isShowingMenu) {
+            .sheet(isPresented: $showingInfoView) {
                 InfoView()
             }
         }

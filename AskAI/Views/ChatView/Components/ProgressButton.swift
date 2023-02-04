@@ -48,7 +48,6 @@ struct ProgressButton: View {
             Button {
                 hideKeyboard()
                 viewModel.inProgress = true
-                viewModel.firstRequest = false
                 Task {
                     await viewModel.submitRequest(viewModel.request, engine: engine)
                 }
