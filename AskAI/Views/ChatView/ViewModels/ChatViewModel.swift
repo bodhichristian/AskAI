@@ -16,7 +16,7 @@ import OpenAISwift
     let engines = ["davinci", "curie", "babbage", "ada"]
     
     // 1 token = approx 4 characters, or 0.75 English words.
-    // total length limit (request + response) is 2048 tokens - about 1500 words
+    // Total length limit (request + response) is 2048 tokens - about 1500 words
     let maxTokens = 1000
     let davinciMaxTokens = 4000
     
@@ -36,13 +36,13 @@ import OpenAISwift
     static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...")
     
     enum Engine: String {
-        // most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
+        // Most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
         case davinci = "davinci"
-        // very capable, but faster and lower cost than Davinci.
+        // Very capable, but faster and lower cost than Davinci.
         case curie = "curie"
-        // capable of straightforward tasks, very fast, and lower cost.
+        // Capable of straightforward tasks, very fast, and lower cost.
         case babbage = "babbage"
-        // capable of very simple tasks, usually the fastest model and lowest cost.
+        // Capable of very simple tasks, usually the fastest model and lowest cost.
         case ada = "ada"
         
         var model: OpenAIModelType.GPT3 {
@@ -65,7 +65,7 @@ import OpenAISwift
     }
     
     
-    // sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
+    // Sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
     func submitRequest(_ request: String, engine: String) async -> () {
         do {
             guard let engine = Engine(rawValue: engine) else {
