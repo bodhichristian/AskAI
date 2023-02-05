@@ -12,10 +12,10 @@ struct ContentView: View {
     @EnvironmentObject var savedChats: SavedChats
     
     // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
-    @StateObject var davinciVM = ChatViewModel(request: "", response: "", isLoading: false)
-    @StateObject var curieVM = ChatViewModel(request: "", response: "", isLoading: false)
-    @StateObject var babbageVM = ChatViewModel(request: "", response: "", isLoading: false)
-    @StateObject var adaVM = ChatViewModel(request: "", response: "", isLoading: false)
+    @StateObject var davinciVM = ChatViewModel()
+    @StateObject var curieVM = ChatViewModel()
+    @StateObject var babbageVM = ChatViewModel()
+    @StateObject var adaVM = ChatViewModel()
     
     // When showingInfoView is toggled, a modal sheet will present InfoView
     @State private var showingInfoView = false
@@ -42,17 +42,16 @@ struct ContentView: View {
                 InfoView()
             }
         }
-        //.font(.subheadline)
         .environmentObject(savedChats)
     }
 }
 
 extension ContentView {
     private var savedChatSection: some View {
+        
         // Saved Chats
         // If user has saved previous chats, they will display as a list of NavigationLinks
         // Each chat is a NavigationLink, organized by date, pushing to a SavedChatView
-        
         Section(header: Text("Saved Chats")) {
             if savedChats.chats.isEmpty {
                 Text("No saved chats. Start a new chat above.")
@@ -113,7 +112,6 @@ extension ContentView {
                         }
                         .tint(chat.isFavorite ? .blue : .yellow)
                     }
-                    
                 }
             }
         }
@@ -122,9 +120,9 @@ extension ContentView {
     
 extension ContentView {
     private var chatGPTEngineSection: some View {
+        
         // ChatGPT Engines
         // NavigationLink will push to a corresponding ChatView
-        
         Section(header: Text("ChatGPT Engines"))  {
             NavigationLink {
                 ChatView(viewModel: davinciVM, savedChats: savedChats, engine: "davinci")

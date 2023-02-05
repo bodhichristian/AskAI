@@ -26,14 +26,14 @@ import OpenAISwift
     @Published var complete: Bool
     @Published var errorMessage: String? = nil
     
-    init(request: String, response: String, isLoading: Bool) {
-        self.request = ""
-        self.response = ""
+    init(request: String = "", response: String = "") {
+        self.request = request
+        self.response = response
         self.inProgress = false
         self.complete = false
     }
     
-    static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", isLoading: false)
+    static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...")
     
     enum Engine: String {
         // most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
