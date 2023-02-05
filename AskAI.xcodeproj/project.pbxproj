@@ -81,8 +81,8 @@
 		AA11B5642985A65400CC0F53 /* SavedChatView */ = {
 			isa = PBXGroup;
 			children = (
-				AAC3783B298D4C650091E1E5 /* Views */,
-				AAB586152982EDBB004388EC /* SavedChatViewModels */,
+				AAFA8C0A298F4CCB000E66D6 /* Views */,
+				AAB586152982EDBB004388EC /* ViewModels */,
 			);
 			path = SavedChatView;
 			sourceTree = "<group>";
@@ -153,7 +153,6 @@
 		AA567EE32980EB6500C5A5CD /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */,
 				AA75CF192984568F002F1A62 /* EngineLabelView.swift */,
 				AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */,
 			);
@@ -171,21 +170,21 @@
 			path = OpenAI;
 			sourceTree = "<group>";
 		};
-		AAB586152982EDBB004388EC /* SavedChatViewModels */ = {
+		AAB586152982EDBB004388EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				AAB586122982E58C004388EC /* Chat.swift */,
 				AA567EDA2980D54700C5A5CD /* SavedChats.swift */,
 			);
-			path = SavedChatViewModels;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		AAC3783B298D4C650091E1E5 /* Views */ = {
+		AAC3783B298D4C650091E1E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AA11B5622985A3C200CC0F53 /* SavedChatView.swift */,
+				AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		AAD98F4B29710CC100954C6F = {
@@ -243,6 +242,15 @@
 				AA567EDF2980D99000C5A5CD /* ChatView */,
 				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA11B56B29884D0000CC0F53 /* InfoView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAFA8C0A298F4CCB000E66D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA11B5622985A3C200CC0F53 /* SavedChatView.swift */,
+				AAC3783B298D4C650091E1E5 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
