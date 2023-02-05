@@ -46,7 +46,6 @@ struct HomeView: View {
     }
 }
 
-
 // ChatGPT Engine List Section
 extension HomeView {
     private var chatGPTEngineSection: some View {
