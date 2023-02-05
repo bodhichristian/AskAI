@@ -12,6 +12,7 @@ struct ResponseView: View {
     @ObservedObject var savedChats: SavedChats
     @State var engine: String
     
+    // Switches on engine to return corresponding theme color
     private var chatColor: Color {
         switch engine {
         case "davinci": return .mint
@@ -21,16 +22,29 @@ struct ResponseView: View {
         }
     }
     
+    // Alert titles and messages
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Clear Chat")
     @State private var deleteAlertMessage = Text("Are you sure you want to delete this chat?")
+    
     @State private var showingSaveAlert = false
     @State private var saveAlertTitle = Text("Chat saved.")
     @State private var saveAlertMessage = Text("View in Saved Chats")
     
+    // chatSaved is used to determine whether to prompt user with delete alert
+    // if user has saved the current chat, they may clear it without warning
     @State private var chatSaved = false
     
     var body: some View {
+        responseBackground
+            .overlay {
+                clearAndSaveButtons
+            }
+    }
+}
+
+extension ResponseView {
+    private var responseBackground: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(chatColor).opacity(0.5)
@@ -38,7 +52,7 @@ struct ResponseView: View {
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {
                     if viewModel.response == "" {
-                        // default text if there is no response
+                        // default text if response has no value
                         Text("Response will appear here.")
                     }
                 }
@@ -47,25 +61,16 @@ struct ResponseView: View {
                     .padding()
             }
         }
-        
-        
         .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
-
-        .overlay {
-            // clear and save buttons
-            buttonStack
-        }
     }
-}
-
-extension ResponseView {
     
-    private var buttonStack: some View {
+    private var clearAndSaveButtons: some View {
         ZStack(alignment: .bottomTrailing) {
             Rectangle()
                 .foregroundColor(.clear)
             VStack(spacing: 8) {
-                // TRASH CAN BUTTON
+                
+                // Trash Button - Clear Chat
                 Button {
                     if chatSaved {
                         withAnimation{
@@ -105,14 +110,14 @@ extension ResponseView {
                         }))
                 })
                 
-                // checkmark button
+                // Checkmark Button - Save Chat
                 Button {
                     showingSaveAlert = true
                     print("tapped")
                     let chat = Chat(request: viewModel.request, response: viewModel.response, engineUsed: engine)
                     savedChats.add(chat)
                     
-  
+                    
                 } label : {
                     ZStack {
                         Circle()
