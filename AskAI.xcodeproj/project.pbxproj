@@ -17,7 +17,7 @@
 		AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F7297C732A0086700E /* ChatGPTService.swift */; };
 		AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDA2980D54700C5A5CD /* SavedChats.swift */; };
 		AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */; };
-		AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* ContentView.swift */; };
+		AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* HomeView.swift */; };
 		AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */; };
 		AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF192984568F002F1A62 /* EngineLabelView.swift */; };
 		AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */; };
@@ -47,7 +47,7 @@
 		AA1DF2F7297C732A0086700E /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
 		AA567EDA2980D54700C5A5CD /* SavedChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChats.swift; sourceTree = "<group>"; };
 		AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
-		AA567EE12980DE0200C5A5CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA567EE12980DE0200C5A5CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatLabel.swift; sourceTree = "<group>"; };
 		AA75CF192984568F002F1A62 /* EngineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLabelView.swift; sourceTree = "<group>"; };
 		AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		AA567EE02980DDE700C5A5CD /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE12980DE0200C5A5CD /* ContentView.swift */,
+				AA567EE12980DE0200C5A5CD /* HomeView.swift */,
 				AA567EE32980EB6500C5A5CD /* Components */,
 			);
 			path = ContentView;
@@ -339,7 +339,7 @@
 				AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */,
 				AA1DF2F8297C732A0086700E /* ChatGPTService.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
-				AA567EE22980DE0200C5A5CD /* ContentView.swift in Sources */,
+				AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */,
 				AAD98F5829710CC100954C6F /* AskAIApp.swift in Sources */,
 				AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */,
 				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,

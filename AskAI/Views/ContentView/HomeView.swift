@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     // ContentView is passed a savedChats EnvironmentObject from AskAIApp
     @EnvironmentObject var savedChats: SavedChats
     
@@ -46,7 +46,7 @@ struct ContentView: View {
     }
 }
 
-extension ContentView {
+extension HomeView {
     private var savedChatSection: some View {
         
         // Saved Chats
@@ -118,7 +118,7 @@ extension ContentView {
     }
 }
     
-extension ContentView {
+extension HomeView {
     private var chatGPTEngineSection: some View {
         
         // ChatGPT Engines
@@ -153,7 +153,7 @@ extension ContentView {
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView()
+            HomeView()
                 .environmentObject(SavedChats())
         }
     }
