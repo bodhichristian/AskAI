@@ -30,7 +30,6 @@ struct InfoView: View {
                 developerCredits
                 appLinks
             }
-            //.tint(.blue)
             .navigationTitle("Info")
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {

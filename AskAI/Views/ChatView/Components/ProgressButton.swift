@@ -11,11 +11,14 @@
 import SwiftUI
 
 struct ProgressButton: View {
+    
+    // Observes the viewModel for completion
     @ObservedObject var viewModel: ChatViewModel
     @State var engine: String
     
     @State var baseHeight: CGFloat = 50
 
+    // Switches on engine to provide appropriate color theme
     var chatColor: Color {
         switch engine {
         case "davinci": return .mint
@@ -29,7 +32,8 @@ struct ProgressButton: View {
         case submit
         case inProgress
         case complete
-
+        
+        // ProgressButton label
         var title: String {
             switch self {
             case .submit:
@@ -40,7 +44,6 @@ struct ProgressButton: View {
                 return "Response received."
             }
         }
-
     }
 
     var body: some View {
