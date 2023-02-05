@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 @MainActor class SavedChats: ObservableObject {
     @Published private(set) var chats: [Chat]
@@ -62,6 +63,4 @@ import SwiftUI
         chat.isFavorite.toggle()
         save()
     }
-    
-    
 }
