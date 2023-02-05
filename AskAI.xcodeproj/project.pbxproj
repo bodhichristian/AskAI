@@ -141,13 +141,13 @@
 			path = ChatView;
 			sourceTree = "<group>";
 		};
-		AA567EE02980DDE700C5A5CD /* ContentView */ = {
+		AA567EE02980DDE700C5A5CD /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
 				AA567EE12980DE0200C5A5CD /* HomeView.swift */,
 				AA567EE32980EB6500C5A5CD /* Components */,
 			);
-			path = ContentView;
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		AA567EE32980EB6500C5A5CD /* Components */ = {
@@ -239,7 +239,7 @@
 		AAD98F7529710FA300954C6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE02980DDE700C5A5CD /* ContentView */,
+				AA567EE02980DDE700C5A5CD /* HomeView */,
 				AA567EDF2980D99000C5A5CD /* ChatView */,
 				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA11B56B29884D0000CC0F53 /* InfoView */,
