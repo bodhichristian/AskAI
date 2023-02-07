@@ -1,10 +1,14 @@
 # AskAI
 
-AskAI provides an approachable, native to iOS experience for interfacing with ChatGPT, and saving chats for later. It's written with almost entirely SwiftUI, and uses MVVM architecture.
+AskAI provides an approachable, native to iOS experience for interfacing with ChatGPT, and saving chats for later. It's written with almost entirely SwiftUI, and uses MVVM architecture. Chat engine images generated with Midjourney.
+
+<b> Getting Started </b>
+* To receive responses from ChatGPT, you'll need an API key from OpenAI. Keys are available for free at https://openai.com/api/
+* Insert API key in AskAI/Views/ChatView/ViewModels/ChatViewModel.swift
 
 <b> HomeView </b>
 ![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
-The app launches into HomeView and provides three major paths of navigation: ChatView, SavedChats, and InfoView. User may choose to begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap in the info button to reveal a sheet with chat engine overviews and credits.
+The app launches into HomeView and provides three major paths of navigation: ChatView, SavedChats, and InfoView. User may choose to begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap the info button to reveal a sheet with chat engine overviews and credits.
 
 <b> ChatView </b>
 ![AskAI Showcase 2 002](https://user-images.githubusercontent.com/110639779/216637870-d2206aa8-9c26-444b-9f7c-78e68edf47c1.jpeg)
