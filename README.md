@@ -2,9 +2,10 @@
 
 AskAI provides an approachable, native to iOS experience for interfacing with ChatGPT, and saving chats for later. It's written with almost entirely SwiftUI, and uses MVVM architecture.
 
+<b> Getting Started </b>
 To use this app to its fullest potential, you'll need an API key from OpenAI. Otherwise, the app will have full functionality, minus receiveing responses from ChatGPT. Keys are available for free at https://openai.com/api/
 
-You'll enter your API key in Views/ChatView/ViewModels/ChatViewModel.swift
+API key can be added in Views/ChatView/ViewModels/ChatViewModel.swift
 
 <b> HomeView </b>
 ![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
