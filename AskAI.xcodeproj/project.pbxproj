@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA115A592991EDE7005D62B8 /* ChatEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA115A582991EDE7005D62B8 /* ChatEngine.swift */; };
 		AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5622985A3C200CC0F53 /* SavedChatView.swift */; };
 		AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */; };
 		AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56729884A5200CC0F53 /* ChatView.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA115A582991EDE7005D62B8 /* ChatEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEngine.swift; sourceTree = "<group>"; };
 		AA11B5622985A3C200CC0F53 /* SavedChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatView.swift; sourceTree = "<group>"; };
 		AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		AA11B56729884A5200CC0F53 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */,
+				AA115A582991EDE7005D62B8 /* ChatEngine.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */,
+				AA115A592991EDE7005D62B8 /* ChatEngine.swift in Sources */,
 				AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */,
 				AAB586132982E58C004388EC /* Chat.swift in Sources */,
 				AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */,

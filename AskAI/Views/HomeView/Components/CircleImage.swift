@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CircleImage: View {
-    @State var engine: String
-    @State var width: CGFloat
-    @State var height: CGFloat
+    let imageName: String
+    let width: CGFloat
+    let height: CGFloat
     
     var body: some View {
         ZStack {
@@ -18,24 +18,22 @@ struct CircleImage: View {
                 .frame(width: width)
                 .foregroundColor(.white)
                 .shadow(color: .secondary, radius: 4)
-            Image(engine)
+            Image(imageName)
                 .resizable()
                 .frame(width: width, height: height)
                 .clipShape(Circle())
-            
-            .overlay(Circle().stroke(.white, lineWidth: 1))
+                .overlay(Circle().stroke(.white, lineWidth: 1))
         }
-            //.shadow(color: .secondary, radius: 3)            
     }
 }
 
 struct CircleImage_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 50) {
-            CircleImage(engine: "davinci", width: 80, height: 80)
-            CircleImage(engine: "curie", width: 80, height: 80)
-            CircleImage(engine: "babbage", width: 80, height: 80)
-            CircleImage(engine: "ada", width: 80, height: 80)
+            CircleImage(imageName: "davinci", width: 80, height: 80)
+            CircleImage(imageName: "curie", width: 80, height: 80)
+            CircleImage(imageName: "babbage", width: 80, height: 80)
+            CircleImage(imageName: "ada", width: 80, height: 80)
         }
     }
 }

@@ -103,7 +103,7 @@ extension InfoView {
             HStack {
                 Text("ChatGPT is a model trained by OpenAI to respond to text prompts in a conversational way. OpenAI seeks to make AI systems more natural and safe to interact with. ChatGPT is in a research preview, and you may not get desired results.")
                     .font(.callout)
-                CircleImage(engine: "chatGPT", width: 80, height: 80)
+                CircleImage(imageName: "chatGPT", width: 80, height: 80)
             }
             Link("OpenAI", destination: openAIURL)
             Link("ChatGPT", destination: chatGPTURL)
@@ -122,7 +122,7 @@ extension InfoView {
     private var davinciInfo: some View {
         Section {
             VStack {
-                CircleImage(engine: "davinci", width: 100, height: 100)
+                CircleImage(imageName: "davinci", width: 100, height: 100)
                     .padding(5)
 
                 Text("Davinci is the most capable chat engine. For uses requiring a lot of understanding of the content, like summarization for a specific audience and creative content generation, Davinci is going to produce the best results.")
@@ -139,7 +139,7 @@ extension InfoView {
     private var curieInfo: some View {
         Section {
             VStack {
-                CircleImage(engine: "curie", width: 100, height: 100)
+                CircleImage(imageName: "curie", width: 100, height: 100)
                     .padding(5)
 
                 Text("Curie is extremely powerful, yet very fast. While Davinci is stronger when it comes to analyzing complicated text, Curie is quite good at answering questions and performing Q&A and as a general service chatbot.")
@@ -156,7 +156,7 @@ extension InfoView {
     private var babbageInfo: some View {
         Section {
             VStack {
-                CircleImage(engine: "babbage", width: 100, height: 100)
+                CircleImage(imageName: "babbage", width: 100, height: 100)
                     .padding(5)
 
                 Text("Babbage can perform straightforward tasks like simple classification. It’s also quite capable when it comes to Semantic Search ranking how well documents match up with search queries.")
@@ -173,7 +173,7 @@ extension InfoView {
     private var adaInfo: some View {
         Section {
             VStack {
-                CircleImage(engine: "ada", width: 100, height: 100)
+                CircleImage(imageName: "ada", width: 100, height: 100)
                     .padding(5)
 
                 Text("Ada is usually the fastest model and can perform tasks like parsing text, address correction and certain kinds of classification tasks that don’t require too much nuance.")

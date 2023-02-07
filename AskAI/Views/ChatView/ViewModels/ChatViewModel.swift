@@ -13,7 +13,7 @@ import OpenAISwift
     // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
     let openAI = OpenAISwift(authToken: "REPLACE THIS TEXT WITH YOUR OPENAI API KEY")
     
-    let engines = ["davinci", "curie", "babbage", "ada"]
+    //let engines = ["davinci", "curie", "babbage", "ada"]
     
     // 1 token = approx 4 characters, or 0.75 English words.
     // Total length limit (request + response) is 2048 tokens - about 1500 words
@@ -35,43 +35,9 @@ import OpenAISwift
     
     static let example = ChatViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...")
     
-    enum Engine: String {
-        // Most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
-        case davinci = "davinci"
-        // Very capable, but faster and lower cost than Davinci.
-        case curie = "curie"
-        // Capable of straightforward tasks, very fast, and lower cost.
-        case babbage = "babbage"
-        // Capable of very simple tasks, usually the fastest model and lowest cost.
-        case ada = "ada"
-        
-        var model: OpenAIModelType.GPT3 {
-            switch self {
-                case .davinci: return .davinci
-                case .curie: return .curie
-                case .babbage: return .babbage
-                case .ada: return .ada
-            }
-        }
-        
-        var color: Color {
-            switch self {
-            case .davinci: return .mint
-            case .curie: return .purple
-            case .babbage: return .green
-            case .ada: return Color(red: 3, green: 0.2, blue: 0.6)
-            }
-        }
-    }
-    
-    
     // Sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
-    func submitRequest(_ request: String, engine: String) async -> () {
+    func submitRequest(_ request: String, engine: ChatEngine) async -> () {
         do {
-            guard let engine = Engine(rawValue: engine) else {
-                response = "Invalid engine specified"
-                return
-            }
             let result = try await openAI.sendCompletion(
                 with: request, model: .gpt3(engine.model),
                 maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens

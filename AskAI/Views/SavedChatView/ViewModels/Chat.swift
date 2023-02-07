@@ -12,7 +12,7 @@ class Chat: Identifiable, Codable, ObservableObject {
     var request: String
     var response: String
     var date: Date
-    var engine: String
+    var engine: ChatEngine
     var notes = ""
     @Published var isFavorite: Bool
     
@@ -20,12 +20,12 @@ class Chat: Identifiable, Codable, ObservableObject {
         case id, request, response, date, engine, notes, isFavorite
     }
     
-    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engineUsed: String, notes: String = "", isFavorite: Bool = false) {
+    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engine: ChatEngine, notes: String = "", isFavorite: Bool = false) {
         self.id = id
         self.request = request
         self.response = response
         self.date = .now
-        self.engine = engineUsed
+        self.engine = engine
         self.notes = ""
         self.isFavorite = false
     }
@@ -36,7 +36,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.request = try container.decode(String.self, forKey: .request)
         self.response = try container.decode(String.self, forKey: .response)
         self.date = try container.decode(Date.self, forKey: .date)
-        self.engine = try container.decode(String.self, forKey: .engine)
+        self.engine = try container.decode(ChatEngine.self, forKey: .engine)
         self.notes = try container.decode(String.self, forKey: .notes)
         self.isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
     }
@@ -52,5 +52,5 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(isFavorite, forKey: .isFavorite)
     }
     
-    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engineUsed: "davinci", isFavorite: true)
+    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engine: .davinci, isFavorite: true)
 }

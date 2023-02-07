@@ -14,20 +14,9 @@ struct ProgressButton: View {
     
     // Observes the viewModel for completion
     @ObservedObject var viewModel: ChatViewModel
-    @State var engine: String
-    
+    let engine: ChatEngine
     @State var baseHeight: CGFloat = 50
 
-    // Switches on engine to provide appropriate color theme
-    var chatColor: Color {
-        switch engine {
-        case "davinci": return .mint
-        case "curie": return .purple
-        case "babbage": return .green
-        default: return Color(red: 3, green: 0.2, blue: 0.6)
-        }
-    }
-    
     enum ProgressButtonTypes: CaseIterable {
         case submit
         case inProgress
@@ -75,7 +64,7 @@ struct ProgressButton: View {
     private func baseInternalView(type: ProgressButtonTypes) -> some View {
         ZStack {
             Rectangle()
-                .fill(viewModel.request == "" ? .secondary.opacity(0.5) : chatColor)
+                .fill(viewModel.request == "" ? .secondary.opacity(0.5) : engine.color)
                 .frame(height: 50)
             Text(type.title)
                 .foregroundColor(.white)
@@ -94,6 +83,6 @@ struct ProgressButton: View {
 
 struct SliderButton_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressButton(viewModel: ChatViewModel.example,engine: "davinci")
+        ProgressButton(viewModel: ChatViewModel.example, engine: .davinci)
     }
 }

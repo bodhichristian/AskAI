@@ -53,27 +53,27 @@ extension HomeView {
         // NavigationLink will push to a corresponding ChatView
         Section(header: Text("ChatGPT Engines"))  {
             NavigationLink {
-                ChatView(viewModel: davinciVM, savedChats: savedChats, engine: "davinci")
+                ChatView(viewModel: davinciVM, savedChats: savedChats, engine: .davinci)
             } label: {
-                EngineLabelView(engine: "davinci")
+                EngineLabelView(engine: .davinci)
             }
             
             NavigationLink {
-                ChatView(viewModel: curieVM, savedChats: savedChats, engine: "curie")
+                ChatView(viewModel: curieVM, savedChats: savedChats, engine: .curie)
             } label: {
-                EngineLabelView(engine: "curie")
+                EngineLabelView(engine: .curie)
             }
             
             NavigationLink {
-                ChatView(viewModel: babbageVM, savedChats: savedChats, engine: "babbage")
+                ChatView(viewModel: babbageVM, savedChats: savedChats, engine: .babbage)
             } label: {
-                EngineLabelView(engine: "babbage")
+                EngineLabelView(engine: .babbage)
             }
             
             NavigationLink {
-                ChatView(viewModel: adaVM, savedChats: savedChats, engine: "ada")
+                ChatView(viewModel: adaVM, savedChats: savedChats, engine: .ada)
             } label: {
-                EngineLabelView(engine: "ada")
+                EngineLabelView(engine: .ada)
             }
         }
     }
@@ -92,9 +92,9 @@ extension HomeView {
             } else {
                 ForEach(savedChats.chats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                     NavigationLink {
-                        SavedChatView(chat: chat)
+                        SavedChatView(chat: chat, engine: chat.engine)
                     } label: {
-                        SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert)
+                        SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert, engine: chat.engine)
                     }
                     .alert(isPresented: $showingDeleteAlert, content: {
                         Alert(title: deleteAlertTitle,

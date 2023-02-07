@@ -10,16 +10,7 @@ import SwiftUI
 struct RequestView: View {
     @ObservedObject var viewModel: ChatViewModel
     @FocusState private var isEditing: Bool
-    @State var engine: String
-    
-    private var chatColor: Color {
-        switch engine {
-        case "davinci": return .mint
-        case "curie": return .purple
-        case "babbage": return .green
-        default: return Color(red: 3, green: 0.2, blue: 0.6)
-        }
-    }
+    let engine: ChatEngine
     
     var body: some View {
         VStack{
@@ -30,10 +21,10 @@ struct RequestView: View {
                 .padding(.bottom, 8)
                 .overlay {
                     withAnimation {
-                        Text("Ask \(engine.capitalizeFirst())")
+                        Text("Ask \(engine.name.capitalizeFirst())")
                             .opacity(isEditing || !viewModel.request.isEmpty ? 0 : 1)
                             .offset(y: -8)
-                            .foregroundColor(chatColor)
+                            .foregroundColor(engine.color)
                             .fontWeight(.semibold)
                     }
                 }.focused($isEditing)
@@ -50,6 +41,6 @@ struct RequestView: View {
 struct RequestView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     static var previews: some View {
-        RequestView(viewModel: viewModel, engine: "davinci")
+        RequestView(viewModel: viewModel, engine: .davinci)
     }
 }

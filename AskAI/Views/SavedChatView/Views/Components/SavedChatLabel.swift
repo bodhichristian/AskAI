@@ -11,6 +11,8 @@ struct SavedChatLabel: View {
     @ObservedObject var chat: Chat
     @Binding var showingDeleteAlert: Bool
     
+    let engine: ChatEngine
+    
     let formatter = DateFormatter()
         
     var body: some View {
@@ -36,7 +38,7 @@ struct SavedChatLabel: View {
             }
             
             HStack() {
-                CircleImage(engine: chat.engine, width: 25, height: 25)
+                CircleImage(imageName: engine.name, width: 25, height: 25)
                     .padding(.leading, 35)
                 Text(chat.response.trimmingCharacters(in: .whitespacesAndNewlines))
                     .font(.caption)
@@ -49,6 +51,6 @@ struct SavedChatLabel: View {
 
 struct SavedAskLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SavedChatLabel(chat: Chat.example, showingDeleteAlert: .constant(true))
+        SavedChatLabel(chat: Chat.example, showingDeleteAlert: .constant(true), engine: .davinci)
     }
 }

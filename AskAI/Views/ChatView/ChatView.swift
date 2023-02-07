@@ -12,8 +12,7 @@ struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     @ObservedObject var savedChats: SavedChats
     
-    // engine will be passed to ResponseView and ProgressButton to return appropriate theme
-    @State var engine: String
+    let engine: ChatEngine
     
     var body: some View {
         VStack {
@@ -34,15 +33,14 @@ struct ChatView: View {
         }
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Ask \(engine.capitalizeFirst())")
+        .navigationTitle("Ask \(engine.name.capitalizeFirst())")
     }
 }
-
 
 struct ChatView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     
     static var previews: some View {
-        ChatView(viewModel: viewModel, savedChats: SavedChats(), engine: "davinci")
+        ChatView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
     }
 }

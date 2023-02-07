@@ -10,17 +10,8 @@ import SwiftUI
 struct ResponseView: View {
     @ObservedObject var viewModel: ChatViewModel
     @ObservedObject var savedChats: SavedChats
-    @State var engine: String
     
-    // Switches on engine to return corresponding theme color
-    private var chatColor: Color {
-        switch engine {
-        case "davinci": return .mint
-        case "curie": return .purple
-        case "babbage": return .green
-        default: return Color(red: 3, green: 0.2, blue: 0.6)
-        }
-    }
+    let engine: ChatEngine
     
     // Alert titles and messages
     @State private var showingDeleteAlert = false
@@ -32,7 +23,7 @@ struct ResponseView: View {
     @State private var saveAlertMessage = Text("View in Saved Chats")
     
     // chatSaved is used to determine whether to prompt user with delete alert
-    // if user has saved the current chat, they may clear it without warning
+    // Ff user has saved the current chat, they may clear it without warning
     @State private var chatSaved = false
     
     var body: some View {
@@ -47,7 +38,7 @@ extension ResponseView {
     private var responseBackground: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(chatColor).opacity(0.5)
+                .foregroundColor(engine.color).opacity(0.5)
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {
@@ -114,10 +105,8 @@ extension ResponseView {
                 Button {
                     showingSaveAlert = true
                     print("tapped")
-                    let chat = Chat(request: viewModel.request, response: viewModel.response, engineUsed: engine)
+                    let chat = Chat(request: viewModel.request, response: viewModel.response, engine: engine)
                     savedChats.add(chat)
-                    
-                    
                 } label : {
                     ZStack {
                         Circle()
@@ -148,7 +137,7 @@ extension ResponseView {
 struct ResponseView_Previews: PreviewProvider {
     static let viewModel = ChatViewModel.example
     static var previews: some View {
-        ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: "davinci")
+        ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
         
     }
 }
