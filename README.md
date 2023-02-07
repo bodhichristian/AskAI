@@ -4,7 +4,7 @@ AskAI provides an approachable, native to iOS experience for interfacing with Ch
 
 <b> Getting Started </b>
 * To receive responses from ChatGPT, you'll need an API key from OpenAI. Otherwise, the app will have full functionality, minus receiveing responses from ChatGPT. Keys are available for free at https://openai.com/api/
-* API key can be added in Views/ChatView/ViewModels/ChatViewModel.swift
+* API key can be added in AskAI/Views/ChatView/ViewModels/ChatViewModel.swift
 
 <b> HomeView </b>
 ![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
