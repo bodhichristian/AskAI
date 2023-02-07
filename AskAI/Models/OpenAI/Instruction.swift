@@ -5,9 +5,9 @@
 import Foundation
 
 class Instruction: Encodable {
-    var instruction: String
-    var model: String
-    var input: String
+    let instruction: String
+    let model: String
+    let input: String
     
     init(instruction: String, model: String, input: String) {
         self.instruction = instruction

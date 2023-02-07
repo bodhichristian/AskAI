@@ -5,9 +5,9 @@
 import Foundation
 
 class Command: Encodable {
-    var prompt: String
-    var model: String
-    var maxTokens: Int
+    let prompt: String
+    let model: String
+    let maxTokens: Int
     
     init(prompt: String, model: String, maxTokens: Int) {
         self.prompt = prompt
