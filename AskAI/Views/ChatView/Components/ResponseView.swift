@@ -13,6 +13,14 @@ struct ResponseView: View {
     
     let engine: Engine
     
+    // Provides user context for expected return media
+    var defaultWillAppearMessage: String {
+        switch engine {
+        case .DALLE: return "Image will appear here."
+        default: return "Response will appear here."
+        }
+    }
+    
     // Alert titles and messages
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Clear Chat")
@@ -23,8 +31,10 @@ struct ResponseView: View {
     @State private var saveAlertMessage = Text("View in Saved Chats")
     
     // chatSaved is used to determine whether to prompt user with delete alert
-    // Ff user has saved the current chat, they may clear it without warning
+    // If user has saved the current chat, they may clear it without warning
     @State private var chatSaved = false
+    
+    @State private var generatedImage: UIImage?
     
     var body: some View {
         responseBackground
@@ -42,15 +52,25 @@ extension ResponseView {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {
-                    if viewModel.response == "" {
+                    if viewModel.response == "" &&
+                        viewModel.generatedImage == nil {
                         // default text if response has no value
-                        Text("Response will appear here.")
+                        Text(defaultWillAppearMessage)
                     }
                 }
-            ScrollView {
-                Text(viewModel.response)
-                    .padding()
-            }
+            
+//            if engine == .DALLE {
+                //if let generatedImage = viewModel.generatedImage {
+            Image(uiImage: UIImage(named: "chatGPT")!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+               // }
+//            } else {
+//                ScrollView {
+//                    Text(viewModel.response)
+//                        .padding()
+//                }
+//            }
         }
         .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
     }
@@ -135,9 +155,9 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
-    static let viewModel = OpenAIViewModel.example
+    
     static var previews: some View {
-        ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
+        ResponseView(viewModel: OpenAIViewModel.example, savedChats: SavedChats(), engine: .DALLE)
         
     }
 }

@@ -11,7 +11,7 @@ import OpenAIKit
 import OpenAISwift
 
 // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let apiKey = "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"
+let apiKey = "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"
 
 @MainActor class OpenAIViewModel: ObservableObject {
     
@@ -31,15 +31,17 @@ let apiKey = "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"
     @Published var inProgress: Bool
     @Published var complete: Bool
     @Published var errorMessage: String? = nil
+    @Published var generatedImage: UIImage? = nil
     
-    init(request: String = "", response: String = "") {
+    init(request: String = "", response: String = "", generatedImage: UIImage? = nil) {
         self.request = request
         self.response = response
         self.inProgress = false
         self.complete = false
+        self.generatedImage = nil
     }
     
-    static let example = OpenAIViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...")
+    static let example = OpenAIViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", generatedImage: UIImage(named: "chatGPT"))
     
     // Sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
     func submitRequest(_ request: String, engine: Engine) async -> () {
@@ -62,7 +64,7 @@ let apiKey = "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"
      */
     @Published var imagePrompt: String = ""
     
-    func generateImage(prompt: String) async -> UIImage? {
+    func generateImage(prompt: String) async -> () {
         do {
             // create generated image configuration
             let params = ImageParameters(
@@ -70,7 +72,7 @@ let apiKey = "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"
                 resolution: .medium,
                 responseFormat: .base64Json
             )
-            //
+            
             let result =  try await dallE.createImage(parameters: params)
             
             // grab the first image data
@@ -78,11 +80,10 @@ let apiKey = "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"
             // decode image from base64
             let image = try dallE.decodeBase64Image(data)
             
-            return image
+            generatedImage = image
         }
         catch{
-            print(String(describing: error))
-            return nil
+            print(error.localizedDescription)
         }
     }
 }

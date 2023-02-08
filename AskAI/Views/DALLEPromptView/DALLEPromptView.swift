@@ -37,6 +37,6 @@ struct DALLEPromptView: View {
 
 struct DALLEView_Previews: PreviewProvider {
     static var previews: some View {
-        DALLEPromptView(viewModel: OpenAIViewModel(), engine: .DALLE)
+        DALLEPromptView(viewModel: OpenAIViewModel.example, engine: .DALLE)
     }
 }

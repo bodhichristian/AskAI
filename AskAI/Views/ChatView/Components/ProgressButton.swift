@@ -40,8 +40,14 @@ struct ProgressButton: View {
             Button {
                 hideKeyboard()
                 viewModel.inProgress = true
-                Task {
-                    await viewModel.submitRequest(viewModel.request, engine: engine)
+                if engine == .DALLE {
+                    Task {
+                        await viewModel.generateImage(prompt: viewModel.imagePrompt)
+                    }
+                } else {
+                    Task {
+                        await viewModel.submitRequest(viewModel.request, engine: engine)
+                    }
                 }
             } label: {
                 VStack(spacing: 0) {
