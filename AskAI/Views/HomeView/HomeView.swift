@@ -12,10 +12,10 @@ struct HomeView: View {
     @EnvironmentObject var savedChats: SavedChats
     
     // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
-    @StateObject var davinciVM = ChatViewModel()
-    @StateObject var curieVM = ChatViewModel()
-    @StateObject var babbageVM = ChatViewModel()
-    @StateObject var adaVM = ChatViewModel()
+    @StateObject var davinciVM = OpenAIViewModel()
+    @StateObject var curieVM = OpenAIViewModel()
+    @StateObject var babbageVM = OpenAIViewModel()
+    @StateObject var adaVM = OpenAIViewModel()
     
     // When showingInfoView is toggled, a modal sheet will present InfoView
     @State private var showingInfoView = false

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EngineLabelView: View {
-    let engine: ChatEngine
+    let engine: Engine
     
     var body: some View {
         Label {

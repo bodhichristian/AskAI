@@ -11,7 +11,7 @@ struct SavedChatLabel: View {
     @ObservedObject var chat: Chat
     @Binding var showingDeleteAlert: Bool
     
-    let engine: ChatEngine
+    let engine: Engine
     
     let formatter = DateFormatter()
         

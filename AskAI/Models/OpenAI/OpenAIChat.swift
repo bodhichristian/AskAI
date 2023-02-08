@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct OpenAI: Codable {
+public struct OpenAIChat: Codable {
     public let object: String
     public let model: String?
     public let choices: [Choice]

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ResponseView: View {
-    @ObservedObject var viewModel: ChatViewModel
+    @ObservedObject var viewModel: OpenAIViewModel
     @ObservedObject var savedChats: SavedChats
     
-    let engine: ChatEngine
+    let engine: Engine
     
     // Alert titles and messages
     @State private var showingDeleteAlert = false
@@ -135,7 +135,7 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
-    static let viewModel = ChatViewModel.example
+    static let viewModel = OpenAIViewModel.example
     static var previews: some View {
         ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
         

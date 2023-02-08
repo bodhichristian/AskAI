@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct RequestView: View {
-    @ObservedObject var viewModel: ChatViewModel
+    @ObservedObject var viewModel: OpenAIViewModel
     @FocusState private var isEditing: Bool
-    let engine: ChatEngine
     
+    let engine: Engine
+    var promptSuggestion: String {
+        switch engine {
+        case .DALLE: return "Not sure what to prompt? Try \"Intergalactic Ice Cream\" or \"Astronaut ninja warrior cats on the moon\""
+        default: return "Not sure what to prompt? Try \"Write me a song\" or \"Explain Quantum Mechanics like I'm five years old.\""
+        }
+    }
     var body: some View {
         VStack{
             TextEditor(text: $viewModel.request)
@@ -30,7 +36,7 @@ struct RequestView: View {
                 }.focused($isEditing)
                 .disabled(viewModel.inProgress || viewModel.complete)
                 .foregroundColor(viewModel.inProgress || viewModel.complete ? .gray : .primary)
-            Text("Not sure what to prompt? Try \"Write me a song\" or \"Explain Quantum Mechanics like I'm five years old.\"")
+            Text(promptSuggestion)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .italic()
@@ -39,8 +45,8 @@ struct RequestView: View {
 }
 
 struct RequestView_Previews: PreviewProvider {
-    static let viewModel = ChatViewModel.example
+    static let viewModel = OpenAIViewModel.example
     static var previews: some View {
-        RequestView(viewModel: viewModel, engine: .davinci)
+        RequestView(viewModel: viewModel, engine: .DALLE)
     }
 }

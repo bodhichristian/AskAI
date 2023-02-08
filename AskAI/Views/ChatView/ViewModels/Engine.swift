@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-enum ChatEngine: Codable {
+enum Engine: Codable {
     // Most capable GPT-3 model. can do any task the other models can do, often with higher quality, longer output and better instruction-following.
     case davinci
     // Very capable, but faster and lower cost than Davinci.
@@ -17,6 +17,9 @@ enum ChatEngine: Codable {
     case babbage
     // Capable of very simple tasks, usually the fastest model and lowest cost.
     case ada
+    // Image generation
+    case DALLE
+    
     
     var model: OpenAIModelType.GPT3 {
         switch self {
@@ -24,6 +27,7 @@ enum ChatEngine: Codable {
         case .curie: return .curie
         case .babbage: return .babbage
         case .ada: return .ada
+        default: return .davinci
         }
     }
     
@@ -33,6 +37,7 @@ enum ChatEngine: Codable {
         case .curie: return "curie"
         case .babbage: return "babbage"
         case .ada: return "ada"
+        case .DALLE: return "Dall-E"
         }
     }
     
@@ -51,6 +56,7 @@ enum ChatEngine: Codable {
         case .curie: return .purple
         case .babbage: return .green
         case .ada: return Color(red: 1, green: 0.2, blue: 0.6)
+        default: return .mint
         }
     }
 }
