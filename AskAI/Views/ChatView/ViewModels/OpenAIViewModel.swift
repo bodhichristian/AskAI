@@ -5,18 +5,20 @@
 //  Created by christian on 1/19/23.
 //
 
+import UIKit
 import SwiftUI
 import Foundation
 import OpenAIKit
 import OpenAISwift
 
 // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let apiKey = "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"
+let apiKey = "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"
+let config = Configuration(organization: "Personal", apiKey: apiKey)
 
 @MainActor class OpenAIViewModel: ObservableObject {
     
     let chatGPT = OpenAISwift(authToken: apiKey)
-    let dallE = OpenAI(Configuration(organization: "Bodhicitta", apiKey: apiKey))
+    let dallE = OpenAI(config)
     
     /*
      For ChatGPT
@@ -65,25 +67,25 @@ let apiKey = "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"
     @Published var imagePrompt: String = ""
     
     func generateImage(prompt: String) async -> () {
+
         do {
-            // create generated image configuration
-            let params = ImageParameters(
+            let imageParam = ImageParameters(
                 prompt: prompt,
-                resolution: .medium,
+                resolution: .small,
                 responseFormat: .base64Json
             )
-            
-            let result =  try await dallE.createImage(parameters: params)
-            
-            // grab the first image data
-            let data = result.data[0].image
-            // decode image from base64
-            let image = try dallE.decodeBase64Image(data)
-            
+            let result = try await dallE.createImage(
+                parameters: imageParam
+            )
+            let b64Image = result.data[0].image
+            let image = try dallE.decodeBase64Image(b64Image)
+            print("Image decoded successfully")
             generatedImage = image
-        }
-        catch{
-            print(error.localizedDescription)
+            complete = true
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            complete = true
+            generatedImage = UIImage(named: "twitter")
         }
     }
 }

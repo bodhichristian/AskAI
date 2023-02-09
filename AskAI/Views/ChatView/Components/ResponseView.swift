@@ -34,7 +34,7 @@ struct ResponseView: View {
     // If user has saved the current chat, they may clear it without warning
     @State private var chatSaved = false
     
-    @State private var generatedImage: UIImage?
+    //@State private var generatedImage: UIImage?
     
     var body: some View {
         responseBackground
@@ -46,7 +46,7 @@ struct ResponseView: View {
 
 extension ResponseView {
     private var responseBackground: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: engine == .DALLE ? .center : .topLeading) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(engine.color).opacity(0.5)
             RoundedRectangle(cornerRadius: 10)
@@ -57,22 +57,22 @@ extension ResponseView {
                         // default text if response has no value
                         Text(defaultWillAppearMessage)
                     }
+                    if let generatedImage = viewModel.generatedImage {
+                        Image(uiImage: generatedImage)
+                            .resizable()
+                            .cornerRadius(10)
+                            .aspectRatio(contentMode: .fill)
+                        
+                    } else {
+                        ScrollView {
+                            Text(viewModel.response)
+                                .padding()
+                        }
+                    }
                 }
-            
-//            if engine == .DALLE {
-                //if let generatedImage = viewModel.generatedImage {
-            Image(uiImage: UIImage(named: "chatGPT")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-               // }
-//            } else {
-//                ScrollView {
-//                    Text(viewModel.response)
-//                        .padding()
-//                }
-//            }
+                .cornerRadius(10)
+                .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
         }
-        .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
     }
     
     private var clearAndSaveButtons: some View {
@@ -157,7 +157,7 @@ extension ResponseView {
 struct ResponseView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ResponseView(viewModel: OpenAIViewModel.example, savedChats: SavedChats(), engine: .DALLE)
+        ResponseView(viewModel: OpenAIViewModel(generatedImage: UIImage(named: "twitter")), savedChats: SavedChats(), engine: .DALLE)
         
     }
 }

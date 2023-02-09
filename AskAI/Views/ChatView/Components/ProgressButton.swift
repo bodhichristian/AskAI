@@ -42,9 +42,10 @@ struct ProgressButton: View {
                 viewModel.inProgress = true
                 if engine == .DALLE {
                     Task {
-                        await viewModel.generateImage(prompt: viewModel.imagePrompt)
+                        await viewModel.generateImage(prompt: viewModel.request)
                     }
                 } else {
+                    
                     Task {
                         await viewModel.submitRequest(viewModel.request, engine: engine)
                     }
