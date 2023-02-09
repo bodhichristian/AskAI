@@ -56,7 +56,7 @@ enum Engine: Codable {
         case .curie: return .purple
         case .babbage: return .green
         case .ada: return Color(red: 1, green: 0.2, blue: 0.6)
-        default: return .mint
+        case .DALLE: return .blue
         }
     }
 }

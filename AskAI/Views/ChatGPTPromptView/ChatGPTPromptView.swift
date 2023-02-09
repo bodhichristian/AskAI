@@ -8,7 +8,7 @@
 import SwiftUI
 import OpenAISwift
 
-struct ChatView: View {
+struct ChatGPTPromptView: View {
     @ObservedObject var viewModel: OpenAIViewModel
     @ObservedObject var savedChats: SavedChats
     
@@ -41,6 +41,6 @@ struct ChatView_Previews: PreviewProvider {
     static let viewModel = OpenAIViewModel.example
     
     static var previews: some View {
-        ChatView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
+        ChatGPTPromptView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
     }
 }

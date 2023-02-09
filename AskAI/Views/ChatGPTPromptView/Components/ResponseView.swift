@@ -98,11 +98,17 @@ extension ResponseView {
                     ZStack {
                         Circle()
                             .frame(width: 40)
-                            .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .red.opacity(0.7))
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .secondary.opacity(0.2)
+                                             : .red.opacity(0.7)
+                            )
                             .offset(y: 5)
                         Image(systemName: "trash")
                             .offset(y: 5)
-                            .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .white.opacity(0.6)
+                                             : .white
+                            )
                     }
                 }
                 .disabled(viewModel.request.isEmpty)
@@ -117,6 +123,7 @@ extension ResponseView {
                                 viewModel.response = ""
                                 viewModel.inProgress = false
                                 viewModel.complete = false
+                                viewModel.generatedImage = nil
                             }
                         }))
                 })
@@ -131,13 +138,19 @@ extension ResponseView {
                     ZStack {
                         Circle()
                             .frame(width: 40)
-                            .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .green.opacity(0.7))
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .secondary.opacity(0.2)
+                                             : .green.opacity(0.7)
+                            )
                             .padding(4)
                         Image(systemName: "checkmark")
-                            .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .white.opacity(0.6)
+                                             : .white
+                            )
                     }
                 }
-                .disabled(viewModel.response.isEmpty)
+                .disabled(viewModel.response.isEmpty && viewModel.generatedImage == nil)
                 .alert(isPresented: $showingSaveAlert, content: {
                     Alert(
                         title: saveAlertTitle,

@@ -10,7 +10,7 @@
 		AA115A592991EDE7005D62B8 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA115A582991EDE7005D62B8 /* Engine.swift */; };
 		AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5622985A3C200CC0F53 /* SavedChatView.swift */; };
 		AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */; };
-		AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56729884A5200CC0F53 /* ChatView.swift */; };
+		AA11B56829884A5200CC0F53 /* ChatGPTPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56729884A5200CC0F53 /* ChatGPTPromptView.swift */; };
 		AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56929884CE200CC0F53 /* InfoView.swift */; };
 		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
@@ -20,7 +20,7 @@
 		AA23348229936907007B0953 /* DALLEMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23348129936907007B0953 /* DALLEMainView.swift */; };
 		AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDA2980D54700C5A5CD /* SavedChats.swift */; };
 		AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */; };
-		AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* HomeView.swift */; };
+		AA567EE22980DE0200C5A5CD /* ChatGPTMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */; };
 		AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */; };
 		AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF192984568F002F1A62 /* EngineLabelView.swift */; };
 		AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */; };
@@ -43,7 +43,7 @@
 		AA115A582991EDE7005D62B8 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		AA11B5622985A3C200CC0F53 /* SavedChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatView.swift; sourceTree = "<group>"; };
 		AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
-		AA11B56729884A5200CC0F53 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		AA11B56729884A5200CC0F53 /* ChatGPTPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTPromptView.swift; sourceTree = "<group>"; };
 		AA11B56929884CE200CC0F53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		AA23348129936907007B0953 /* DALLEMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DALLEMainView.swift; sourceTree = "<group>"; };
 		AA567EDA2980D54700C5A5CD /* SavedChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChats.swift; sourceTree = "<group>"; };
 		AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
-		AA567EE12980DE0200C5A5CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTMainView.swift; sourceTree = "<group>"; };
 		AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatLabel.swift; sourceTree = "<group>"; };
 		AA75CF192984568F002F1A62 /* EngineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLabelView.swift; sourceTree = "<group>"; };
 		AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -136,6 +136,13 @@
 			path = DALLEMainView;
 			sourceTree = "<group>";
 		};
+		AA23348329958156007B0953 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
 		AA567EDC2980D59E00C5A5CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,23 +153,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		AA567EDF2980D99000C5A5CD /* ChatView */ = {
+		AA567EDF2980D99000C5A5CD /* ChatGPTPromptView */ = {
 			isa = PBXGroup;
 			children = (
-				AA11B56729884A5200CC0F53 /* ChatView.swift */,
+				AA11B56729884A5200CC0F53 /* ChatGPTPromptView.swift */,
 				AA1DF2EE2979D16C0086700E /* Components */,
 				AA1DF2F52979DCD60086700E /* ViewModels */,
 			);
-			path = ChatView;
+			path = ChatGPTPromptView;
 			sourceTree = "<group>";
 		};
-		AA567EE02980DDE700C5A5CD /* HomeView */ = {
+		AA567EE02980DDE700C5A5CD /* ChatGPTMainView */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE12980DE0200C5A5CD /* HomeView.swift */,
+				AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */,
 				AA567EE32980EB6500C5A5CD /* Components */,
 			);
-			path = HomeView;
+			path = ChatGPTMainView;
 			sourceTree = "<group>";
 		};
 		AA567EE32980EB6500C5A5CD /* Components */ = {
@@ -252,10 +259,11 @@
 		AAD98F7529710FA300954C6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA23348329958156007B0953 /* ContentView */,
 				AA233480299368CC007B0953 /* DALLEMainView */,
 				AA23347A299355EF007B0953 /* DALLEPromptView */,
-				AA567EE02980DDE700C5A5CD /* HomeView */,
-				AA567EDF2980D99000C5A5CD /* ChatView */,
+				AA567EE02980DDE700C5A5CD /* ChatGPTMainView */,
+				AA567EDF2980D99000C5A5CD /* ChatGPTPromptView */,
 				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA11B56B29884D0000CC0F53 /* InfoView */,
 			);
@@ -354,7 +362,7 @@
 				AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */,
 				AAB586132982E58C004388EC /* Chat.swift in Sources */,
 				AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */,
-				AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */,
+				AA11B56829884A5200CC0F53 /* ChatGPTPromptView.swift in Sources */,
 				AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */,
 				AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */,
 				AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */,
@@ -367,7 +375,7 @@
 				AA23347C29935636007B0953 /* DALLEPromptView.swift in Sources */,
 				AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
-				AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */,
+				AA567EE22980DE0200C5A5CD /* ChatGPTMainView.swift in Sources */,
 				AAD98F5829710CC100954C6F /* AskAIApp.swift in Sources */,
 				AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */,
 				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,
