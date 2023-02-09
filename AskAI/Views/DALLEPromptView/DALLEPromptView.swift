@@ -1,27 +1,25 @@
 //
-//  ContentView.swift
+//  DALLEView.swift
 //  OpenAIProject
 //
-//  Created by christian on 1/12/23.
+//  Created by christian on 2/7/23.
 //
 
 import SwiftUI
-import OpenAISwift
 
-struct ChatView: View {
-    @ObservedObject var viewModel: ChatViewModel
-    @ObservedObject var savedChats: SavedChats
+struct DALLEPromptView: View {
+    @ObservedObject var viewModel: OpenAIViewModel
     
-    let engine: ChatEngine
+    let engine: Engine
     
     var body: some View {
         VStack {
-            ResponseView(viewModel: viewModel, savedChats: savedChats, engine: engine)
+            ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: engine)
             
             Section {
                 RequestView(viewModel: viewModel, engine: engine)
             } header: {
-                Text("Chat with Artificial Intelligence.")
+                Text("Generate an image with Artificial Intelligence.")
                     .font(.caption)
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)
@@ -33,14 +31,12 @@ struct ChatView: View {
         }
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Ask \(engine.name.capitalizeFirst())")
+        .navigationTitle("Ask DALL-E")
     }
 }
 
-struct ChatView_Previews: PreviewProvider {
-    static let viewModel = ChatViewModel.example
-    
+struct DALLEView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
+        DALLEPromptView(viewModel: OpenAIViewModel.example, engine: .DALLE)
     }
 }

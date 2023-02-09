@@ -13,8 +13,8 @@ import SwiftUI
 struct ProgressButton: View {
     
     // Observes the viewModel for completion
-    @ObservedObject var viewModel: ChatViewModel
-    let engine: ChatEngine
+    @ObservedObject var viewModel: OpenAIViewModel
+    let engine: Engine
     @State var baseHeight: CGFloat = 50
 
     enum ProgressButtonTypes: CaseIterable {
@@ -28,7 +28,7 @@ struct ProgressButton: View {
             case .submit:
                 return "Submit"
             case .inProgress:
-                return "ChatGPT is thinking..."
+                return "Waiting for response..."
             case .complete:
                 return "Response received."
             }
@@ -40,8 +40,15 @@ struct ProgressButton: View {
             Button {
                 hideKeyboard()
                 viewModel.inProgress = true
-                Task {
-                    await viewModel.submitRequest(viewModel.request, engine: engine)
+                if engine == .DALLE {
+                    Task {
+                        await viewModel.generateImage(prompt: viewModel.request)
+                    }
+                } else {
+                    
+                    Task {
+                        await viewModel.submitRequest(viewModel.request, engine: engine)
+                    }
                 }
             } label: {
                 VStack(spacing: 0) {
@@ -83,6 +90,6 @@ struct ProgressButton: View {
 
 struct SliderButton_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressButton(viewModel: ChatViewModel.example, engine: .davinci)
+        ProgressButton(viewModel: OpenAIViewModel.example, engine: .davinci)
     }
 }

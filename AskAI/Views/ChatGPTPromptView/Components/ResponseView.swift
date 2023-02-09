@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct ResponseView: View {
-    @ObservedObject var viewModel: ChatViewModel
+    @ObservedObject var viewModel: OpenAIViewModel
     @ObservedObject var savedChats: SavedChats
     
-    let engine: ChatEngine
+    let engine: Engine
+    
+    // Provides user context for expected return media
+    var defaultWillAppearMessage: String {
+        switch engine {
+        case .DALLE: return "Image will appear here."
+        default: return "Response will appear here."
+        }
+    }
     
     // Alert titles and messages
     @State private var showingDeleteAlert = false
@@ -23,8 +31,10 @@ struct ResponseView: View {
     @State private var saveAlertMessage = Text("View in Saved Chats")
     
     // chatSaved is used to determine whether to prompt user with delete alert
-    // Ff user has saved the current chat, they may clear it without warning
+    // If user has saved the current chat, they may clear it without warning
     @State private var chatSaved = false
+    
+    //@State private var generatedImage: UIImage?
     
     var body: some View {
         responseBackground
@@ -36,23 +46,33 @@ struct ResponseView: View {
 
 extension ResponseView {
     private var responseBackground: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: engine == .DALLE ? .center : .topLeading) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(engine.color).opacity(0.5)
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {
-                    if viewModel.response == "" {
+                    if viewModel.response == "" &&
+                        viewModel.generatedImage == nil {
                         // default text if response has no value
-                        Text("Response will appear here.")
+                        Text(defaultWillAppearMessage)
+                    }
+                    if let generatedImage = viewModel.generatedImage {
+                        Image(uiImage: generatedImage)
+                            .resizable()
+                            .cornerRadius(10)
+                            .aspectRatio(contentMode: .fill)
+                        
+                    } else {
+                        ScrollView {
+                            Text(viewModel.response)
+                                .padding()
+                        }
                     }
                 }
-            ScrollView {
-                Text(viewModel.response)
-                    .padding()
-            }
+                .cornerRadius(10)
+                .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
         }
-        .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
     }
     
     private var clearAndSaveButtons: some View {
@@ -78,11 +98,17 @@ extension ResponseView {
                     ZStack {
                         Circle()
                             .frame(width: 40)
-                            .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .red.opacity(0.7))
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .secondary.opacity(0.2)
+                                             : .red.opacity(0.7)
+                            )
                             .offset(y: 5)
                         Image(systemName: "trash")
                             .offset(y: 5)
-                            .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .white.opacity(0.6)
+                                             : .white
+                            )
                     }
                 }
                 .disabled(viewModel.request.isEmpty)
@@ -97,6 +123,7 @@ extension ResponseView {
                                 viewModel.response = ""
                                 viewModel.inProgress = false
                                 viewModel.complete = false
+                                viewModel.generatedImage = nil
                             }
                         }))
                 })
@@ -111,13 +138,19 @@ extension ResponseView {
                     ZStack {
                         Circle()
                             .frame(width: 40)
-                            .foregroundColor(viewModel.response.isEmpty ? .secondary.opacity(0.2) : .green.opacity(0.7))
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .secondary.opacity(0.2)
+                                             : .green.opacity(0.7)
+                            )
                             .padding(4)
                         Image(systemName: "checkmark")
-                            .foregroundColor(viewModel.response.isEmpty ? .white.opacity(0.6) : .white)
+                            .foregroundColor((viewModel.response.isEmpty && viewModel.generatedImage == nil)
+                                             ? .white.opacity(0.6)
+                                             : .white
+                            )
                     }
                 }
-                .disabled(viewModel.response.isEmpty)
+                .disabled(viewModel.response.isEmpty && viewModel.generatedImage == nil)
                 .alert(isPresented: $showingSaveAlert, content: {
                     Alert(
                         title: saveAlertTitle,
@@ -135,9 +168,9 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
-    static let viewModel = ChatViewModel.example
+    
     static var previews: some View {
-        ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
+        ResponseView(viewModel: OpenAIViewModel(generatedImage: UIImage(named: "twitter")), savedChats: SavedChats(), engine: .DALLE)
         
     }
 }

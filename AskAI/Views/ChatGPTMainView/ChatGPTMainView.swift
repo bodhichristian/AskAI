@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct ChatGPTMainView: View {
     // ContentView is passed a savedChats EnvironmentObject from AskAIApp
     @EnvironmentObject var savedChats: SavedChats
     
     // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
-    @StateObject var davinciVM = ChatViewModel()
-    @StateObject var curieVM = ChatViewModel()
-    @StateObject var babbageVM = ChatViewModel()
-    @StateObject var adaVM = ChatViewModel()
+    @StateObject var davinciVM = OpenAIViewModel()
+    @StateObject var curieVM = OpenAIViewModel()
+    @StateObject var babbageVM = OpenAIViewModel()
+    @StateObject var adaVM = OpenAIViewModel()
     
     // When showingInfoView is toggled, a modal sheet will present InfoView
     @State private var showingInfoView = false
@@ -30,7 +30,7 @@ struct HomeView: View {
                 chatGPTEngineSection
                 savedChatSection
             }
-            .navigationTitle("AskAI")
+            .navigationTitle("Ask ChatGPT")
             .toolbar {
                 Button {
                     showingInfoView.toggle()
@@ -47,31 +47,31 @@ struct HomeView: View {
 }
 
 // ChatGPT Engine List Section
-extension HomeView {
+extension ChatGPTMainView {
     private var chatGPTEngineSection: some View {
 
         // NavigationLink will push to a corresponding ChatView
         Section(header: Text("ChatGPT Engines"))  {
             NavigationLink {
-                ChatView(viewModel: davinciVM, savedChats: savedChats, engine: .davinci)
+                ChatGPTPromptView(viewModel: davinciVM, savedChats: savedChats, engine: .davinci)
             } label: {
                 EngineLabelView(engine: .davinci)
             }
             
             NavigationLink {
-                ChatView(viewModel: curieVM, savedChats: savedChats, engine: .curie)
+                ChatGPTPromptView(viewModel: curieVM, savedChats: savedChats, engine: .curie)
             } label: {
                 EngineLabelView(engine: .curie)
             }
             
             NavigationLink {
-                ChatView(viewModel: babbageVM, savedChats: savedChats, engine: .babbage)
+                ChatGPTPromptView(viewModel: babbageVM, savedChats: savedChats, engine: .babbage)
             } label: {
                 EngineLabelView(engine: .babbage)
             }
             
             NavigationLink {
-                ChatView(viewModel: adaVM, savedChats: savedChats, engine: .ada)
+                ChatGPTPromptView(viewModel: adaVM, savedChats: savedChats, engine: .ada)
             } label: {
                 EngineLabelView(engine: .ada)
             }
@@ -80,7 +80,7 @@ extension HomeView {
 }
 
 // Saved Chats List Section
-extension HomeView {
+extension ChatGPTMainView {
     private var savedChatSection: some View {
  
         // If user has chats saved, they will display as a list of NavigationLinks
@@ -163,7 +163,7 @@ extension HomeView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ChatGPTMainView()
             .environmentObject(SavedChats())
     }
 }

@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA115A592991EDE7005D62B8 /* ChatEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA115A582991EDE7005D62B8 /* ChatEngine.swift */; };
+		AA115A592991EDE7005D62B8 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA115A582991EDE7005D62B8 /* Engine.swift */; };
 		AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5622985A3C200CC0F53 /* SavedChatView.swift */; };
 		AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */; };
-		AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56729884A5200CC0F53 /* ChatView.swift */; };
 		AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11B56929884CE200CC0F53 /* InfoView.swift */; };
 		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
-		AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */; };
+		AA1DF2F42979DCCD0086700E /* OpenAIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* OpenAIViewModel.swift */; };
+		AA23347929935463007B0953 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA23347829935463007B0953 /* OpenAIKit */; };
+		AA23347C29935636007B0953 /* DALLEPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23347B29935636007B0953 /* DALLEPromptView.swift */; };
+		AA23348229936907007B0953 /* DALLEMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23348129936907007B0953 /* DALLEMainView.swift */; };
+		AA23348529958232007B0953 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23348429958232007B0953 /* MainView.swift */; };
+		AA233487299582B3007B0953 /* ChatGPTPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA233486299582B3007B0953 /* ChatGPTPromptView.swift */; };
 		AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDA2980D54700C5A5CD /* SavedChats.swift */; };
 		AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */; };
-		AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* HomeView.swift */; };
+		AA567EE22980DE0200C5A5CD /* ChatGPTMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */; };
 		AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */; };
 		AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF192984568F002F1A62 /* EngineLabelView.swift */; };
 		AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */; };
@@ -30,24 +34,27 @@
 		AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6529710CFA00954C6F /* OpenAISwift.swift */; };
 		AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */; };
 		AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6829710CFA00954C6F /* OpenAIModelType.swift */; };
-		AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6929710CFA00954C6F /* OpenAI.swift */; };
+		AAD98F6F29710CFA00954C6F /* OpenAIChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6929710CFA00954C6F /* OpenAIChat.swift */; };
 		AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6A29710CFA00954C6F /* Instruction.swift */; };
 		AAD98F7129710CFA00954C6F /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6B29710CFA00954C6F /* Command.swift */; };
 		AAD98F7429710F3200954C6F /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = AAD98F7329710F3200954C6F /* OpenAISwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA115A582991EDE7005D62B8 /* ChatEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEngine.swift; sourceTree = "<group>"; };
+		AA115A582991EDE7005D62B8 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		AA11B5622985A3C200CC0F53 /* SavedChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatView.swift; sourceTree = "<group>"; };
 		AA11B5652985AAE200CC0F53 /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
-		AA11B56729884A5200CC0F53 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		AA11B56929884CE200CC0F53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
-		AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AA1DF2F32979DCCD0086700E /* OpenAIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIViewModel.swift; sourceTree = "<group>"; };
+		AA23347B29935636007B0953 /* DALLEPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DALLEPromptView.swift; sourceTree = "<group>"; };
+		AA23348129936907007B0953 /* DALLEMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DALLEMainView.swift; sourceTree = "<group>"; };
+		AA23348429958232007B0953 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AA233486299582B3007B0953 /* ChatGPTPromptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatGPTPromptView.swift; sourceTree = "<group>"; };
 		AA567EDA2980D54700C5A5CD /* SavedChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChats.swift; sourceTree = "<group>"; };
 		AA567EDD2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
-		AA567EE12980DE0200C5A5CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTMainView.swift; sourceTree = "<group>"; };
 		AA567EE42980EC0700C5A5CD /* SavedChatLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChatLabel.swift; sourceTree = "<group>"; };
 		AA75CF192984568F002F1A62 /* EngineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLabelView.swift; sourceTree = "<group>"; };
 		AA75CF1B2984CCA6002F1A62 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -61,7 +68,7 @@
 		AAD98F6529710CFA00954C6F /* OpenAISwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAISwift.swift; sourceTree = "<group>"; };
 		AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIEndpoint.swift; sourceTree = "<group>"; };
 		AAD98F6829710CFA00954C6F /* OpenAIModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIModelType.swift; sourceTree = "<group>"; };
-		AAD98F6929710CFA00954C6F /* OpenAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAI.swift; sourceTree = "<group>"; };
+		AAD98F6929710CFA00954C6F /* OpenAIChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIChat.swift; sourceTree = "<group>"; };
 		AAD98F6A29710CFA00954C6F /* Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		AAD98F6B29710CFA00954C6F /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD98F7429710F3200954C6F /* OpenAISwift in Frameworks */,
+				AA23347929935463007B0953 /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,10 +116,34 @@
 		AA1DF2F52979DCD60086700E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AA1DF2F32979DCCD0086700E /* ChatViewModel.swift */,
-				AA115A582991EDE7005D62B8 /* ChatEngine.swift */,
+				AA1DF2F32979DCCD0086700E /* OpenAIViewModel.swift */,
+				AA115A582991EDE7005D62B8 /* Engine.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA23347A299355EF007B0953 /* DALLEPromptView */ = {
+			isa = PBXGroup;
+			children = (
+				AA23347B29935636007B0953 /* DALLEPromptView.swift */,
+			);
+			path = DALLEPromptView;
+			sourceTree = "<group>";
+		};
+		AA233480299368CC007B0953 /* DALLEMainView */ = {
+			isa = PBXGroup;
+			children = (
+				AA23348129936907007B0953 /* DALLEMainView.swift */,
+			);
+			path = DALLEMainView;
+			sourceTree = "<group>";
+		};
+		AA23348329958156007B0953 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				AA23348429958232007B0953 /* MainView.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		AA567EDC2980D59E00C5A5CD /* Extensions */ = {
@@ -124,23 +156,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		AA567EDF2980D99000C5A5CD /* ChatView */ = {
+		AA567EDF2980D99000C5A5CD /* ChatGPTPromptView */ = {
 			isa = PBXGroup;
 			children = (
-				AA11B56729884A5200CC0F53 /* ChatView.swift */,
+				AA233486299582B3007B0953 /* ChatGPTPromptView.swift */,
 				AA1DF2EE2979D16C0086700E /* Components */,
 				AA1DF2F52979DCD60086700E /* ViewModels */,
 			);
-			path = ChatView;
+			path = ChatGPTPromptView;
 			sourceTree = "<group>";
 		};
-		AA567EE02980DDE700C5A5CD /* HomeView */ = {
+		AA567EE02980DDE700C5A5CD /* ChatGPTMainView */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE12980DE0200C5A5CD /* HomeView.swift */,
+				AA567EE12980DE0200C5A5CD /* ChatGPTMainView.swift */,
 				AA567EE32980EB6500C5A5CD /* Components */,
 			);
-			path = HomeView;
+			path = ChatGPTMainView;
 			sourceTree = "<group>";
 		};
 		AA567EE32980EB6500C5A5CD /* Components */ = {
@@ -156,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				AAD98F6829710CFA00954C6F /* OpenAIModelType.swift */,
-				AAD98F6929710CFA00954C6F /* OpenAI.swift */,
+				AAD98F6929710CFA00954C6F /* OpenAIChat.swift */,
 				AAD98F6A29710CFA00954C6F /* Instruction.swift */,
 				AAD98F6B29710CFA00954C6F /* Command.swift */,
 				AAD98F6629710CFA00954C6F /* OpenAIEndpoint.swift */,
@@ -230,8 +262,11 @@
 		AAD98F7529710FA300954C6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA567EE02980DDE700C5A5CD /* HomeView */,
-				AA567EDF2980D99000C5A5CD /* ChatView */,
+				AA23348329958156007B0953 /* MainView */,
+				AA233480299368CC007B0953 /* DALLEMainView */,
+				AA23347A299355EF007B0953 /* DALLEPromptView */,
+				AA567EE02980DDE700C5A5CD /* ChatGPTMainView */,
+				AA567EDF2980D99000C5A5CD /* ChatGPTPromptView */,
 				AA11B5642985A65400CC0F53 /* SavedChatView */,
 				AA11B56B29884D0000CC0F53 /* InfoView */,
 			);
@@ -265,6 +300,7 @@
 			name = OpenAIProject;
 			packageProductDependencies = (
 				AAD98F7329710F3200954C6F /* OpenAISwift */,
+				AA23347829935463007B0953 /* OpenAIKit */,
 			);
 			productName = OpenAIProject;
 			productReference = AAD98F5429710CC100954C6F /* OpenAIProject.app */;
@@ -296,6 +332,7 @@
 			mainGroup = AAD98F4B29710CC100954C6F;
 			packageReferences = (
 				AAD98F7229710F3200954C6F /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				AA23347729935463007B0953 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 			);
 			productRefGroup = AAD98F5529710CC100954C6F /* Products */;
 			projectDirPath = "";
@@ -324,27 +361,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA567EE52980EC0700C5A5CD /* SavedChatLabel.swift in Sources */,
-				AA115A592991EDE7005D62B8 /* ChatEngine.swift in Sources */,
+				AA115A592991EDE7005D62B8 /* Engine.swift in Sources */,
 				AA567EDB2980D54700C5A5CD /* SavedChats.swift in Sources */,
 				AAB586132982E58C004388EC /* Chat.swift in Sources */,
 				AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */,
-				AA11B56829884A5200CC0F53 /* ChatView.swift in Sources */,
 				AAD98F6D29710CFA00954C6F /* OpenAIEndpoint.swift in Sources */,
 				AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */,
 				AA11B56A29884CE200CC0F53 /* InfoView.swift in Sources */,
 				AAD98F6C29710CFA00954C6F /* OpenAISwift.swift in Sources */,
 				AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */,
-				AAD98F6F29710CFA00954C6F /* OpenAI.swift in Sources */,
+				AAD98F6F29710CFA00954C6F /* OpenAIChat.swift in Sources */,
 				AA567EDE2980D5BC00C5A5CD /* FileManager-DocumentsDirectory.swift in Sources */,
+				AA23348229936907007B0953 /* DALLEMainView.swift in Sources */,
+				AA233487299582B3007B0953 /* ChatGPTPromptView.swift in Sources */,
+				AA23348529958232007B0953 /* MainView.swift in Sources */,
 				AA940C98298AE4220052376F /* ProgressButton.swift in Sources */,
+				AA23347C29935636007B0953 /* DALLEPromptView.swift in Sources */,
 				AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */,
 				AAD98F6E29710CFA00954C6F /* OpenAIModelType.swift in Sources */,
-				AA567EE22980DE0200C5A5CD /* HomeView.swift in Sources */,
+				AA567EE22980DE0200C5A5CD /* ChatGPTMainView.swift in Sources */,
 				AAD98F5829710CC100954C6F /* AskAIApp.swift in Sources */,
 				AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */,
 				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,
 				AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */,
-				AA1DF2F42979DCCD0086700E /* ChatViewModel.swift in Sources */,
+				AA1DF2F42979DCCD0086700E /* OpenAIViewModel.swift in Sources */,
 				AAD98F7129710CFA00954C6F /* Command.swift in Sources */,
 				AA75CF1A2984568F002F1A62 /* EngineLabelView.swift in Sources */,
 			);
@@ -551,6 +591,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA23347729935463007B0953 /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcodotio/OpenAIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
 		AAD98F7229710F3200954C6F /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
@@ -562,6 +610,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA23347829935463007B0953 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA23347729935463007B0953 /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
+		};
 		AAD98F7329710F3200954C6F /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AAD98F7229710F3200954C6F /* XCRemoteSwiftPackageReference "OpenAISwift" */;
