@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SavedChatView: View {
     let chat: Chat
-    let engine: ChatEngine
+    let engine: Engine
     
     @State private var dragAmount = CGSize.zero
     
@@ -109,7 +109,7 @@ extension SavedChatView {
 struct SavedChatView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SavedChatView(chat: Chat.example, engine: ChatEngine.davinci)
+            SavedChatView(chat: Chat.example, engine: Engine.davinci)
         }
     }
 }

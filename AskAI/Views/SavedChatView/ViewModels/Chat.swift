@@ -12,7 +12,7 @@ class Chat: Identifiable, Codable, ObservableObject {
     var request: String
     var response: String
     var date: Date
-    var engine: ChatEngine
+    var engine: Engine
     var notes = ""
     @Published var isFavorite: Bool
     
@@ -20,7 +20,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         case id, request, response, date, engine, notes, isFavorite
     }
     
-    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engine: ChatEngine, notes: String = "", isFavorite: Bool = false) {
+    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engine: Engine, notes: String = "", isFavorite: Bool = false) {
         self.id = id
         self.request = request
         self.response = response
@@ -36,7 +36,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.request = try container.decode(String.self, forKey: .request)
         self.response = try container.decode(String.self, forKey: .response)
         self.date = try container.decode(Date.self, forKey: .date)
-        self.engine = try container.decode(ChatEngine.self, forKey: .engine)
+        self.engine = try container.decode(Engine.self, forKey: .engine)
         self.notes = try container.decode(String.self, forKey: .notes)
         self.isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
     }
