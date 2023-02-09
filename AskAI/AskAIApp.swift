@@ -12,7 +12,7 @@ struct AskAIApp: App {
     @StateObject var savedChats = SavedChats()
     var body: some Scene {
         WindowGroup {
-            DALLEMainView()
+            MainView()
                 .environmentObject(savedChats)
         }
     }

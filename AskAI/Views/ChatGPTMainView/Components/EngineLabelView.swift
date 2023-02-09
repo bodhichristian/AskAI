@@ -13,7 +13,9 @@ struct EngineLabelView: View {
     var body: some View {
         Label {
             VStack(alignment: .leading) {
-                Text("Ask \(engine.name)")
+                Text(engine == .DALLE
+                     ? "Ask DALL·E"
+                     : "Ask \(engine.name.capitalizeFirst())")
                     .font(.headline)
                 Text(engine.description)
                     .font(.caption)

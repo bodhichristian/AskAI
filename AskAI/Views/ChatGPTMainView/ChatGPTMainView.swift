@@ -30,7 +30,7 @@ struct ChatGPTMainView: View {
                 chatGPTEngineSection
                 savedChatSection
             }
-            .navigationTitle("AskAI")
+            .navigationTitle("Ask ChatGPT")
             .toolbar {
                 Button {
                     showingInfoView.toggle()

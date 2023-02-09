@@ -13,13 +13,17 @@ struct DALLEMainView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink {
-                    DALLEPromptView(viewModel: dallEVM, engine: .DALLE)
-                } label: {
-                    Text("DALL-E")
+                Section(header: Text("Create an Image with AI")) {
+                    NavigationLink {
+                        DALLEPromptView(viewModel: dallEVM, engine: .DALLE)
+                    } label: {
+                        EngineLabelView(engine: .DALLE)
+                    }
                 }
+                
 
             }
+            .navigationTitle("Ask DALL·E")
         }
     }
 }

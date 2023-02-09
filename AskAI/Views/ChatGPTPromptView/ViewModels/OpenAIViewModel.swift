@@ -12,7 +12,7 @@ import OpenAIKit
 import OpenAISwift
 
 // "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let apiKey = "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"
+let apiKey = "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
 let config = Configuration(organization: "Personal", apiKey: apiKey)
 
 @MainActor class OpenAIViewModel: ObservableObject {

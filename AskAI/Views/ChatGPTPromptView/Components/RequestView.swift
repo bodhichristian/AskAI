@@ -40,6 +40,7 @@ struct RequestView: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .italic()
+                .multilineTextAlignment(.center)
         }
     }
 }

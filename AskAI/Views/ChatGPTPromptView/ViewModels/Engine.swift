@@ -31,13 +31,14 @@ enum Engine: Codable {
         }
     }
     
+    // This name string is used to determine which image to pull from Asset Catalog
     var name: String {
         switch self {
         case .davinci: return "davinci"
         case .curie: return "curie"
         case .babbage: return "babbage"
         case .ada: return "ada"
-        case .DALLE: return "Dall-E"
+        case .DALLE: return "dallE"
         }
     }
     
@@ -46,7 +47,9 @@ enum Engine: Codable {
         case .davinci: return "Most capable"
         case .curie: return "Powerful, yet fast"
         case .babbage: return "Straightforward tasks"
-        default: return "Fast and simple"
+        case .ada: return "Fast and simple"
+        case .DALLE: return "Magic in moments"
+
         }
     }
     
