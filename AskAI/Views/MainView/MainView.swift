@@ -16,10 +16,17 @@ struct MainView: View {
                     Label("ChatGPT", systemImage: "character.cursor.ibeam")
                 }
             
+            Text("MeView Coming soon.")
+                .tabItem {
+                    Label("Me", systemImage: "person.fill.viewfinder")
+                }
+            
             DALLEMainView()
                 .tabItem {
                     Label("DALL-E", systemImage: "bubbles.and.sparkles.fill")
                 }
+            
+
         }
     }
 }

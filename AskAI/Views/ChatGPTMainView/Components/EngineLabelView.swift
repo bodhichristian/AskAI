@@ -22,6 +22,7 @@ struct EngineLabelView: View {
                     .italic()
                     .foregroundColor(engine.color)
             }
+            .offset(y: -6)
             .padding(.leading, 45)
         } icon: {
             Image(engine.name)
