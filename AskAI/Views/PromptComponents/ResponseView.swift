@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ResponseView: View {
     @ObservedObject var viewModel: OpenAIViewModel
-    @ObservedObject var savedChats: SavedChats
+    @EnvironmentObject var savedChats: SavedChats
     
     let engine: Engine
     
@@ -37,15 +37,17 @@ struct ResponseView: View {
     //@State private var generatedImage: UIImage?
     
     var body: some View {
-        responseBackground
+        responseBlock
             .overlay {
                 clearAndSaveButtons
+                    .environmentObject(savedChats)
+
             }
     }
 }
 
 extension ResponseView {
-    private var responseBackground: some View {
+    private var responseBlock: some View {
         ZStack(alignment: engine == .DALLE ? .center : .topLeading) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(engine.color).opacity(0.5)
@@ -89,6 +91,7 @@ extension ResponseView {
                             viewModel.response = ""
                             viewModel.inProgress = false
                             viewModel.complete = false
+                            viewModel.generatedImage = nil
                             chatSaved = false
                         }
                     } else {
@@ -169,7 +172,7 @@ extension ResponseView {
 struct ResponseView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ResponseView(viewModel: OpenAIViewModel(generatedImage: UIImage(named: "twitter")), savedChats: SavedChats(), engine: .DALLE)
-        
+        ResponseView(viewModel: OpenAIViewModel(generatedImage: UIImage(named: "twitter")), engine: .DALLE)
+            .environmentObject(SavedChats())
     }
 }

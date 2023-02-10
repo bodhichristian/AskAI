@@ -10,13 +10,13 @@ import OpenAISwift
 
 struct ChatGPTPromptView: View {
     @ObservedObject var viewModel: OpenAIViewModel
-    @ObservedObject var savedChats: SavedChats
+    @EnvironmentObject var chatGPTSavedChats: SavedChats
     
     let engine: Engine
     
     var body: some View {
         VStack {
-            ResponseView(viewModel: viewModel, savedChats: savedChats, engine: engine)
+            ResponseView(viewModel: viewModel, engine: engine)
             
             Section {
                 RequestView(viewModel: viewModel, engine: engine)
@@ -34,6 +34,7 @@ struct ChatGPTPromptView: View {
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Ask \(engine.name.capitalizeFirst())")
+        .environmentObject(chatGPTSavedChats)
     }
 }
 
@@ -41,6 +42,7 @@ struct ChatView_Previews: PreviewProvider {
     static let viewModel = OpenAIViewModel.example
     
     static var previews: some View {
-        ChatGPTPromptView(viewModel: viewModel, savedChats: SavedChats(), engine: .davinci)
+        ChatGPTPromptView(viewModel: viewModel, engine: .davinci)
+            .environmentObject(SavedChats())
     }
 }

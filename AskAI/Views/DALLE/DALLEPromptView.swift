@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import OpenAISwift
 
 struct DALLEPromptView: View {
     @ObservedObject var viewModel: OpenAIViewModel
+    @EnvironmentObject var dallESavedChats: SavedChats
     
     let engine: Engine
     
     var body: some View {
         VStack {
-            ResponseView(viewModel: viewModel, savedChats: SavedChats(), engine: engine)
-            
+            ResponseView(viewModel: viewModel, engine: engine)
+                .environmentObject(dallESavedChats)
             Section {
                 RequestView(viewModel: viewModel, engine: engine)
             } header: {
@@ -32,11 +34,13 @@ struct DALLEPromptView: View {
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Ask DALL-E")
+        .environmentObject(dallESavedChats)
     }
 }
 
 struct DALLEView_Previews: PreviewProvider {
     static var previews: some View {
         DALLEPromptView(viewModel: OpenAIViewModel.example, engine: .DALLE)
+            .environmentObject(SavedChats())
     }
 }

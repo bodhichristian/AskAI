@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var savedChats: SavedChats
+    //@StateObject var chatGPTSavedChats = SavedChats()
+//    @StateObject var dallESavedChats = SavedChats()
     @State private var tabSelection = 1
     
     var profile = Profile.default

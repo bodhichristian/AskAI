@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct AskAIApp: App {
-    @StateObject var savedChats = SavedChats()
+
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(savedChats)
+
         }
     }
 }
