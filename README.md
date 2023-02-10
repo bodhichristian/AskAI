@@ -6,6 +6,8 @@ AskAI provides an approachable, native to iOS experience for interfacing with Ch
 * To receive responses from ChatGPT, you'll need an API key from OpenAI. Keys are available for free at https://openai.com/api/
 * Insert API key in AskAI/ViewModels/OpenAIViewModel.swift
 
+The below images and guidance are accurate as of a previous version of AskAI. Currently the app loads into HomeView, which is now the middle of three tabs: ChatGPT, Home, DALL·E. Previously, the app loaded into what is now ChatGPTMainView, and that tab provides an almost identical experience to what is showcased below. InfoView, and the button that brings it up in a sheet, have been moved to the HomeView experience.
+
 <b> HomeView </b>
 ![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
 The app launches into HomeView and provides three major paths of navigation: ChatView, SavedChats, and InfoView. User may choose to begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap the info button to reveal a sheet with chat engine overviews and credits.
