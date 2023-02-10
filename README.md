@@ -4,7 +4,9 @@ AskAI provides an approachable, native to iOS experience for interfacing with Ch
 
 <b> Getting Started </b>
 * To receive responses from ChatGPT, you'll need an API key from OpenAI. Keys are available for free at https://openai.com/api/
-* Insert API key in AskAI/Views/ChatView/ViewModels/ChatViewModel.swift
+* Insert API key in AskAI/ViewModels/OpenAIViewModel.swift
+
+The below images and guidance are accurate as of a previous version of AskAI. Currently the app loads into HomeView, which is now the middle of three tabs: ChatGPT, Home, DALL·E. Previously, the app loaded into what is now ChatGPTMainView, and that tab provides an almost identical experience to what is showcased below. InfoView, and the button that brings it up in a sheet, have been moved to the HomeView experience.
 
 <b> HomeView </b>
 ![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
