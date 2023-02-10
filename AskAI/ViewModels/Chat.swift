@@ -5,6 +5,7 @@
 //  Created by christian on 1/26/23.
 //
 
+import UIKit
 import SwiftUI
 
 class Chat: Identifiable, Codable, ObservableObject {
@@ -13,21 +14,21 @@ class Chat: Identifiable, Codable, ObservableObject {
     var response: String
     var date: Date
     var engine: Engine
-    var notes = ""
+    var generatedImage: UIImage?
     @Published var isFavorite: Bool
     
     enum CodingKeys: CodingKey {
-        case id, request, response, date, engine, notes, isFavorite
+        case id, request, response, date, engine, generatedImage, isFavorite
     }
     
-    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engine: Engine, notes: String = "", isFavorite: Bool = false) {
+    init(id: UUID = UUID(), request: String, response: String, date: Date = Date(), engine: Engine, isFavorite: Bool = false, generatedImage: UIImage? = nil) {
         self.id = id
         self.request = request
         self.response = response
         self.date = .now
         self.engine = engine
-        self.notes = ""
-        self.isFavorite = false
+        self.generatedImage = generatedImage
+        self.isFavorite = isFavorite
     }
     
     required init(from decoder: Decoder) throws {
@@ -37,7 +38,10 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.response = try container.decode(String.self, forKey: .response)
         self.date = try container.decode(Date.self, forKey: .date)
         self.engine = try container.decode(Engine.self, forKey: .engine)
-        self.notes = try container.decode(String.self, forKey: .notes)
+        
+        
+        
+        self.generatedImage = UIImage(data: try container.decode(Data.self, forKey: .generatedImage))
         self.isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
     }
     
@@ -48,7 +52,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(response, forKey: .response)
         try container.encode(date, forKey: .date)
         try container.encode(engine, forKey: .engine)
-        try container.encode(notes, forKey: .notes)
+        try container.encode(generatedImage?.pngData(), forKey: .generatedImage)
         try container.encode(isFavorite, forKey: .isFavorite)
     }
     

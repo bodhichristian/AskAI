@@ -9,24 +9,27 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var savedChats: SavedChats
+    @State private var tabSelection = 1
+    
+    var profile = Profile.default
+    
     var body: some View {
-        TabView {
+        TabView(selection: $tabSelection) {
             ChatGPTMainView()
                 .tabItem {
                     Label("ChatGPT", systemImage: "character.cursor.ibeam")
                 }
             
-            Text("MeView Coming soon.")
+            HomeView(profile: profile)
                 .tabItem {
-                    Label("Me", systemImage: "person.fill.viewfinder")
+                    Label("Home", systemImage: "rotate.3d")
                 }
+                .tag(1)
             
             DALLEMainView()
                 .tabItem {
                     Label("DALL-E", systemImage: "bubbles.and.sparkles.fill")
                 }
-            
-
         }
     }
 }

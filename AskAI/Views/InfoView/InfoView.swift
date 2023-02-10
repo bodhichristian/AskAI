@@ -21,6 +21,7 @@ struct InfoView: View {
     var body: some View {
         NavigationView {
             List {
+                dallEInfo
                 davinciInfo
                 curieInfo
                 babbageInfo
@@ -116,6 +117,23 @@ extension InfoView {
                     .padding(.vertical)
                 Text("OpenAI")
             }
+        }
+    }
+    
+    private var dallEInfo: some View {
+        Section {
+            VStack {
+                CircleImage(imageName: "dallE", width: 100, height: 100)
+                    .padding(5)
+
+                Text("DALL·E 2 can create original, realistic images and art from a text description. It can combine concepts, attributes, and styles. DALL·E 2, generates more realistic and accurate images with 4x greater resolution than its predecessor.")
+                    .font(.callout)
+                    .multilineTextAlignment(.center)
+            }
+        } header: {
+            Text("DALL·E 2")
+                .bold()
+                .foregroundColor(.blue)
         }
     }
     

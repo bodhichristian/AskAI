@@ -17,9 +17,6 @@ struct ChatGPTMainView: View {
     @StateObject var babbageVM = OpenAIViewModel()
     @StateObject var adaVM = OpenAIViewModel()
     
-    // When showingInfoView is toggled, a modal sheet will present InfoView
-    @State private var showingInfoView = false
-    
     // When showingDeleteAlert is toggled, an alert is presented to confirm action
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Chat deleted.")
@@ -28,19 +25,10 @@ struct ChatGPTMainView: View {
         NavigationView {
             List {
                 chatGPTEngineSection
+                
                 savedChatSection
             }
             .navigationTitle("Ask ChatGPT")
-            .toolbar {
-                Button {
-                    showingInfoView.toggle()
-                } label: {
-                    Image(systemName: "info.circle")
-                }
-            }
-            .sheet(isPresented: $showingInfoView) {
-                InfoView()
-            }
         }
         .environmentObject(savedChats)
     }

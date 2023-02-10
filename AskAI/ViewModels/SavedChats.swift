@@ -62,4 +62,6 @@ import SwiftUI
         chat.isFavorite.toggle()
         save()
     }
+    
+    static let example: () = SavedChats().chats.append(Chat(request: "Twitter bird", response: "", engine: .DALLE, generatedImage: UIImage(named: "twitter")))
 }
