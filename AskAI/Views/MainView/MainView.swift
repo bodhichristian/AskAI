@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    //@StateObject var chatGPTSavedChats = SavedChats()
-//    @StateObject var dallESavedChats = SavedChats()
-    @State private var tabSelection = 1
+    @State private var selectedTab = 1
     
     var profile = Profile.default
     
     var body: some View {
-        TabView(selection: $tabSelection) {
+        TabView(selection: $selectedTab) {
             ChatGPTMainView()
                 .tabItem {
                     Label("ChatGPT", systemImage: "character.cursor.ibeam")
                 }
+                .tag(0)
             
             HomeView(profile: profile)
                 .tabItem {
@@ -31,6 +30,7 @@ struct MainView: View {
                 .tabItem {
                     Label("DALL-E", systemImage: "bubbles.and.sparkles.fill")
                 }
+                .tag(2)
         }
     }
 }
@@ -38,6 +38,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(SavedChats())
     }
 }

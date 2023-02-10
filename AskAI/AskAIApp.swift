@@ -13,7 +13,6 @@ struct AskAIApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-
         }
     }
 }
