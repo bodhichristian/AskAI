@@ -52,6 +52,7 @@ struct DALLEMainView: View {
                                                 HStack {
                                                     VStack(alignment: .leading) {
                                                     Text(chat.request)
+                                                        
                                                         .font(.caption)
                                                         .fontWeight(.medium)
                                                         .foregroundColor(.white)
@@ -70,13 +71,16 @@ struct DALLEMainView: View {
                                             .frame(maxWidth: .infinity)
                                             .background(LinearGradient(colors: [.black.opacity(0.6), .black.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                                             .offset(y: 52)
+                                                
                                         }
+                                        
                                         
                                     }
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     .shadow(radius: 7)
-                                }
 
+                                }
+                                
                             }
 
                         }

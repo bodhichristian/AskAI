@@ -12,6 +12,39 @@ struct ResponseView: View {
     @EnvironmentObject var savedChats: SavedChats
     
     let engine: Engine
+
+    // chatSaved is used to determine whether to prompt user with delete alert
+    // If user has saved the current chat, they may clear it without warning
+    @State private var chatSaved = false
+    
+    // ALERT TITLES AND MESSAGES
+    // Delete Alert
+    @State private var showingDeleteAlert = false
+    @State private var deleteAlertTitle = Text("Clear Chat")
+    
+    var deleteAlertMessage: Text {
+        switch engine {
+        case .DALLE: return Text("Are you sure you want to delete this image? This cannot be undone.")
+        default: return Text("Are you sure you want to delete this image? This cannoth be undone.")
+        }
+    }
+    
+    // Save Alert
+    @State private var showingSaveAlert = false
+    
+    var saveAlertTitle: Text {
+        switch engine {
+        case .DALLE: return Text("Image saved")
+        default: return Text("Chat saved")
+        }
+    }
+    
+    var saveAlertMessage: Text {
+        switch engine {
+        case .DALLE: return Text("View in Saved Images")
+        default: return Text("View in Saved Chats")
+        }
+    }
     
     // Provides user context for expected return media
     var defaultWillAppearMessage: String {
@@ -20,22 +53,10 @@ struct ResponseView: View {
         default: return "Response will appear here."
         }
     }
+
     
-    // Alert titles and messages
-    @State private var showingDeleteAlert = false
-    @State private var deleteAlertTitle = Text("Clear Chat")
-    @State private var deleteAlertMessage = Text("Are you sure you want to delete this chat?")
-    
-    @State private var showingSaveAlert = false
-    @State private var saveAlertTitle = Text("Chat saved.")
-    @State private var saveAlertMessage = Text("View in Saved Chats")
-    
-    // chatSaved is used to determine whether to prompt user with delete alert
-    // If user has saved the current chat, they may clear it without warning
-    @State private var chatSaved = false
-    
-    //@State private var generatedImage: UIImage?
-    
+
+        
     var body: some View {
         responseBlock
             .overlay {
