@@ -11,8 +11,8 @@ import Foundation
 import OpenAIKit
 import OpenAISwift
 
-// "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
-let apiKey = "REPLACE THIS TEXT WITH YOUR OPENAI API KEY"
+// Replace empty string with your OpenAI API key
+let apiKey = ""
 let config = Configuration(organization: "Personal", apiKey: apiKey)
 
 @MainActor class OpenAIViewModel: ObservableObject {

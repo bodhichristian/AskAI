@@ -10,6 +10,13 @@ import SwiftUI
 struct ChatGPTMainView: View {
     
     @StateObject var chatGPTSavedChats = SavedChats()
+    
+    var filteredChats: [Chat] {
+        chatGPTSavedChats.chats.filter { chat in
+            return chat.engine != .DALLE
+        }
+    }
+    
     // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
     @StateObject var davinciVM = OpenAIViewModel()
     @StateObject var curieVM = OpenAIViewModel()
@@ -68,6 +75,7 @@ extension ChatGPTMainView {
 
 // Saved Chats List Section
 extension ChatGPTMainView {
+    
     private var savedChatSection: some View {
  
         // If user has chats saved, they will display as a list of NavigationLinks
@@ -77,7 +85,7 @@ extension ChatGPTMainView {
             if chatGPTSavedChats.chats.isEmpty {
                 Text("No saved chats. Start a new chat above.")
             } else {
-                ForEach(chatGPTSavedChats.chats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
+                ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                     NavigationLink {
                         SavedChatView(chat: chat, engine: chat.engine)
                     } label: {
