@@ -14,6 +14,8 @@ struct ProgressButton: View {
     
     // Observes the viewModel for completion
     @ObservedObject var viewModel: OpenAIViewModel
+    @ObservedObject var totalRequests: TotalRequests
+    
     let engine: Engine
     @State var baseHeight: CGFloat = 50
 
@@ -39,6 +41,7 @@ struct ProgressButton: View {
         ZStack {
             Button {
                 hideKeyboard()
+                totalRequests.increase(by: 1)
                 viewModel.inProgress = true
                 if engine == .DALLE {
                     Task {
@@ -90,6 +93,6 @@ struct ProgressButton: View {
 
 struct SliderButton_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressButton(viewModel: OpenAIViewModel.example, engine: .davinci)
+        ProgressButton(viewModel: OpenAIViewModel.example, totalRequests: TotalRequests(), engine: .davinci)
     }
 }

@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct AskAIApp: App {
+    @StateObject var savedChats = SavedChats()
+    @StateObject var profile = Profile(username: "user")
+    @StateObject var totalRequests = TotalRequests()
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(profile: profile, totalRequests: totalRequests)
+                .environmentObject(savedChats)
         }
     }
 }

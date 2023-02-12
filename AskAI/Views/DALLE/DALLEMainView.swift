@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct DALLEMainView: View {
-    @StateObject var dallESavedChats = SavedChats()
+    @ObservedObject var savedChats: SavedChats
+    @ObservedObject var totalRequests: TotalRequests
     @StateObject var dallEVM = OpenAIViewModel()
+    
+    var filteredChats: [Chat] {
+        savedChats.chats.filter { chat in
+            return chat.engine == .DALLE
+        }
+    }
     
     let columns = [
         GridItem(.adaptive(minimum: 100)),
@@ -21,89 +28,108 @@ struct DALLEMainView: View {
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Image deleted.")
     
+    // When showingInfoView is toggled, a modal sheet will present
+    @State private var showingInfoView = false
+    
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Create an Image with AI")) {
-                    NavigationLink {
-                        DALLEPromptView(viewModel: dallEVM, engine: .DALLE)
-                    } label: {
-                        EngineLabelView(engine: .DALLE)
-                    }
+                createAnImageSection
+                savedImagesSection
+            }
+            .toolbar {
+                Button {
+                    showingInfoView.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
                 }
-                
-                Section(header: Text("Saved Images")) {
-                    ScrollView {
-                        LazyVGrid(columns: columns, alignment: .leading) {
-                            ForEach(dallESavedChats.chats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
-                                NavigationLink {
-                                    Text("GeneratedImageView coming soon...")
-                                } label: {
-                                    VStack(alignment: .leading) {
-                                        Image(uiImage: chat.generatedImage ?? UIImage(named: "chatGPT")!)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 101, height: 140)
-                                            .cornerRadius(10)
-                                           //.padding(4)
-                                            //.shadow(color: .secondary, radius: 2, x: 4, y: 6)
-                                        
-                                            .overlay {
-                                                HStack {
-                                                    VStack(alignment: .leading) {
+            }
+            .navigationTitle("Ask DALL·E")
+
+            .sheet(isPresented: $showingInfoView) {
+                DALLEInfoView()
+            }
+        }
+        .environmentObject(savedChats)
+    }
+}
+
+extension DALLEMainView {
+    private var createAnImageSection: some View {
+        Section(header: Text("Create an Image with AI")) {
+            NavigationLink {
+                DALLEPromptView(viewModel: dallEVM, totalRequests: totalRequests,  engine: .DALLE)
+            } label: {
+                EngineLabelView(engine: .DALLE)
+            }
+        }
+    }
+}
+
+extension DALLEMainView {
+    private var savedImagesSection: some View {
+        Section(header: Text("Saved Images")) {
+            if filteredChats.isEmpty {
+                Text("Create a new image above. Saved images will appear here.")
+                    .font(.callout)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .offset(x: 7)
+            }
+            else {
+                ScrollView {
+                    LazyVGrid(columns: columns, alignment: .leading) {
+                        ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
+                            NavigationLink {
+                                SavedChatView(chat: chat, engine: chat.engine)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Image(uiImage: chat.generatedImage ?? UIImage(named: "chatGPT")!)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 101, height: 140)
+                                        .cornerRadius(10)
+                                        .overlay {
+                                            HStack {
+                                                VStack(alignment: .leading) {
                                                     Text(chat.request)
-                                                        
                                                         .font(.caption)
                                                         .fontWeight(.medium)
                                                         .foregroundColor(.white)
                                                         .lineLimit(1)
-                                                        //.padding(.horizontal, 4)
-
+                                                    
                                                     Text(chat.date, format: .dateTime.month().day().year())
                                                         .font(.caption2)
                                                         .foregroundColor(.white.opacity(0.7))
                                                 }
-                                                    .padding(4)
-                                                    
-                                                    Spacer()
-                                                }
-                                            
+                                                .padding(4)
+                                                
+                                                Spacer()
+                                            }
                                             .frame(maxWidth: .infinity)
                                             .background(LinearGradient(colors: [.black.opacity(0.6), .black.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                                             .offset(y: 52)
-                                                
+                                            
                                         }
-                                        
-                                        
-                                    }
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .shadow(radius: 7)
-
                                 }
-                                
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .shadow(radius: 7)
                             }
-
                         }
-                        // Padding between the grid and the Section container
-                        .padding([.horizontal, .bottom, .top])
-                        
                     }
-                    .padding(.horizontal, -16)
-                    .navigationTitle("Ask DALL·E")
+                    // Padding between the grid and the Section container
+                    .padding([.horizontal, .bottom, .top])
                 }
-
+                .padding(.horizontal, -16)
             }
         }
-        .environmentObject(dallESavedChats)
-
     }
 }
-    
-    struct DALLEMainView_Previews: PreviewProvider {
+
+struct DALLEMainView_Previews: PreviewProvider {
+    static var previews: some View {
+        DALLEMainView( savedChats: SavedChats(), totalRequests: TotalRequests())
+            //.environmentObject(SavedChats())
         
-        static var previews: some View {
-            DALLEMainView()
-                .environmentObject(SavedChats())
-            
-        }
     }
+}

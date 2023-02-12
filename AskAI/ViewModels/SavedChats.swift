@@ -12,17 +12,19 @@ import SwiftUI
     
     var recentlyDeleted: Chat?
     
-    let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedData")
+    let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedChats")
     
     init() {
         //looks in documentsDirectory for stored data
         if let data = try? Data(contentsOf: savePath) {
             if let decoded = try? JSONDecoder().decode([Chat].self, from: data) {
                 chats = decoded
+                print("Chats decoded.")
                 return
             }
         }
         //if no data is in documentsDirectory, chats is an empty array
+        print("No data found in Documents Directory")
         chats = []
     }
     
@@ -30,6 +32,7 @@ import SwiftUI
         //saves current chats array to documentsDirectory
         if let encoded = try? JSONEncoder().encode(chats) {
             try? encoded.write(to: savePath, options: [.atomic, .completeFileProtection])
+            print("Chats saved to Documents Directory")
         }
     }
     

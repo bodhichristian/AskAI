@@ -11,6 +11,7 @@ import OpenAISwift
 struct ChatGPTPromptView: View {
     @ObservedObject var viewModel: OpenAIViewModel
     @EnvironmentObject var chatGPTSavedChats: SavedChats
+    @ObservedObject var totalRequests: TotalRequests
     
     let engine: Engine
     
@@ -28,7 +29,7 @@ struct ChatGPTPromptView: View {
                     .padding(2)
             }
             
-            ProgressButton(viewModel: viewModel, engine: engine)
+            ProgressButton(viewModel: viewModel, totalRequests: totalRequests,  engine: engine)
                 .padding(.vertical, -50)
         }
         .padding(8)
@@ -42,7 +43,7 @@ struct ChatView_Previews: PreviewProvider {
     static let viewModel = OpenAIViewModel.example
     
     static var previews: some View {
-        ChatGPTPromptView(viewModel: viewModel, engine: .davinci)
+        ChatGPTPromptView(viewModel: viewModel, totalRequests: TotalRequests(), engine: .davinci)
             .environmentObject(SavedChats())
     }
 }

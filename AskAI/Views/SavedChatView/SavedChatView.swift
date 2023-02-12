@@ -19,6 +19,8 @@ struct SavedChatView: View {
                 VStack {
                     engineImage
                     chatTitle
+                    Divider()
+                        .padding(.top, -4)
                     requestMessage
                     responseMessage
                 }
@@ -63,8 +65,10 @@ extension SavedChatView {
     private var chatTitle: some View {
         HStack {
             Text("Chat with")
-            Text(engine.name.capitalizeFirst())
-                .foregroundColor(engine.color)
+            Text(engine == .DALLE
+                 ? "DALL·E"
+                 : engine.name.capitalizeFirst())
+            .foregroundColor(engine.color)
         }
         .font(.largeTitle)
         .fontWeight(.medium)
@@ -90,17 +94,36 @@ extension SavedChatView {
     private var responseMessage: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(chat.response)
-                    .padding()
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(.ultraThinMaterial)
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(engine.color.opacity(0.2))
-                        }
-                    )
-                Spacer()
+                if chat.generatedImage != nil {
+                    Image(uiImage: chat.generatedImage!)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(10)
+                        .padding()
+                        .background(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(.ultraThinMaterial)
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(engine.color.opacity(0.2))
+                            }
+                        )
+                    Spacer()
+                }
+                else {
+                    Text(chat.response)
+                    
+                        .padding()
+                        .background(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(.ultraThinMaterial)
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(engine.color.opacity(0.2))
+                            }
+                        )
+                    Spacer()
+                }
             }
         }
     }

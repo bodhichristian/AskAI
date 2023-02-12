@@ -180,6 +180,11 @@ extension ResponseView {
                         message: saveAlertMessage,
                         dismissButton: .default(Text("OK"), action: {
                             withAnimation{
+                                viewModel.request = ""
+                                viewModel.response = ""
+                                viewModel.inProgress = false
+                                viewModel.complete = false
+                                viewModel.generatedImage = nil
                                 chatSaved = true
                             }
                         }))

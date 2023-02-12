@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ChatGPTMainView: View {
-    
-    @StateObject var chatGPTSavedChats = SavedChats()
+    @ObservedObject var totalRequests: TotalRequests
+    @ObservedObject var savedChats: SavedChats
     
     var filteredChats: [Chat] {
-        chatGPTSavedChats.chats.filter { chat in
+        savedChats.chats.filter { chat in
             return chat.engine != .DALLE
         }
     }
@@ -27,16 +27,28 @@ struct ChatGPTMainView: View {
     @State private var showingDeleteAlert = false
     @State private var deleteAlertTitle = Text("Chat deleted.")
     
+    // When showingInfoView is toggled, a modal sheet will present
+    @State private var showingInfoView = false
+
     var body: some View {
         NavigationView {
             List {
                 chatGPTEngineSection
-                
                 savedChatSection
             }
             .navigationTitle("Ask ChatGPT")
+            .toolbar {
+                Button {
+                    showingInfoView.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+            .sheet(isPresented: $showingInfoView) {
+                ChatGPTInfoView()
+            }
         }
-        .environmentObject(chatGPTSavedChats)
+        .environmentObject(savedChats)
     }
 }
 
@@ -47,25 +59,25 @@ extension ChatGPTMainView {
         // NavigationLink will push to a corresponding ChatView
         Section(header: Text("ChatGPT Engines"))  {
             NavigationLink {
-                ChatGPTPromptView(viewModel: davinciVM, engine: .davinci)
+                ChatGPTPromptView(viewModel: davinciVM, totalRequests: totalRequests, engine: .davinci)
             } label: {
                 EngineLabelView(engine: .davinci)
             }
             
             NavigationLink {
-                ChatGPTPromptView(viewModel: curieVM, engine: .curie)
+                ChatGPTPromptView(viewModel: curieVM, totalRequests: totalRequests, engine: .curie)
             } label: {
                 EngineLabelView(engine: .curie)
             }
             
             NavigationLink {
-                ChatGPTPromptView(viewModel: babbageVM, engine: .babbage)
+                ChatGPTPromptView(viewModel: babbageVM, totalRequests: totalRequests, engine: .babbage)
             } label: {
                 EngineLabelView(engine: .babbage)
             }
             
             NavigationLink {
-                ChatGPTPromptView(viewModel: adaVM, engine: .ada)
+                ChatGPTPromptView(viewModel: adaVM, totalRequests: totalRequests, engine: .ada)
             } label: {
                 EngineLabelView(engine: .ada)
             }
@@ -82,8 +94,12 @@ extension ChatGPTMainView {
         // A default message is presented if there are no saved chats
         // Each SavedChatLabel pushes to a SavedChatView
         Section(header: Text("Saved Chats")) {
-            if chatGPTSavedChats.chats.isEmpty {
-                Text("No saved chats. Start a new chat above.")
+            if filteredChats.isEmpty {
+                Text("Start a new chat above. Saved chats will appear here.")
+                    .font(.callout)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .offset(x: 7)
             } else {
                 ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                     NavigationLink {
@@ -96,7 +112,7 @@ extension ChatGPTMainView {
                               primaryButton: .destructive(
                                 Text("Undo"),
                                 action: {
-                                    chatGPTSavedChats.undoDelete()
+                                    savedChats.undoDelete()
                                 }
                               ),
                               secondaryButton: .default(Text("OK"))
@@ -109,7 +125,7 @@ extension ChatGPTMainView {
                         
                         // Mark/Unmark as favorite
                         Button {
-                            chatGPTSavedChats.toggleFavorite(chat)
+                            savedChats.toggleFavorite(chat)
                         } label: {
                             if chat.isFavorite {
                                 Label("Unmark as favorite", systemImage: "seal")
@@ -120,7 +136,7 @@ extension ChatGPTMainView {
                         
                         // Delete Chat
                         Button(role: .destructive) {
-                            chatGPTSavedChats.delete(chat)
+                            savedChats.delete(chat)
                             showingDeleteAlert = true
                         } label: {
                             Label("Delete chat", systemImage: "trash")
@@ -130,7 +146,7 @@ extension ChatGPTMainView {
                         
                         // Swiping from leading edge reveals a favorite toggle
                         Button {
-                            chatGPTSavedChats.toggleFavorite(chat)
+                            savedChats.toggleFavorite(chat)
                         } label: {
                             if chat.isFavorite {
                                 Label("Unmark as favorite", systemImage: "seal")
@@ -144,7 +160,7 @@ extension ChatGPTMainView {
                         
                         // Swiping from the trailing edge reveals a delete button
                         Button {
-                            chatGPTSavedChats.delete(chat)
+                            savedChats.delete(chat)
                             showingDeleteAlert = true
                         } label: {
                             Label("Delete", systemImage: "trash")
@@ -158,7 +174,6 @@ extension ChatGPTMainView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatGPTMainView()
-            .environmentObject(SavedChats())
+        ChatGPTMainView(totalRequests: TotalRequests(), savedChats: SavedChats())
     }
 }

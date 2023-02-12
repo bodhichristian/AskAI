@@ -10,6 +10,7 @@ import OpenAISwift
 
 struct DALLEPromptView: View {
     @ObservedObject var viewModel: OpenAIViewModel
+    @ObservedObject var totalRequests: TotalRequests
     @EnvironmentObject var dallESavedChats: SavedChats
     
     let engine: Engine
@@ -28,7 +29,7 @@ struct DALLEPromptView: View {
                     .padding(2)
             }
             
-            ProgressButton(viewModel: viewModel, engine: engine)
+            ProgressButton(viewModel: viewModel, totalRequests: totalRequests, engine: engine)
                 .padding(.vertical, -50)
         }
         .padding(8)
@@ -40,7 +41,7 @@ struct DALLEPromptView: View {
 
 struct DALLEView_Previews: PreviewProvider {
     static var previews: some View {
-        DALLEPromptView(viewModel: OpenAIViewModel.example, engine: .DALLE)
+        DALLEPromptView(viewModel: OpenAIViewModel.example, totalRequests: TotalRequests(), engine: .DALLE)
             .environmentObject(SavedChats())
     }
 }

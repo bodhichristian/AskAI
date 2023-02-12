@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Profile {
-    var username: String
+class Profile: ObservableObject {
+    @Published var username: String
     
-    static let `default` = Profile(username: "user")
+    init(username: String) {
+        self.username = username
+    }
 }
