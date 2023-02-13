@@ -12,12 +12,14 @@ struct DALLEMainView: View {
     @ObservedObject var totalRequests: TotalRequests
     @StateObject var dallEVM = OpenAIViewModel()
     
+    // Computes an array of Chats, filtering out ChatGPT-baseed saved chats
     var filteredChats: [Chat] {
         savedChats.chats.filter { chat in
             return chat.engine == .DALLE
         }
     }
     
+    // Columns for LazyVGrid in savedImagesSection
     let columns = [
         GridItem(.adaptive(minimum: 100)),
         GridItem(.adaptive(minimum: 100)),
@@ -45,7 +47,6 @@ struct DALLEMainView: View {
                 }
             }
             .navigationTitle("Ask DALL·E")
-
             .sheet(isPresented: $showingInfoView) {
                 DALLEInfoView()
             }
@@ -55,6 +56,7 @@ struct DALLEMainView: View {
 }
 
 extension DALLEMainView {
+    
     private var createAnImageSection: some View {
         Section(header: Text("Create an Image with AI")) {
             NavigationLink {
@@ -64,9 +66,7 @@ extension DALLEMainView {
             }
         }
     }
-}
-
-extension DALLEMainView {
+    
     private var savedImagesSection: some View {
         Section(header: Text("Saved Images")) {
             if filteredChats.isEmpty {
@@ -124,12 +124,14 @@ extension DALLEMainView {
             }
         }
     }
+
+}
+
+extension DALLEMainView {
 }
 
 struct DALLEMainView_Previews: PreviewProvider {
     static var previews: some View {
-        DALLEMainView( savedChats: SavedChats(), totalRequests: TotalRequests())
-            //.environmentObject(SavedChats())
-        
+        DALLEMainView( savedChats: SavedChats(), totalRequests: TotalRequests())        
     }
 }

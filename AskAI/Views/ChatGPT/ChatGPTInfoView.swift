@@ -41,6 +41,8 @@ struct ChatGPTInfoView_Previews: PreviewProvider {
 }
 
 extension ChatGPTInfoView {
+    
+    // Davinci engine overview
     private var davinciInfo: some View {
         Section {
             VStack {
@@ -58,6 +60,7 @@ extension ChatGPTInfoView {
         }
     }
     
+    // Curie engine overview
     private var curieInfo: some View {
         Section {
             VStack {
@@ -75,6 +78,7 @@ extension ChatGPTInfoView {
         }
     }
     
+    // Babbage engine overview
     private var babbageInfo: some View {
         Section {
             VStack {
@@ -92,6 +96,7 @@ extension ChatGPTInfoView {
         }
     }
     
+    // Ada engine overview
     private var adaInfo: some View {
         Section {
             VStack {

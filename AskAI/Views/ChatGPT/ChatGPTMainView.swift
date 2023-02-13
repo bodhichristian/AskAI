@@ -11,6 +11,7 @@ struct ChatGPTMainView: View {
     @ObservedObject var totalRequests: TotalRequests
     @ObservedObject var savedChats: SavedChats
     
+    // Computes an array of SavedChats, filtering out chats that used DALL·E
     var filteredChats: [Chat] {
         savedChats.chats.filter { chat in
             return chat.engine != .DALLE
@@ -52,8 +53,9 @@ struct ChatGPTMainView: View {
     }
 }
 
-// ChatGPT Engine List Section
 extension ChatGPTMainView {
+    
+    // Chat GPT Engine List Section
     private var chatGPTEngineSection: some View {
 
         // NavigationLink will push to a corresponding ChatView
@@ -83,93 +85,91 @@ extension ChatGPTMainView {
             }
         }
     }
-}
-
-// Saved Chats List Section
-extension ChatGPTMainView {
     
+    // Saved Chat Section
     private var savedChatSection: some View {
- 
-        // If user has chats saved, they will display as a list of NavigationLinks
-        // A default message is presented if there are no saved chats
-        // Each SavedChatLabel pushes to a SavedChatView
-        Section(header: Text("Saved Chats")) {
-            if filteredChats.isEmpty {
-                Text("Start a new chat above. Saved chats will appear here.")
-                    .font(.callout)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .offset(x: 7)
-            } else {
-                ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
-                    NavigationLink {
-                        SavedChatView(chat: chat, engine: chat.engine)
+
+    // If user has chats saved, they will display as a list of NavigationLinks
+    // A default message is presented if there are no saved chats
+    // Each SavedChatLabel pushes to a SavedChatView
+    Section(header: Text("Saved Chats")) {
+        if filteredChats.isEmpty {
+            Text("Start a new chat above. Saved chats will appear here.")
+                .font(.callout)
+                .multilineTextAlignment(.center)
+                .padding()
+                .offset(x: 7)
+        } else {
+            ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
+                NavigationLink {
+                    SavedChatView(chat: chat, engine: chat.engine)
+                } label: {
+                    SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert, engine: chat.engine)
+                }
+                .alert(isPresented: $showingDeleteAlert, content: {
+                    Alert(title: deleteAlertTitle,
+                          primaryButton: .destructive(
+                            Text("Undo"),
+                            action: {
+                                savedChats.undoDelete()
+                            }
+                          ),
+                          secondaryButton: .default(Text("OK"))
+                    )
+                })
+                .contextMenu {
+                    
+                    // Context Menu presented after a press-and-hold gesture
+                    // User may toggle favorite status or detele chat
+                    
+                    // Mark/Unmark as favorite
+                    Button {
+                        savedChats.toggleFavorite(chat)
                     } label: {
-                        SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert, engine: chat.engine)
-                    }
-                    .alert(isPresented: $showingDeleteAlert, content: {
-                        Alert(title: deleteAlertTitle,
-                              primaryButton: .destructive(
-                                Text("Undo"),
-                                action: {
-                                    savedChats.undoDelete()
-                                }
-                              ),
-                              secondaryButton: .default(Text("OK"))
-                        )
-                    })
-                    .contextMenu {
-                        
-                        // Context Menu presented after a press-and-hold gesture
-                        // User may toggle favorite status or detele chat
-                        
-                        // Mark/Unmark as favorite
-                        Button {
-                            savedChats.toggleFavorite(chat)
-                        } label: {
-                            if chat.isFavorite {
-                                Label("Unmark as favorite", systemImage: "seal")
-                            } else {
-                                Label("Mark as Favorite", systemImage: "checkmark.seal")
-                            }
-                        }
-                        
-                        // Delete Chat
-                        Button(role: .destructive) {
-                            savedChats.delete(chat)
-                            showingDeleteAlert = true
-                        } label: {
-                            Label("Delete chat", systemImage: "trash")
+                        if chat.isFavorite {
+                            Label("Unmark as favorite", systemImage: "seal")
+                        } else {
+                            Label("Mark as Favorite", systemImage: "checkmark.seal")
                         }
                     }
-                    .swipeActions(edge: .leading) {
-                        
-                        // Swiping from leading edge reveals a favorite toggle
-                        Button {
-                            savedChats.toggleFavorite(chat)
-                        } label: {
-                            if chat.isFavorite {
-                                Label("Unmark as favorite", systemImage: "seal")
-                            } else {
-                                Label("Mark as Favorite", systemImage: "checkmark.seal")
-                            }
+                    
+                    // Delete Chat
+                    Button(role: .destructive) {
+                        savedChats.delete(chat)
+                        showingDeleteAlert = true
+                    } label: {
+                        Label("Delete chat", systemImage: "trash")
+                    }
+                }
+                .swipeActions(edge: .leading) {
+                    
+                    // Swiping from leading edge reveals a favorite toggle
+                    Button {
+                        savedChats.toggleFavorite(chat)
+                    } label: {
+                        if chat.isFavorite {
+                            Label("Unmark as favorite", systemImage: "seal")
+                        } else {
+                            Label("Mark as Favorite", systemImage: "checkmark.seal")
                         }
-                        .tint(chat.isFavorite ? .blue : .yellow)
                     }
-                    .swipeActions {
-                        
-                        // Swiping from the trailing edge reveals a delete button
-                        Button {
-                            savedChats.delete(chat)
-                            showingDeleteAlert = true
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }.tint(.red)
-                    }
+                    .tint(chat.isFavorite ? .blue : .yellow)
+                }
+                .swipeActions {
+                    
+                    // Swiping from the trailing edge reveals a delete button
+                    Button {
+                        savedChats.delete(chat)
+                        showingDeleteAlert = true
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }.tint(.red)
                 }
             }
         }
     }
+}
+
 }
 
 struct ContentView_Previews: PreviewProvider {

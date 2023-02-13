@@ -40,6 +40,7 @@ struct DALLEInfoView_Previews: PreviewProvider {
 }
 
 extension DALLEInfoView {
+    
     private var dallEInfo: some View {
         Section {
             VStack {
