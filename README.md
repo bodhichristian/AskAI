@@ -1,6 +1,6 @@
 # AskAI
 
-AskAI provides an approachable, native to iOS experience for interfacing with ChatGPT, and saving chats for later. It's written with almost entirely SwiftUI, and uses MVVM architecture. Chat engine images generated with Midjourney.
+AskAI provides an approachable, native to iOS experience for interfacing with artificial intelligence. Using OpenAI's API, users may interact converse with ChatGPT or generate images with DALL·E It's written with almost entirely SwiftUI, and uses MVVM architecture. App icons and imagery generated with Midjourney.
 
 <b> Getting Started </b>
 * To receive responses from ChatGPT, you'll need an API key from OpenAI. Keys are available for free at https://openai.com/api/
