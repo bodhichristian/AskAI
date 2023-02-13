@@ -14,21 +14,23 @@ Current bug(s):
 </i>
 
 <b> HomeView </b>
-![AskAI Showcase 2 001](https://user-images.githubusercontent.com/110639779/216637844-f31c94e1-75f8-413a-a940-12ad3d9e3812.jpeg)
-The app launches into HomeView and provides three major paths of navigation: ChatView, SavedChats, and InfoView. User may choose to begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap the info button to reveal a sheet with chat engine overviews and credits.
+![AskAI 2 0 Showcase 001](https://user-images.githubusercontent.com/110639779/218524293-b904249e-0d3b-4be3-9b69-617ba6e23274.jpeg)
 
-<b> ChatView </b>
-![AskAI Showcase 2 002](https://user-images.githubusercontent.com/110639779/216637870-d2206aa8-9c26-444b-9f7c-78e68edf47c1.jpeg)
-Each ChatView instantiates its own ChatViewModel so that request and response data are preserved when user navigates away from the view. This environment is conditionally managed so that the user is sandboxed to the intended implementation. User may not submit an empty request, nor are the save/delete buttons tappable prior to receiving a response or error from ChatGPT. Submit button dismisses the iOS keyboard, animates while waiting for a response, and once again upon receipt. User may clear the chat, with an alert to make sure they meant to. User may save the chat, with an alert notifying success.
+The app launches into HomeView, the center of three tab experiences. On this view, users are greeted, presented with links for inspiration, and view stats related to their experience with AskAI. Tapping the gear icon reveals a sheet presenting SettingsView. Users can change their display name and color, and access information related to OpenAI and developer credits.
+
+<b> DALLEView </b>
+![AskAI 2 0 Showcase 002](https://user-images.githubusercontent.com/110639779/218525204-f94117e6-09c1-47d6-912a-0b4d58916edf.jpeg)
+From the DALL·E tab, users can begin a new image generation prompt, or view previously saved images. Tapping on the info icon in the toobar presents a sheet displaying more detailed inforamtion DALL·E. Tapping on the Ask DALL·E Navigation Link pushes to DALLEPromptView. This environment, like ChatGPTPromptView, is conditionally managed so that the user is sandboxed to the intended implementation. User may not submit an empty request, nor are the save/delete buttons tappable prior to receiving a response or error from ChatGPT. Submit button dismisses the iOS keyboard, animates while waiting for a response, and once again upon receipt. User may clear the chat, with an alert to make sure they meant to. User may save the chat, with an alert notifying success. Tapping on saved images pushes to an instatiation of SavedChatView, presenting the user with the request and response in a messaging-style UI. As an easter egg, the user may drag the image around the screen, and it will return to its original position upon release.
 
 * <i>Submit button adapted from Polly Vern's Slider Button (https://github.com/PollyVern/SwiftUI-Animations)</i>
 * <i>OpenAI API Client Library in Swift from Adam Rushy (https://github.com/adamrushy/OpenAISwift)</i>
 
-<b> SavedChatView and InfoView </b>
-![AskAI Showcase 2 003](https://user-images.githubusercontent.com/110639779/216637878-0a52554f-5010-4272-9d06-3542a7d2bc74.jpeg)
-SavedChatView displays a chat with the interaction date in the navigation bar, engine image (with optional favorite badge), user request, and ChatGPT response. As an easter egg, the user may drag the image around the screen, and it will return to its original position upon release. InfoView provides users with more information about working with each chat engine, and credits/links to OpenAI and connecting with the developer.
+<b> ChatGPTView </b>
+![AskAI 2 0 Showcase 003](https://user-images.githubusercontent.com/110639779/218526570-8d8ab9b5-6e42-4990-8828-3c35b04f6918.jpeg)
+Users may begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap the info button to reveal a sheet with chat engine overviews and credits.Each ChatView instantiates its own ChatViewModel so that request and response data are preserved when user navigates away from the view. Tapping on the info icon in the toobar presents a sheet displaying more detailed inforamtion about each engine.
 
 Future Updates:
-* Add ability to save images, both in app, as well as to Photos
-* Add UserProfileView 
+* Migrate to Core Data for data persistence 
+* Allow users to save to Photos
+* Allow users to upload or choose an avatar
 * Optional biometric authentication at sign-in
