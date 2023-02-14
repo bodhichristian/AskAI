@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThemeView: View {
-    let theme: UsernameTheme
+    let theme: UserTheme
     
     var body: some View {
         ZStack {
@@ -20,7 +20,6 @@ struct ThemeView: View {
                 .padding(4)
                 .foregroundColor(theme.accentColor)
         }
-        //.foregroundColor(theme.accentColor)
         .fixedSize(horizontal: false, vertical: true)
     }
 }

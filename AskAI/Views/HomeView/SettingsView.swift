@@ -11,7 +11,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var profile: Profile
-    @Binding var usernameTheme: UsernameTheme
+    @Binding var userTheme: UserTheme
     
     let defaultURL = URL(string: "https://www.google.com")!
     let openAIURL = URL(string: "https://openai.com/")!
@@ -34,8 +34,8 @@ struct SettingsView: View {
                         }
                 }
                 
-                Section(header: Text("Username Theme")) {
-                    ThemePicker(selection: $usernameTheme)
+                Section(header: Text("Theme")) {
+                    ThemePicker(selection: $userTheme)
                         .padding(.vertical, -20)
                         .padding(.horizontal, -10)
                 }
@@ -167,7 +167,7 @@ extension SettingsView {
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(usernameTheme: .constant(.mint))
+        SettingsView(userTheme: .constant(.mint))
             .environmentObject(Profile(username: "user"))
     }
 }

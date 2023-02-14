@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ThemePicker: View {
     // communicates changes to theme within the theme picker back up to parent view
-    @Binding var selection: UsernameTheme
+    @Binding var selection: UserTheme
     
     var body: some View {
         Picker("Theme", selection: $selection) {
-            ForEach(UsernameTheme.allCases) { theme in
+            ForEach(UserTheme.allCases) { theme in
                 ThemeView(theme: theme)
                     // tagging subview to differentiate in picker
                     .tag(theme)

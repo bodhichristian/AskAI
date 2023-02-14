@@ -28,7 +28,7 @@ struct HomeView: View {
     @State private var expandingShadowRadius = 0.0
     @State private var diminishingShadowRadius = 40.0
     
-    @State private var usernameTheme = UsernameTheme.mint
+    @State private var userTheme = UserTheme.mint
     
     var savedChatCount: Int {
         let chatGPTFilter = savedChats.chats.filter { chat in
@@ -50,13 +50,13 @@ struct HomeView: View {
             VStack {
                 CircleImage(imageName: "askAI-logo", width: 200, height: 200)
                     .shadow(color: .secondary, radius: diminishingShadowRadius)
-                    .shadow(color: .purple, radius: expandingShadowRadius)
+                    .shadow(color: userTheme.mainColor, radius: expandingShadowRadius)
                     .padding(15)
                 
                 HStack(spacing: 0) {
                     Text("Hello, ")
                     Text("\(profile.username)")
-                        .foregroundColor(usernameTheme.mainColor)
+                        .foregroundColor(userTheme.mainColor)
                     Text(".")
                 }
                 .bold()
@@ -82,27 +82,6 @@ struct HomeView: View {
                     HStack {
                         VStack {
                             HStack(alignment: .center) {
-                                Text("\(savedChatCount)")
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                                    .offset(y: risingOffset)
-                                
-                                
-                                Image(systemName: "quote.bubble.fill")
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .foregroundColor(.purple)
-                                    .offset(y: fallingOffset)
-                                
-                            }
-                            Text("Saved chats")
-                                .font(.footnote)
-                        }
-                        
-                        Spacer()
-                        
-                        VStack {
-                            HStack(alignment: .center) {
                                 Text("\(totalRequests.count)")
                                     .font(.largeTitle)
                                     .fontWeight(.semibold)
@@ -120,6 +99,27 @@ struct HomeView: View {
 
                         }
                         
+                        Spacer()
+                        
+                        VStack {
+                            HStack(alignment: .center) {
+                                Text("\(savedChatCount)")
+                                    .font(.largeTitle)
+                                    .fontWeight(.semibold)
+                                    .offset(y: risingOffset)
+                                
+                                
+                                Image(systemName: "quote.bubble.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.purple)
+                                    .offset(y: fallingOffset)
+                                
+                            }
+                            Text("Saved chats")
+                                .font(.footnote)
+                        }
+
                         Spacer()
                         
                         VStack {
@@ -145,9 +145,13 @@ struct HomeView: View {
                     .padding(.bottom)
                 }
                 .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(.ultraThinMaterial)
-                        .shadow(color: .secondary, radius: 7)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(userTheme.mainColor.opacity(0.2))
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .foregroundStyle(.ultraThinMaterial)
+                    }
+
                 )
                 .padding(.horizontal)
                 
@@ -207,20 +211,24 @@ struct HomeView: View {
                     .padding(.bottom)
                 }
                 .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(.ultraThinMaterial)
-                        .shadow(color: .secondary, radius: 7)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(userTheme.mainColor.opacity(0.2))
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .foregroundStyle(.ultraThinMaterial)
+                    }
+
                 )
                 .padding()
             }
             
-            .navigationTitle("AskAI")
+            .navigationTitle(Text("AskAI"))
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.8)) {
                     showingWelcomeMessage = true
                     fallingOffset = 0
                     risingOffset = 0
-                    expandingShadowRadius = 30
+                    expandingShadowRadius = 15
                     diminishingShadowRadius = 8
                 }
             }
@@ -233,13 +241,10 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $showingInfoView) {
-            SettingsView(usernameTheme: $usernameTheme)
+            SettingsView(userTheme: $userTheme)
                 .environmentObject(profile)
         }
-//        .environmentObject(savedChats)
-//        .environmentObject(totalRequests)
-//        .environmentObject(viewModel)
-//        .environmentObject(profile)
+
     }
 }
 

@@ -31,7 +31,7 @@
 		AA83B44B2995E8AD002FD3AE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA83B44A2995E8AD002FD3AE /* HomeView.swift */; };
 		AA940C98298AE4220052376F /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA940C97298AE4220052376F /* ProgressButton.swift */; };
 		AA940C9A298C27110052376F /* View-HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA940C99298C27110052376F /* View-HideKeyboard.swift */; };
-		AA9D06E9299852050056E77C /* UsernameTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D06E8299852050056E77C /* UsernameTheme.swift */; };
+		AA9D06E9299852050056E77C /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D06E8299852050056E77C /* UserTheme.swift */; };
 		AA9D06EB299852CA0056E77C /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D06EA299852CA0056E77C /* ThemePicker.swift */; };
 		AA9D06ED299853100056E77C /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D06EC299853100056E77C /* ThemeView.swift */; };
 		AA9D06EF29986EC30056E77C /* TotalRequestCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D06EE29986EC30056E77C /* TotalRequestCounter.swift */; };
@@ -72,7 +72,7 @@
 		AA83B44A2995E8AD002FD3AE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AA940C97298AE4220052376F /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
 		AA940C99298C27110052376F /* View-HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-HideKeyboard.swift"; sourceTree = "<group>"; };
-		AA9D06E8299852050056E77C /* UsernameTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameTheme.swift; sourceTree = "<group>"; };
+		AA9D06E8299852050056E77C /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		AA9D06EA299852CA0056E77C /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
 		AA9D06EC299853100056E77C /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
 		AA9D06EE29986EC30056E77C /* TotalRequestCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRequestCounter.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		AA9D06E7299851F30056E77C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				AA9D06E8299852050056E77C /* UsernameTheme.swift */,
+				AA9D06E8299852050056E77C /* UserTheme.swift */,
 				AA9D06EA299852CA0056E77C /* ThemePicker.swift */,
 				AA9D06EC299853100056E77C /* ThemeView.swift */,
 			);
@@ -380,7 +380,7 @@
 				AAD98F5829710CC100954C6F /* AskAIApp.swift in Sources */,
 				AA75CF1C2984CCA6002F1A62 /* CircleImage.swift in Sources */,
 				AA9D06ED299853100056E77C /* ThemeView.swift in Sources */,
-				AA9D06E9299852050056E77C /* UsernameTheme.swift in Sources */,
+				AA9D06E9299852050056E77C /* UserTheme.swift in Sources */,
 				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,
 				AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */,
 				AA1DF2F42979DCCD0086700E /* OpenAIViewModel.swift in Sources */,

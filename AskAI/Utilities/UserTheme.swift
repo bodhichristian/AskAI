@@ -8,16 +8,20 @@
 
 import SwiftUI
 
-enum UsernameTheme: String, CaseIterable, Identifiable, Codable {
+enum UserTheme: String, CaseIterable, Identifiable, Codable {
     case blue
-    case purple
+    case red
     case mint
     case pink
     case green
+    case purple
+    case orange
+    case indigo
+    case yellow
     
     var accentColor: Color {
         switch self {
-        case .mint: return .black
+        case .mint, .yellow, .orange, .green, .blue: return .black
         default: return .white
         }
     }
@@ -29,6 +33,11 @@ enum UsernameTheme: String, CaseIterable, Identifiable, Codable {
         case .blue: return .blue
         case .green: return .green
         case .pink: return Color(red: 1, green: 0.2, blue: 0.6)
+        case .orange: return .orange
+        case .red: return .red
+        case .yellow: return .yellow
+        case .indigo: return .indigo
+            
         }
     }
     

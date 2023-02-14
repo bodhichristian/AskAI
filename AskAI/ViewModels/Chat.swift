@@ -21,7 +21,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         case id, request, response, date, engine, generatedImage, isFavorite
     }
     
-    init(id: UUID = UUID(), request: String, response: String, date: Date = .now, engine: Engine, isFavorite: Bool = false, generatedImage: Data? = nil) {
+    init(id: UUID = UUID(), request: String, response: String, date: Date = .now, engine: Engine, generatedImage: Data? = nil, isFavorite: Bool = false) {
         self.id = id
         self.request = request
         self.response = response
@@ -29,6 +29,8 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.engine = engine
         self.generatedImage = generatedImage
         self.isFavorite = isFavorite
+        print("Chat init called")
+
     }
     
     required init(from decoder: Decoder) throws {
@@ -38,8 +40,9 @@ class Chat: Identifiable, Codable, ObservableObject {
         self.response = try container.decode(String.self, forKey: .response)
         self.date = try container.decode(Date.self, forKey: .date)
         self.engine = try container.decode(Engine.self, forKey: .engine)
-        self.generatedImage =  try container.decode(Data.self, forKey: .generatedImage)
+        self.generatedImage =  try container.decode(Data?.self, forKey: .generatedImage)
         self.isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
+        print("Required init called")
     }
     
     func encode(to encoder: Encoder) throws {
@@ -51,6 +54,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(engine, forKey: .engine)
         try container.encode(generatedImage, forKey: .generatedImage)
         try container.encode(isFavorite, forKey: .isFavorite)
+        print("Chat encoded")
     }
     
     static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engine: .davinci, isFavorite: true)
