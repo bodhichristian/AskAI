@@ -15,7 +15,7 @@ struct HomeView: View {
     @ObservedObject var profile: Profile
 
     // When showingInfoView is toggled, a modal sheet will present InfoView
-    @State private var showingInfoView = false
+    @State private var showingSettingsView = false
     
     let redditChatGPT = URL(string: "https://www.reddit.com/r/ChatGPT/")!
     let redditDALLE = URL(string: "https://www.reddit.com/r/dalle2/")!
@@ -27,9 +27,7 @@ struct HomeView: View {
     @State private var risingOffset = 10.0
     @State private var expandingShadowRadius = 0.0
     @State private var diminishingShadowRadius = 40.0
-    
-    @State private var userTheme = UserTheme.mint
-    
+        
     var savedChatCount: Int {
         let chatGPTFilter = savedChats.chats.filter { chat in
             return chat.engine != .DALLE
@@ -50,13 +48,13 @@ struct HomeView: View {
             VStack {
                 CircleImage(imageName: "askAI-logo", width: 200, height: 200)
                     .shadow(color: .secondary, radius: diminishingShadowRadius)
-                    .shadow(color: userTheme.mainColor, radius: expandingShadowRadius)
+                    .shadow(color: profile.theme.mainColor, radius: expandingShadowRadius)
                     .padding(15)
                 
                 HStack(spacing: 0) {
                     Text("Hello, ")
                     Text("\(profile.username)")
-                        .foregroundColor(userTheme.mainColor)
+                        .foregroundColor(profile.theme.mainColor)
                     Text(".")
                 }
                 .bold()
@@ -147,7 +145,7 @@ struct HomeView: View {
                 .background(
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(userTheme.mainColor.opacity(0.2))
+                            .foregroundColor(profile.theme.mainColor.opacity(0.2))
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .foregroundStyle(.ultraThinMaterial)
                     }
@@ -213,7 +211,7 @@ struct HomeView: View {
                 .background(
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(userTheme.mainColor.opacity(0.2))
+                            .foregroundColor(profile.theme.mainColor.opacity(0.2))
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .foregroundStyle(.ultraThinMaterial)
                     }
@@ -234,14 +232,15 @@ struct HomeView: View {
             }
             .toolbar {
                 Button {
-                    showingInfoView.toggle()
+                    showingSettingsView.toggle()
                 } label: {
                     Image(systemName: "gear")
                 }
             }
+
         }
-        .sheet(isPresented: $showingInfoView) {
-            SettingsView(userTheme: $userTheme)
+        .sheet(isPresented: $showingSettingsView) {
+            SettingsView(userTheme: $profile.theme)
                 .environmentObject(profile)
         }
 
@@ -250,7 +249,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(totalRequests: TotalRequests(), savedChats: SavedChats(), profile: Profile(username: "user"))
+        HomeView(totalRequests: TotalRequests(), savedChats: SavedChats(), profile: Profile())
 //            .environmentObject(Profile(username: "user"))
 //            .environmentObject(SavedChats())
     }

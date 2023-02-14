@@ -38,6 +38,14 @@ struct SettingsView: View {
                     ThemePicker(selection: $userTheme)
                         .padding(.vertical, -20)
                         .padding(.horizontal, -10)
+                        .onChange(of: userTheme) { newTheme in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                profile.theme = newTheme
+                                profile.save()
+                                print("New theme saved.")
+                            }
+                            
+                        }
                 }
                 
                 openAICredits
@@ -55,6 +63,7 @@ struct SettingsView: View {
                     }
                 }
             })
+            
         }
         .environmentObject(profile)
     }
@@ -96,7 +105,7 @@ extension SettingsView {
                     .frame(height: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 4)
-                Text("AskAI was developed by Christian Lavelle as a native, and approachable way to experience interfacing with OpenAI's ChatGPT.")
+                Text("AskAI was developed by Christian Lavelle as a native, and approachable way to converse with ChatGPT and generate images with DALL·E.")
                     .font(.callout)
             }
             .padding(.vertical, 4)
@@ -154,6 +163,7 @@ extension SettingsView {
     private var editButton: some View {
         Button {
             editing.toggle()
+            profile.save()
         } label: {
             Text(editing ? "Done" : "Edit")
                 .font(.caption)
@@ -168,6 +178,6 @@ extension SettingsView {
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(userTheme: .constant(.mint))
-            .environmentObject(Profile(username: "user"))
+            .environmentObject(Profile())
     }
 }

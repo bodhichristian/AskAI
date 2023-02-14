@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct AskAIApp: App {
     @StateObject var savedChats = SavedChats()
-    @StateObject var profile = Profile(username: "user")
+    @StateObject var profile = Profile()
     @StateObject var totalRequests = TotalRequests()
 
     var body: some Scene {

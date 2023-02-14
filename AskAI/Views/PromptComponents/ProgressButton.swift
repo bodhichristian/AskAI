@@ -25,7 +25,7 @@ struct ProgressButton: View {
         case complete
         
         // ProgressButton label
-        var title: String {
+        var buttonLabel: String {
             switch self {
             case .submit:
                 return "Submit"
@@ -36,6 +36,10 @@ struct ProgressButton: View {
             }
         }
     }
+    
+    @State private var animatingText = false
+    @State private var counter: Int = 0
+    @State private var loops: Int = 0
 
     var body: some View {
         ZStack {
@@ -76,10 +80,11 @@ struct ProgressButton: View {
             Rectangle()
                 .fill(viewModel.request == "" ? .secondary.opacity(0.5) : engine.color)
                 .frame(height: 50)
-            Text(type.title)
+            
+            Text(type.buttonLabel)
                 .foregroundColor(.white)
                 .font(.system(size: 20, weight: .medium, design: .default))
-                .shadow(radius: 6)
+                //.shadow(radius: 6)
         }
         .frame(height: 50)
         .offset(y: viewModel.inProgress ? baseHeight : 0)

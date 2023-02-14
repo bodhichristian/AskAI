@@ -39,7 +39,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(profile: Profile(username: "user"), totalRequests: TotalRequests())
+        MainView(profile: Profile(), totalRequests: TotalRequests())
                 .environmentObject(SavedChats())
     }
 }
