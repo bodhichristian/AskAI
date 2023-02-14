@@ -155,7 +155,7 @@ extension ResponseView {
                 // Checkmark Button - Save Chat
                 Button {
                     showingSaveAlert = true
-                    let chat = Chat(request: viewModel.request, response: viewModel.response, engine: engine, generatedImage: viewModel.generatedImage)
+                    let chat = Chat(request: viewModel.request, response: viewModel.response, engine: engine, generatedImage: viewModel.generatedImage?.pngData())
                     savedChats.add(chat)
                 } label : {
                     ZStack {

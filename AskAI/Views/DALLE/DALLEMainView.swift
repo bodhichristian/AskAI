@@ -84,7 +84,7 @@ extension DALLEMainView {
                                 SavedChatView(chat: chat, engine: chat.engine)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Image(uiImage: chat.generatedImage ?? UIImage(named: "chatGPT")!)
+                                    Image(uiImage: UIImage(data: chat.generatedImage!) ?? UIImage(named: "chatGPT")!)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 101, height: 140)

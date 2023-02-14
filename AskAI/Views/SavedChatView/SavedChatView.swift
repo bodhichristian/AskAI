@@ -95,7 +95,7 @@ extension SavedChatView {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 if chat.generatedImage != nil {
-                    Image(uiImage: chat.generatedImage!)
+                    Image(uiImage: UIImage(data: chat.generatedImage!)!)
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10)

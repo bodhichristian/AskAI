@@ -66,5 +66,5 @@ import SwiftUI
         save()
     }
     
-    static let example: () = SavedChats().chats.append(Chat(request: "Twitter bird", response: "", engine: .DALLE, generatedImage: UIImage(named: "twitter")))
+    static let example: () = SavedChats().chats.append(Chat(request: "Twitter bird", response: "", engine: .DALLE, generatedImage: UIImage(named: "twitter")?.pngData()))
 }
