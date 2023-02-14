@@ -48,10 +48,10 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CircleImage(imageName: "askAI-logo", width: 240, height: 240)
+                CircleImage(imageName: "askAI-logo", width: 200, height: 200)
                     .shadow(color: .secondary, radius: diminishingShadowRadius)
                     .shadow(color: .purple, radius: expandingShadowRadius)
-                    .padding(35)
+                    .padding(15)
                 
                 HStack(spacing: 0) {
                     Text("Hello, ")
@@ -63,20 +63,18 @@ struct HomeView: View {
                 .font(.title)
                 
                 Text("What will we create today?")
-                    .padding(.bottom, 10)
                     .opacity(showingWelcomeMessage ? 1 : 0)
                     .offset(y: fallingOffset)
-                
+                    .padding(.bottom)
                 
                 
                 // Dashboard section
                 VStack {
                     HStack {
                         Text("Dashboard")
-                            .foregroundColor(.secondary)
+                            .font(.headline)
                             .offset(y: fallingOffset)
                             .padding([.leading, .top])
-                            //.padding(.bottom, -10)
                         Spacer()
                     }
                     
@@ -149,67 +147,71 @@ struct HomeView: View {
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(.ultraThinMaterial)
-                        .shadow(color: .secondary, radius: 10)
+                        .shadow(color: .secondary, radius: 7)
                 )
-                .padding()
+                .padding(.horizontal)
                 
                 // Join the conversation section
-                HStack {
-                    Text("Join the conversation:")
-                        .foregroundColor(.secondary)
-                        .offset(y: fallingOffset)
- 
-                        .padding(.leading)
-                    Spacer()
-                }
-                
-                HStack {
-                    Spacer()
-                    Link(destination: redditChatGPT) {
+                VStack {
+                    HStack {
+                        Text("Join the Conversation")
+                            .font(.headline)
+                            .offset(y: fallingOffset)
+     
+                            .padding([.leading, .top])
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        // Reddit Link Stack
                         HStack {
                             Image("reddit")
                                 .resizable().scaledToFit()
-                                .frame(width: 20)
+                                .frame(width: 40)
                                 .offset(y: fallingOffset)
-                            
-                            Text("r/ChatGPT")
-                                .offset(y: risingOffset)
-                            
+                            VStack(alignment: .leading, spacing: 6) {
+                                Link(destination: redditChatGPT) {
+                                    Text("r/ChatGPT")
+                                        .offset(y: fallingOffset)
+                                }
+                                
+                                    Link(destination: redditChatGPT) {
+                                        Text("r/dalle2")
+                                            .offset(y: risingOffset)
+                                }
+                            }
                         }
-                    }
-                    
-                    Link(destination: redditChatGPT) {
-                        Text("r/dalle2")
-                            .offset(y: fallingOffset)
                         
-                    }
-                    Spacer()
-                    Link(destination: twitterChatGPT) {
+                        Spacer()
+                        
+                        // Twitter Link Stack
                         HStack {
                             Image("twitter")
                                 .resizable().scaledToFit()
-                                .frame(width: 20)
+                                .frame(width: 40)
                                 .offset(y: fallingOffset)
-                            
-                            Text("#ChatGPT")
-                                .offset(y: risingOffset)
-                            
+                            VStack(alignment: .leading, spacing: 6) {
+                                Link(destination: twitterChatGPT) {
+                                    Text("#chatGPT")
+                                        .offset(y: fallingOffset)
+                                }
+                                    Link(destination: twitterDALLE) {
+                                        Text("#dalle2")
+                                            .offset(y: risingOffset)
+                                }
+                            }
                         }
-                    }
-                    
-                    Link(destination: twitterDALLE) {
-                        Text("#dalle2")
-                            .offset(y: fallingOffset)
-                        
-                    }
-                    Spacer()
-                }
-                Divider()
-                    .padding(5)
-                    .padding(.horizontal, 6)
-                
-                
 
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom)
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundStyle(.ultraThinMaterial)
+                        .shadow(color: .secondary, radius: 7)
+                )
+                .padding()
             }
             
             .navigationTitle("AskAI")
