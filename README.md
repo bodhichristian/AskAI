@@ -8,7 +8,7 @@ AskAI provides an approachable, native to iOS experience for interfacing with ar
 
 
 <b> HomeView </b>
-![AskAI 2 0 Showcase 001](https://user-images.githubusercontent.com/110639779/218524293-b904249e-0d3b-4be3-9b69-617ba6e23274.jpeg)
+![AskAI Showcase 1 001](https://user-images.githubusercontent.com/110639779/218808317-57f48719-f37b-41ac-95aa-76c75ca2dae2.jpeg)
 
 The app launches into HomeView, the center of three tabs. In this view, users are greeted, presented with links for inspiration, and can view relevant stats. Tapping the gear icon reveals a sheet presenting SettingsView. Here, users can change their display name and color, and access information related to OpenAI and developer credits.
 
