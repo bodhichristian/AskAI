@@ -14,6 +14,7 @@
 		AA1DF2F02979D17D0086700E /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2EF2979D17D0086700E /* ResponseView.swift */; };
 		AA1DF2F22979D73A0086700E /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F12979D73A0086700E /* RequestView.swift */; };
 		AA1DF2F42979DCCD0086700E /* OpenAIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DF2F32979DCCD0086700E /* OpenAIViewModel.swift */; };
+		AA21A365299D188C00FD40FD /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21A364299D188C00FD40FD /* ImageSaver.swift */; };
 		AA23347929935463007B0953 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA23347829935463007B0953 /* OpenAIKit */; };
 		AA23347C29935636007B0953 /* DALLEPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23347B29935636007B0953 /* DALLEPromptView.swift */; };
 		AA23348229936907007B0953 /* DALLEMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23348129936907007B0953 /* DALLEMainView.swift */; };
@@ -56,6 +57,8 @@
 		AA1DF2EF2979D17D0086700E /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		AA1DF2F12979D73A0086700E /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		AA1DF2F32979DCCD0086700E /* OpenAIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIViewModel.swift; sourceTree = "<group>"; };
+		AA21A364299D188C00FD40FD /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		AA21A366299D223700FD40FD /* OpenAIProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "OpenAIProject-Info.plist"; sourceTree = "<group>"; };
 		AA23347B29935636007B0953 /* DALLEPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DALLEPromptView.swift; sourceTree = "<group>"; };
 		AA23348129936907007B0953 /* DALLEMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DALLEMainView.swift; sourceTree = "<group>"; };
 		AA23348429958232007B0953 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 				AA9D06E8299852050056E77C /* UserTheme.swift */,
 				AA9D06EA299852CA0056E77C /* ThemePicker.swift */,
 				AA9D06EC299853100056E77C /* ThemeView.swift */,
+				AA21A364299D188C00FD40FD /* ImageSaver.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -216,6 +220,7 @@
 		AAD98F4B29710CC100954C6F = {
 			isa = PBXGroup;
 			children = (
+				AA21A366299D223700FD40FD /* OpenAIProject-Info.plist */,
 				AAD98F5629710CC100954C6F /* AskAI */,
 				AAD98F5529710CC100954C6F /* Products */,
 			);
@@ -383,6 +388,7 @@
 				AA9D06E9299852050056E77C /* UserTheme.swift in Sources */,
 				AA11B5632985A3C200CC0F53 /* SavedChatView.swift in Sources */,
 				AA11B5662985AAE200CC0F53 /* String-CapitalizeFirst.swift in Sources */,
+				AA21A365299D188C00FD40FD /* ImageSaver.swift in Sources */,
 				AA1DF2F42979DCCD0086700E /* OpenAIViewModel.swift in Sources */,
 				AAD98F7129710CFA00954C6F /* Command.swift in Sources */,
 				AA2745EF2997E8B700469646 /* ChatGPTInfoView.swift in Sources */,
@@ -518,7 +524,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AskAI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "OpenAIProject-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = AskAI;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save DALL·E generated images to Photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -548,7 +556,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AskAI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "OpenAIProject-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = AskAI;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save DALL·E generated images to Photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

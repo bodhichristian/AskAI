@@ -127,28 +127,7 @@ extension HomeView {
                 Spacer()
             }
             
-            // AskAI Requests
             HStack {
-                VStack {
-                    HStack(alignment: .center) {
-                        Text("\(totalRequests.count)")
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                            .offset(y: risingOffset)
-                        
-                        Image(systemName: "questionmark.bubble.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.green)
-                            .offset(y: fallingOffset)
-                    }
-                    
-                    Text("AskAI Requests")
-                        .font(.footnote)
-                }
-                
-                Spacer()
-                
                 // Saved Chats
                 VStack {
                     HStack(alignment: .center) {
@@ -167,6 +146,27 @@ extension HomeView {
                         .font(.footnote)
                 }
 
+                Spacer()
+                
+                // AskAI Requests
+                VStack {
+                    HStack(alignment: .center) {
+                        Text("\(totalRequests.count)")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .offset(y: risingOffset)
+                        
+                        Image(systemName: "questionmark.bubble.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.green)
+                            .offset(y: fallingOffset)
+                    }
+                    
+                    Text("AskAI Requests")
+                        .font(.footnote)
+                }
+                
                 Spacer()
                 
                 // Saved Images

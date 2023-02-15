@@ -11,7 +11,15 @@ struct SavedChatView: View {
     let chat: Chat
     let engine: Engine
     
+    let imageSaver = ImageSaver()
+    
     @State private var dragAmount = CGSize.zero
+    
+    @State private var showingSaveSuccess = false
+    @State private var showingSaveError = false
+    
+    @State private var successMessage = "Image saved to Photos."
+    @State private var errorMessage = "There was an error saving the image. Please verify, in Settings, this app has permission to save to Photos."
     
     var body: some View {
         NavigationView {
@@ -23,8 +31,32 @@ struct SavedChatView: View {
                         .padding(.top, -4)
                     requestMessage
                     responseMessage
+                        .contextMenu {
+                            
+                            // Context Menu presented after a press-and-hold gesture
+                            // User may toggle favorite status or detele chat
+                            
+                            // Mark/Unmark as favorite
+                            Button {
+                                // Save image to Photos
+                                saveImage()
+                            } label: {
+                                Label("Save to Photos", systemImage: "photo.on.rectangle")
+                            }
+                        }
+                        .disabled(chat.engine != .DALLE)
                 }
                 .padding(.horizontal)
+            }
+            .alert("Save Complete", isPresented: $showingSaveSuccess) {
+                Button("OK") {}
+            } message: {
+                Text(successMessage)
+            }
+            .alert("Error", isPresented: $showingSaveError) {
+                Button("OK") {}
+            } message: {
+                Text(errorMessage)
             }
         }
         .navigationTitle(Text(chat.date, format: .dateTime.month().day().year()))
@@ -131,12 +163,32 @@ extension SavedChatView {
             }
         }
     }
+    
+    // Save image to Photos
+    private func saveImage() {
+        
+        // Ensure image data exists
+        guard let imageData = chat.generatedImage else { return }
+        
+        // On success, an alert will present
+        imageSaver.successHandler = {
+            showingSaveSuccess = true
+        }
+        
+        // On error, an alert will present
+        imageSaver.errorHandler = { _ in
+            showingSaveError = true
+        }
+        
+        // Write image to Photos
+        imageSaver.writeToPhotoAlbum(image: UIImage(data: imageData)!)
+    }
 }
 
 struct SavedChatView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SavedChatView(chat: Chat.example, engine: Engine.davinci)
+            SavedChatView(chat: Chat.dallEExample,engine: .DALLE)
         }
     }
 }

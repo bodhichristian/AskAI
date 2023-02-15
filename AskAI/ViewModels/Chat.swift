@@ -57,5 +57,6 @@ class Chat: Identifiable, Codable, ObservableObject {
         print("Chat encoded")
     }
     
-    static let example = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engine: .davinci, isFavorite: true)
+    static let chatGPTExample = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engine: .davinci, isFavorite: true)
+    static let dallEExample = Chat(request: "twitter bird example", response: "", engine: .DALLE, generatedImage: UIImage(named: "twitter")!.pngData())
 }

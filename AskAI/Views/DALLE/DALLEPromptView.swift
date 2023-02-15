@@ -19,11 +19,10 @@ struct DALLEPromptView: View {
         VStack {
             ResponseView(viewModel: viewModel, engine: engine)
                 .environmentObject(dallESavedChats)
-           
+            
             RequestView(viewModel: viewModel, engine: engine)
             
             ProgressButton(viewModel: viewModel, totalRequests: totalRequests, engine: engine)
-                .padding(.vertical, -50)
         }
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)

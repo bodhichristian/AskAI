@@ -58,7 +58,7 @@ import SwiftUI
     // When alert is shown, user can acknowledge deletion, or undo.
     // undoDelete() will append the recentlyDeleted chat, nil coalescing to the example Chat
     func undoDelete() {
-        chats.append(recentlyDeleted ?? Chat.example)
+        chats.append(recentlyDeleted ?? Chat.chatGPTExample)
     }
     
     // Sends outs a change notification so views are refreshed

@@ -51,6 +51,6 @@ struct SavedChatLabel: View {
 
 struct SavedAskLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SavedChatLabel(chat: Chat.example, showingDeleteAlert: .constant(true), engine: .davinci)
+        SavedChatLabel(chat: Chat.chatGPTExample, showingDeleteAlert: .constant(true), engine: .davinci)
     }
 }
