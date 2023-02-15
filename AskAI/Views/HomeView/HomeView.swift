@@ -13,21 +13,18 @@ struct HomeView: View {
     @ObservedObject var totalRequests: TotalRequests
     @ObservedObject var savedChats: SavedChats
     @ObservedObject var profile: Profile
-
-    // When showingInfoView is toggled, a modal sheet will present InfoView
-    @State private var showingSettingsView = false
     
-    let redditChatGPT = URL(string: "https://www.reddit.com/r/ChatGPT/")!
-    let redditDALLE = URL(string: "https://www.reddit.com/r/dalle2/")!
-    let twitterChatGPT = URL(string: "https://twitter.com/search?q=%23ChatGPT")!
-    let twitterDALLE = URL(string: "https://twitter.com/search?q=%23dalle2")!
-    
+    // Animation state values
     @State private var showingWelcomeMessage = false
     @State private var fallingOffset = -10.0
     @State private var risingOffset = 10.0
     @State private var expandingShadowRadius = 0.0
     @State private var diminishingShadowRadius = 40.0
-        
+
+    // When showingInfoView is toggled, a modal sheet will present InfoView
+    @State private var showingSettingsView = false
+    
+    // Returns number of saved text chats
     var savedChatCount: Int {
         let chatGPTFilter = savedChats.chats.filter { chat in
             return chat.engine != .DALLE
@@ -35,12 +32,19 @@ struct HomeView: View {
         return chatGPTFilter.count
     }
     
+    // Returns number of saved images
     var savedImageCount: Int {
         let dallEFilter = savedChats.chats.filter { chat in
             return chat.engine == .DALLE
         }
         return dallEFilter.count
     }
+    
+    // Social Links
+    let redditChatGPT = URL(string: "https://www.reddit.com/r/ChatGPT/")!
+    let redditDALLE = URL(string: "https://www.reddit.com/r/dalle2/")!
+    let twitterChatGPT = URL(string: "https://twitter.com/search?q=%23ChatGPT")!
+    let twitterDALLE = URL(string: "https://twitter.com/search?q=%23dalle2")!
     
     var body: some View {
         NavigationView {
@@ -51,7 +55,7 @@ struct HomeView: View {
                 // Dashboard View: User stat block
                 dashboardView
                 
-                //Conversation View: Reddit & Twitter links
+                // Conversation View: Reddit & Twitter links
                 conversationView
             }
             .navigationTitle(Text("AskAI"))
@@ -65,6 +69,7 @@ struct HomeView: View {
                 }
             }
             .toolbar {
+                // Settings Gear reveals SettingsView on tap
                 Button {
                     showingSettingsView.toggle()
                 } label: {
@@ -73,6 +78,7 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $showingSettingsView) {
+            // Modal sheet presents SettingsView
             SettingsView(userTheme: $profile.theme)
                 .environmentObject(profile)
         }
@@ -80,6 +86,8 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    // Welcome View
+    // Circle Image and greeting
     private var welcomeView: some View {
         VStack {
             CircleImage(imageName: "askAI-logo", width: 200, height: 200)
@@ -106,6 +114,8 @@ extension HomeView {
         }
     }
     
+    // Dashboard View
+    // AskAI requests, saved chats, and saved images
     private var dashboardView: some View {
         VStack {
             HStack {
@@ -117,6 +127,7 @@ extension HomeView {
                 Spacer()
             }
             
+            // AskAI Requests
             HStack {
                 VStack {
                     HStack(alignment: .center) {
@@ -138,6 +149,7 @@ extension HomeView {
                 
                 Spacer()
                 
+                // Saved Chats
                 VStack {
                     HStack(alignment: .center) {
                         Text("\(savedChatCount)")
@@ -151,13 +163,13 @@ extension HomeView {
                             .foregroundColor(.purple)
                             .offset(y: fallingOffset)
                     }
-                    
                     Text("Saved chats")
                         .font(.footnote)
                 }
 
                 Spacer()
                 
+                // Saved Images
                 VStack {
                     HStack(alignment: .center) {
                         Text("\(savedImageCount)")
@@ -170,9 +182,7 @@ extension HomeView {
                             .frame(width: 40, height: 40)
                             .foregroundColor(.blue)
                             .offset(y: fallingOffset)
-                        
                     }
-                    
                     Text("Saved images")
                         .font(.footnote)
                 }
@@ -189,6 +199,8 @@ extension HomeView {
         .padding(.horizontal)
     }
     
+    // Join the Conversation
+    // Reddit and Twitter links
     private var conversationView: some View {
         VStack {
             HStack {
@@ -201,6 +213,7 @@ extension HomeView {
             }
             
             HStack {
+                
                 // Reddit Link Stack
                 HStack {
                     Image("reddit")
@@ -259,7 +272,5 @@ extension HomeView {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(totalRequests: TotalRequests(), savedChats: SavedChats(), profile: Profile())
-//            .environmentObject(Profile(username: "user"))
-//            .environmentObject(SavedChats())
     }
 }

@@ -19,6 +19,7 @@ enum UserTheme: String, CaseIterable, Identifiable, Codable {
     case indigo
     case yellow
     
+    // Text color
     var accentColor: Color {
         switch self {
         case .mint, .yellow, .orange, .green, .blue: return .black
@@ -26,6 +27,7 @@ enum UserTheme: String, CaseIterable, Identifiable, Codable {
         }
     }
     
+    // Theme color
     var mainColor: Color {
         switch self {
         case .mint: return .mint
@@ -41,10 +43,13 @@ enum UserTheme: String, CaseIterable, Identifiable, Codable {
         }
     }
     
+    // Theme name
     var name: String {
         rawValue.capitalized
     }
     
+    // Theme id
+    // Used to uniquely identify cases for Picker in SettingsView
     var id: String {
         name
     }

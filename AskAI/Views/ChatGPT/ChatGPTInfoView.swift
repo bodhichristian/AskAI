@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChatGPTInfoView: View {
+    // ChatGPTInfoView is presented as a sheet
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -17,7 +18,6 @@ struct ChatGPTInfoView: View {
                 curieInfo
                 babbageInfo
                 adaInfo
-
             }
             .navigationTitle("ChatGPT Info")
             .toolbar(content: {
@@ -41,7 +41,6 @@ struct ChatGPTInfoView_Previews: PreviewProvider {
 }
 
 extension ChatGPTInfoView {
-    
     // Davinci engine overview
     private var davinciInfo: some View {
         Section {

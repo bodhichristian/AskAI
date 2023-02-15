@@ -56,7 +56,8 @@ struct DALLEMainView: View {
 }
 
 extension DALLEMainView {
-    
+    // Create an Image with AI
+    // NavigationLink pushes to DALLEPromptView
     private var createAnImageSection: some View {
         Section(header: Text("Create an Image with AI")) {
             NavigationLink {
@@ -67,8 +68,11 @@ extension DALLEMainView {
         }
     }
     
+    // Saved Images
+    // Each image is a Navigation Link pushing to a SavedChatView
     private var savedImagesSection: some View {
         Section(header: Text("Saved Images")) {
+            // If there are no saved images
             if filteredChats.isEmpty {
                 Text("Create a new image above. Saved images will appear here.")
                     .font(.callout)
@@ -76,8 +80,10 @@ extension DALLEMainView {
                     .padding()
                     .offset(x: 7)
             }
+            // If there are saved images
             else {
                 ScrollView {
+                    // LazyVGrid with 'columns' columns
                     LazyVGrid(columns: columns, alignment: .leading) {
                         ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                             NavigationLink {
@@ -90,6 +96,7 @@ extension DALLEMainView {
                                         .frame(width: 101, height: 140)
                                         .cornerRadius(10)
                                         .overlay {
+                                            // Info Banner
                                             HStack {
                                                 VStack(alignment: .leading) {
                                                     Text(chat.request)
@@ -107,9 +114,9 @@ extension DALLEMainView {
                                                 Spacer()
                                             }
                                             .frame(maxWidth: .infinity)
+                                            // Info Banner Background
                                             .background(LinearGradient(colors: [.black.opacity(0.6), .black.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                                             .offset(y: 52)
-                                            
                                         }
                                 }
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -124,10 +131,6 @@ extension DALLEMainView {
             }
         }
     }
-
-}
-
-extension DALLEMainView {
 }
 
 struct DALLEMainView_Previews: PreviewProvider {

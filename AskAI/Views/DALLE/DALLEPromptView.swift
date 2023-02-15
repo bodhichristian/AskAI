@@ -19,15 +19,8 @@ struct DALLEPromptView: View {
         VStack {
             ResponseView(viewModel: viewModel, engine: engine)
                 .environmentObject(dallESavedChats)
-            Section {
-                RequestView(viewModel: viewModel, engine: engine)
-            } header: {
-                Text("Generate an image with Artificial Intelligence.")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                    .padding(2)
-            }
+           
+            RequestView(viewModel: viewModel, engine: engine)
             
             ProgressButton(viewModel: viewModel, totalRequests: totalRequests, engine: engine)
                 .padding(.vertical, -50)
@@ -41,7 +34,9 @@ struct DALLEPromptView: View {
 
 struct DALLEView_Previews: PreviewProvider {
     static var previews: some View {
-        DALLEPromptView(viewModel: OpenAIViewModel.example, totalRequests: TotalRequests(), engine: .DALLE)
-            .environmentObject(SavedChats())
+        NavigationView {
+            DALLEPromptView(viewModel: OpenAIViewModel.example, totalRequests: TotalRequests(), engine: .DALLE)
+                .environmentObject(SavedChats())
+        }
     }
 }

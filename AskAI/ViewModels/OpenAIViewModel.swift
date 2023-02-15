@@ -20,9 +20,7 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
     let chatGPT = OpenAISwift(authToken: apiKey)
     let dallE = OpenAI(config)
     
-    /*
-     For ChatGPT
-     */
+    // For ChatGPT
     // 1 token = approx 4 characters, or 0.75 English words.
     // Total length limit (request + response) is 2048 tokens - about 1500 words
     let maxTokens = 1000
@@ -67,9 +65,7 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
     }
     
     
-    /*
-     For DallE
-     */
+    // For DALLE
     @Published var imagePrompt: String = ""
     
     func generateImage(prompt: String) async -> () {

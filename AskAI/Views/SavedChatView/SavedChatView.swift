@@ -33,8 +33,9 @@ struct SavedChatView: View {
 }
 
 extension SavedChatView {
+    // Engine Image
+    // Draggable image and conditional favorite badge
     private var engineImage: some View {
-        
         // ChatGPT Engine logo
         // Conditionally visible 'favorite' checkmark
         // Image is draggable, and resets on release
@@ -62,6 +63,8 @@ extension SavedChatView {
             .animation(.spring(), value: dragAmount)
     }
     
+    // Chat Title
+    // "Chat with <Engine Name>
     private var chatTitle: some View {
         HStack {
             Text("Chat with")
@@ -74,6 +77,7 @@ extension SavedChatView {
         .fontWeight(.medium)
     }
     
+    // Request text
     private var requestMessage: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .trailing, spacing: 4) {
@@ -91,6 +95,7 @@ extension SavedChatView {
         }
     }
     
+    // Response text
     private var responseMessage: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
@@ -112,7 +117,6 @@ extension SavedChatView {
                 }
                 else {
                     Text(chat.response)
-                    
                         .padding()
                         .background(
                             ZStack {

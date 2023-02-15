@@ -25,28 +25,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Username"), footer: editButton) {
-                        
-                        HStack {
-                            TextField(profile.username, text: $profile.username)
-                                .foregroundColor(editing ? .primary : .gray)
-                                .disabled(!editing)
-                        }
-                }
-                
-                Section(header: Text("Theme")) {
-                    ThemePicker(selection: $userTheme)
-                        .padding(.vertical, -20)
-                        .padding(.horizontal, -10)
-                        .onChange(of: userTheme) { newTheme in
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                profile.theme = newTheme
-                                profile.save()
-                                print("New theme saved.")
-                            }
-                            
-                        }
-                }
+                usernameView
+                themePicker
                 
                 openAICredits
                 developerCredits
@@ -69,33 +49,71 @@ struct SettingsView: View {
     }
 }
 
-
-
 extension SettingsView {
+    // Username TextField
+    private var usernameView: some View {
+        Section(header: Text("Username"), footer: editButton) {
+                HStack {
+                    TextField(profile.username, text: $profile.username)
+                        .foregroundColor(editing ? .primary : .gray)
+                        .disabled(!editing)
+                }
+        }
+    }
     
+    // Wheel picker for selecting theme
+    private var themePicker: some View {
+        Section(header: Text("Theme")) {
+            ThemePicker(selection: $userTheme)
+                .padding(.vertical, -20)
+                .padding(.horizontal, -10)
+                .onChange(of: userTheme) { newTheme in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        profile.theme = newTheme
+                        profile.save()
+                        print("New theme saved.")
+                    }
+                }
+        }
+    }
+    
+    // Edit Button
+    private var editButton: some View {
+        Button {
+            editing.toggle()
+            profile.save()
+        } label: {
+            Text(editing ? "Done" : "Edit")
+                .font(.caption)
+                .foregroundColor(.blue)
+        }
+    }
+    
+    // OpenAI Credits & Divider
     private var openAICredits: some View {
         Section {
             HStack {
+                // OpenAI Description
                 Text("OpenAI is an AI research and deployment company. Their mission is to ensure that artificial general intelligence benefits all of humanity. OpenAI seeks to make AI systems more natural and safe to interact with.")
                     .font(.callout)
+                // OpenAI Logo
                 CircleImage(imageName: "chatGPT", width: 100, height: 100)
             }
+            // OpenAI Links
             Link("OpenAI", destination: openAIURL)
             Link("DALL·E", destination: dallEURL)
             Link("ChatGPT", destination: chatGPTURL)
             Link("OpenAI API", destination: openAIAPIURL)
-            
-            
         } header: {
             VStack(alignment: .leading) {
                 Divider()
                     .padding(.bottom)
                 Text("OpenAI")
             }
-            
         }
     }
     
+    // Developer Credits
     private var developerCredits: some View {
         Section {
             HStack {
@@ -140,14 +158,8 @@ extension SettingsView {
                 Text("Developer")
             }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+ 
+    // URLs
     private var appLinks: some View {
         Section {
             Link("Terms of Service", destination: defaultURL)
@@ -159,21 +171,7 @@ extension SettingsView {
             Text("More")
         }
     }
-    
-    private var editButton: some View {
-        Button {
-            editing.toggle()
-            profile.save()
-        } label: {
-            Text(editing ? "Done" : "Edit")
-                .font(.caption)
-                .foregroundColor(.blue)
-        }
-    }
-    
 }
-
-
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {

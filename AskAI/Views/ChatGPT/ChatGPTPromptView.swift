@@ -17,20 +17,15 @@ struct ChatGPTPromptView: View {
     
     var body: some View {
         VStack {
+            
+            // Engine-colored response block
             ResponseView(viewModel: viewModel, engine: engine)
             
-            Section {
-                RequestView(viewModel: viewModel, engine: engine)
-            } header: {
-                Text("Chat with Artificial Intelligence.")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                    .padding(2)
-            }
+            // TextEditor for typing a reqest
+            RequestView(viewModel: viewModel, engine: engine)
             
+            // Animating Progress Button: Submit, In Progress..., Response Received
             ProgressButton(viewModel: viewModel, totalRequests: totalRequests,  engine: engine)
-                .padding(.vertical, -50)
         }
         .padding(8)
         .navigationBarTitleDisplayMode(.inline)
@@ -43,7 +38,9 @@ struct ChatView_Previews: PreviewProvider {
     static let viewModel = OpenAIViewModel.example
     
     static var previews: some View {
-        ChatGPTPromptView(viewModel: viewModel, totalRequests: TotalRequests(), engine: .davinci)
-            .environmentObject(SavedChats())
+        NavigationView{
+            ChatGPTPromptView(viewModel: viewModel, totalRequests: TotalRequests(), engine: .davinci)
+                .environmentObject(SavedChats())
+        }
     }
 }

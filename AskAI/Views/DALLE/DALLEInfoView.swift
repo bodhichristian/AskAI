@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DALLEInfoView: View {
+    // DALLEInfoView is presented as a sheet
     @Environment(\.dismiss) var dismiss
     
     // When showingInfoView is toggled, a modal sheet will present

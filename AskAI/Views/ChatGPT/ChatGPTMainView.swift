@@ -11,14 +11,14 @@ struct ChatGPTMainView: View {
     @ObservedObject var totalRequests: TotalRequests
     @ObservedObject var savedChats: SavedChats
     
-    // Computes an array of SavedChats, filtering out chats that used DALL·E
+    // Returns an array of saved, text-based chats
     var filteredChats: [Chat] {
         savedChats.chats.filter { chat in
             return chat.engine != .DALLE
         }
     }
     
-    // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with various engines separate
+    // One ChatViewModel is instantiated for each of the available chat engines as a State Object, keeping interactions with engines separate
     @StateObject var davinciVM = OpenAIViewModel()
     @StateObject var curieVM = OpenAIViewModel()
     @StateObject var babbageVM = OpenAIViewModel()
@@ -54,7 +54,6 @@ struct ChatGPTMainView: View {
 }
 
 extension ChatGPTMainView {
-    
     // Chat GPT Engine List Section
     private var chatGPTEngineSection: some View {
 
@@ -169,7 +168,6 @@ extension ChatGPTMainView {
         }
     }
 }
-
 }
 
 struct ContentView_Previews: PreviewProvider {

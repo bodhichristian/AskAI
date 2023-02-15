@@ -13,10 +13,12 @@ struct EngineLabelView: View {
     var body: some View {
         Label {
             VStack(alignment: .leading) {
+                // Headline
                 Text(engine == .DALLE
                      ? "Ask DALL·E"
                      : "Ask \(engine.name.capitalizeFirst())")
                     .font(.headline)
+                // Description
                 Text(engine.description)
                     .font(.caption)
                     .italic()
@@ -25,6 +27,7 @@ struct EngineLabelView: View {
             .offset(y: -6)
             .padding(.leading, 45)
         } icon: {
+            // Engine logo
             Image(engine.name)
                     .resizable()
                     .frame(width: 80, height: 80)

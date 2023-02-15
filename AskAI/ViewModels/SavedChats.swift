@@ -54,16 +54,16 @@ import SwiftUI
         }
     }
     
-    // when delete function is called, deleted chat is stored in recentlyDeleted, and showingDeleteAlert will become true
-    // when alert is shown, user can acknowledge deletion, or undo.
+    // When delete function is called, deleted chat is stored in recentlyDeleted, and showingDeleteAlert will become true
+    // When alert is shown, user can acknowledge deletion, or undo.
     // undoDelete() will append the recentlyDeleted chat, nil coalescing to the example Chat
     func undoDelete() {
         chats.append(recentlyDeleted ?? Chat.example)
     }
     
-    //sends outs a change notification so views are refreshed
+    // Sends outs a change notification so views are refreshed
     func toggleFavorite(_ chat: Chat) {
-        //calling objectWillChange.send() before changing the property ensures correct animations
+        // Calling objectWillChange.send() before changing the property ensures correct animations
         objectWillChange.send()
         chat.isFavorite.toggle()
         save()

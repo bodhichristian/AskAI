@@ -17,7 +17,6 @@ struct ProgressButton: View {
     @ObservedObject var totalRequests: TotalRequests
     
     let engine: Engine
-    @State var baseHeight: CGFloat = 50
 
     enum ProgressButtonTypes: CaseIterable {
         case submit
@@ -28,37 +27,47 @@ struct ProgressButton: View {
         var buttonLabel: String {
             switch self {
             case .submit:
+                // Default label
                 return "Submit"
             case .inProgress:
+                // In Progress label
                 return "Waiting for response..."
             case .complete:
+                // Completed label
                 return "Response received."
             }
         }
     }
     
-    @State private var animatingText = false
-    @State private var counter: Int = 0
-    @State private var loops: Int = 0
+    @State private var baseHeight: CGFloat = 50
 
     var body: some View {
         ZStack {
             Button {
+                // Dismiss system keyboard
                 hideKeyboard()
+                // Add 1 to totalRequets
                 totalRequests.increase(by: 1)
+                // Change viewModel state to inProgress
                 viewModel.inProgress = true
+                // If requesting an image
                 if engine == .DALLE {
                     Task {
+                        // Await image response
                         await viewModel.generateImage(prompt: viewModel.request)
                     }
+                    // If requesting text
                 } else {
-                    
                     Task {
+                        // Await text response
                         await viewModel.submitRequest(viewModel.request, engine: engine)
                     }
                 }
             } label: {
                 VStack(spacing: 0) {
+                    // Three rounded rectangles representing task progress
+                    // As each state is triggered, offset value changes
+                    // Each button animates down on in front of the previous
                     baseInternalView(type: .complete)
                     baseInternalView(type: .inProgress)
                     baseInternalView(type: .submit)
@@ -73,8 +82,9 @@ struct ProgressButton: View {
             }
             .disabled(viewModel.request == "" || viewModel.inProgress || viewModel.complete)
         }
+        .padding(.vertical, -50)
     }
-
+    // baseInternalView(type: ) handles presenting the correct view with the correct progress state
     private func baseInternalView(type: ProgressButtonTypes) -> some View {
         ZStack {
             Rectangle()
@@ -84,7 +94,6 @@ struct ProgressButton: View {
             Text(type.buttonLabel)
                 .foregroundColor(.white)
                 .font(.system(size: 20, weight: .medium, design: .default))
-                //.shadow(radius: 6)
         }
         .frame(height: 50)
         .offset(y: viewModel.inProgress ? baseHeight : 0)
@@ -93,7 +102,6 @@ struct ProgressButton: View {
         .offset(y: viewModel.complete ? baseHeight : 0)
         .animation(.spring(), value: viewModel.complete)
     }
-
 }
 
 struct SliderButton_Previews: PreviewProvider {

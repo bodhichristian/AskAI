@@ -53,39 +53,40 @@ struct ResponseView: View {
         default: return "Response will appear here."
         }
     }
-
-    
-
-        
+ 
     var body: some View {
         responseBlock
             .overlay {
                 clearAndSaveButtons
                     .environmentObject(savedChats)
-
             }
     }
 }
 
 extension ResponseView {
+    // Images or text responses appear in this block
     private var responseBlock: some View {
         ZStack(alignment: engine == .DALLE ? .center : .topLeading) {
+            // Engine-colored rounded rectangle
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(engine.color).opacity(0.5)
+            // UltraThinMaterial overlay
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.ultraThinMaterial)
                 .overlay {
+                    // If no response has yet been yielded
                     if viewModel.response == "" &&
                         viewModel.generatedImage == nil {
-                        // default text if response has no value
+                        // Provide default message
                         Text(defaultWillAppearMessage)
                     }
+                    // If an image has been returned
                     if let generatedImage = viewModel.generatedImage {
                         Image(uiImage: generatedImage)
                             .resizable()
                             .cornerRadius(10)
                             .aspectRatio(contentMode: .fill)
-                        
+                    // If text has been returned
                     } else {
                         ScrollView {
                             Text(viewModel.response)
@@ -98,6 +99,8 @@ extension ResponseView {
         }
     }
     
+    // Clear(red trash) and Save(green checkmark) buttons
+    // Aligned to bottom trailing of container
     private var clearAndSaveButtons: some View {
         ZStack(alignment: .bottomTrailing) {
             Rectangle()
@@ -196,7 +199,6 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
-    
     static var previews: some View {
         ResponseView(viewModel: OpenAIViewModel(generatedImage: UIImage(named: "twitter")), engine: .DALLE)
             .environmentObject(SavedChats())
