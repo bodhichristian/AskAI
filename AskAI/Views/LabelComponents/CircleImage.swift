@@ -14,10 +14,12 @@ struct CircleImage: View {
     
     var body: some View {
         ZStack {
+            // Background
             Circle()
                 .frame(width: width)
                 .foregroundColor(.white)
                 .shadow(color: .secondary, radius: 4)
+            // Foreground
             Image(imageName)
                 .resizable()
                 .frame(width: width, height: height)

@@ -52,6 +52,7 @@ struct SavedChatView: View {
                     chatTitle
                     Divider()
                         .padding(.bottom)
+                        .padding(.top, -4)
                     
                     // Action Buttons
                     chatActions

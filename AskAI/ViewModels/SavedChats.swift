@@ -40,16 +40,20 @@ import SwiftUI
     }
     
     func add(_ chat: Chat) {
+        // Appends argument to chats array
         chats.append(chat)
         save()
     }
     
     func delete(_ chat: Chat) {
+        // Adds chat to recently deleted (ChatGPT chats only)
         if let index = chats.firstIndex(where: { currentChat in
             currentChat.id == chat.id
         }) {
             recentlyDeleted = chat
+            // Removes argument from chats array
             chats.remove(at: index)
+            // Saves chats array to Documents Directory
             save()
         }
     }

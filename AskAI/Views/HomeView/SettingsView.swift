@@ -43,7 +43,6 @@ struct SettingsView: View {
                     }
                 }
             })
-            
         }
         .environmentObject(profile)
     }

@@ -17,11 +17,14 @@ struct DALLEPromptView: View {
     
     var body: some View {
         VStack {
+            // Engine-colored response block
             ResponseView(viewModel: viewModel, engine: engine)
                 .environmentObject(dallESavedChats)
             
+            // TextEditor for typing a reqest
             RequestView(viewModel: viewModel, engine: engine)
             
+            // Animating Progress Button: Submit, In Progress..., Response Received
             ProgressButton(viewModel: viewModel, totalRequests: totalRequests, engine: engine)
         }
         .padding(8)

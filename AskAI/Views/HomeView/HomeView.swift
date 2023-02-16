@@ -61,15 +61,11 @@ struct HomeView: View {
             .navigationTitle(Text("AskAI"))
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.8)) {
-                    showingWelcomeMessage = true
-                    fallingOffset = 0
-                    risingOffset = 0
-                    expandingShadowRadius = 15
-                    diminishingShadowRadius = 8
+                    animate()
                 }
             }
+            // Settings Gear reveals SettingsView on tap
             .toolbar {
-                // Settings Gear reveals SettingsView on tap
                 Button {
                     showingSettingsView.toggle()
                 } label: {
@@ -77,8 +73,8 @@ struct HomeView: View {
                 }
             }
         }
+        // Modal sheet presents SettingsView
         .sheet(isPresented: $showingSettingsView) {
-            // Modal sheet presents SettingsView
             SettingsView(userTheme: $profile.theme)
                 .environmentObject(profile)
         }
@@ -266,6 +262,16 @@ extension HomeView {
 
         )
         .padding()
+    }
+    
+    // Animate Function
+    // Sets animation state values to defaults
+    private func animate() {
+        showingWelcomeMessage = true
+        fallingOffset = 0
+        risingOffset = 0
+        expandingShadowRadius = 15
+        diminishingShadowRadius = 8
     }
 }
 

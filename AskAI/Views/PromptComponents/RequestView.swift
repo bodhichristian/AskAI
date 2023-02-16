@@ -23,11 +23,14 @@ struct RequestView: View {
     var body: some View {
         Section {
             VStack{
+                // Request
                 TextEditor(text: $viewModel.request)
                     .frame(height: 100)
                     .cornerRadius(10)
                     .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
                     .padding(.bottom, 8)
+                    // Ask <Engine> overlay
+                    // Opacity is 0 when user focuses TextEditor
                     .overlay {
                         withAnimation {
                             Text("Ask \(engine.name.capitalizeFirst())")
@@ -36,10 +39,14 @@ struct RequestView: View {
                                 .foregroundColor(engine.color)
                                 .fontWeight(.semibold)
                         }
-                    }.focused($isEditing)
+                    }
+                    // When TextEditor is focused, isEditing is true
+                    .focused($isEditing)
+                    // TextEditor is disabled after request is submitted
                     .disabled(viewModel.inProgress || viewModel.complete)
+                    // Text font color turns gray after request is submitted
                     .foregroundColor(viewModel.inProgress || viewModel.complete ? .gray : .primary)
-                
+                // Call to action
                 Text(promptSuggestion)
                     .font(.subheadline)
                     .foregroundColor(.secondary)

@@ -33,16 +33,12 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
     @Published var errorMessage: String? = nil
     @Published var generatedImage: UIImage? = nil
     
-    // For counting total request history
-    @Published private(set) var requestCounter: Int
-    
     init(request: String = "", response: String = "", generatedImage: UIImage? = nil) {
         self.request = request
         self.response = response
         self.inProgress = false
         self.complete = false
         self.generatedImage = nil
-        self.requestCounter = 0
     }
     
     static let example = OpenAIViewModel(request: "This is a test request", response: "This is a test response, no Articifical Intelligence here...", generatedImage: UIImage(named: "chatGPT"))
@@ -54,8 +50,6 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
                 with: request, model: .gpt3(engine.model),
                 maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens
             )
-            requestCounter += 1
-            print(requestCounter)
             response = result.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             complete = true
         } catch {
@@ -83,9 +77,6 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
             let image = try dallE.decodeBase64Image(b64Image)
             print("Image decoded successfully")
             generatedImage = image
-            requestCounter += 1
-            print(requestCounter)
-
             complete = true
         } catch {
             print("Error: \(error.localizedDescription)")

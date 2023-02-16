@@ -17,7 +17,6 @@ struct ChatGPTPromptView: View {
     
     var body: some View {
         VStack {
-            
             // Engine-colored response block
             ResponseView(viewModel: viewModel, engine: engine)
             

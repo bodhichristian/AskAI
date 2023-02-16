@@ -12,16 +12,21 @@ struct ResponseView: View {
     @EnvironmentObject var savedChats: SavedChats
     
     let engine: Engine
-
-    // chatSaved is used to determine whether to prompt user with delete alert
-    // If user has saved the current chat, they may clear it without warning
-    @State private var chatSaved = false
+    
+    // Provides user context for expected return media
+    var willAppearHereMessage: String {
+        switch engine {
+        case .DALLE: return "Image will appear here."
+        default: return "Response will appear here."
+        }
+    }
     
     // ALERT TITLES AND MESSAGES
     // Delete Alert
     @State private var showingDeleteAlert = false
+    // Title
     @State private var deleteAlertTitle = Text("Clear Chat")
-    
+    // Message
     var deleteAlertMessage: Text {
         switch engine {
         case .DALLE: return Text("Are you sure you want to delete this image? This cannot be undone.")
@@ -31,26 +36,18 @@ struct ResponseView: View {
     
     // Save Alert
     @State private var showingSaveAlert = false
-    
-    var saveAlertTitle: Text {
+    // Title
+    private var saveAlertTitle: Text {
         switch engine {
         case .DALLE: return Text("Image saved")
         default: return Text("Chat saved")
         }
     }
-    
-    var saveAlertMessage: Text {
+    // Message
+    private var saveAlertMessage: Text {
         switch engine {
         case .DALLE: return Text("View in Saved Images")
         default: return Text("View in Saved Chats")
-        }
-    }
-    
-    // Provides user context for expected return media
-    var defaultWillAppearMessage: String {
-        switch engine {
-        case .DALLE: return "Image will appear here."
-        default: return "Response will appear here."
         }
     }
  
@@ -64,7 +61,8 @@ struct ResponseView: View {
 }
 
 extension ResponseView {
-    // Images or text responses appear in this block
+    // Response Block
+    // Response/Image will appear here
     private var responseBlock: some View {
         ZStack(alignment: engine == .DALLE ? .center : .topLeading) {
             // Engine-colored rounded rectangle
@@ -78,7 +76,7 @@ extension ResponseView {
                     if viewModel.response == "" &&
                         viewModel.generatedImage == nil {
                         // Provide default message
-                        Text(defaultWillAppearMessage)
+                        Text(willAppearHereMessage)
                     }
                     // If an image has been returned
                     if let generatedImage = viewModel.generatedImage {
@@ -100,7 +98,7 @@ extension ResponseView {
     }
     
     // Clear(red trash) and Save(green checkmark) buttons
-    // Aligned to bottom trailing of container
+    // Aligned to bottom trailing corner of container
     private var clearAndSaveButtons: some View {
         ZStack(alignment: .bottomTrailing) {
             Rectangle()
@@ -109,18 +107,7 @@ extension ResponseView {
                 
                 // Trash Button - Clear Chat
                 Button {
-                    if chatSaved {
-                        withAnimation{
-                            viewModel.request = ""
-                            viewModel.response = ""
-                            viewModel.inProgress = false
-                            viewModel.complete = false
-                            viewModel.generatedImage = nil
-                            chatSaved = false
-                        }
-                    } else {
-                        showingDeleteAlert = true
-                    }
+                    showingDeleteAlert = true
                 } label : {
                     ZStack {
                         Circle()
@@ -188,7 +175,6 @@ extension ResponseView {
                                 viewModel.inProgress = false
                                 viewModel.complete = false
                                 viewModel.generatedImage = nil
-                                chatSaved = true
                             }
                         }))
                 })
