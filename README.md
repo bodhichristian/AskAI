@@ -20,7 +20,7 @@ From the DALL·E tab, users can begin an image generation prompt, or view previo
 * <i>OpenAI API Client Library in Swift from Adam Rushy (https://github.com/adamrushy/OpenAISwift)</i>
 
 <b> ChatGPTView </b>
-![AskAI 2 0 Showcase 003](https://user-images.githubusercontent.com/110639779/218526570-8d8ab9b5-6e42-4990-8828-3c35b04f6918.jpeg)
+![AskAI Showcase 1 001](https://user-images.githubusercontent.com/110639779/219420556-b13329dd-ab63-4320-8d68-8beb457affea.jpeg)
 From the ChatGPT tab, users may begin a new chat with one of the four available chat engines: Davinci, Curie, Babbage, and Ada. If the user has saved chats, they will appear in a list of navigation links with a SavedChatView as its destination. Items in this list respond to swipe gestures from the leading and trailing edges, as well as a context menu that appears as a result of a press-and-hold gesture. User may tap the info button to reveal a sheet with chat engine overviews and credits.Each ChatView instantiates its own ChatViewModel so that request and response data are preserved when user navigates away from the view. Tapping on the info icon in the toobar presents a sheet displaying more detailed inforamtion about each engine.
 
 Future Updates:
