@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SavedChatView: View {
-    let chat: Chat
+    @ObservedObject var chat: Chat
+    @ObservedObject var savedChats: SavedChats
     let engine: Engine
     
     let imageSaver = ImageSaver()
@@ -21,43 +22,75 @@ struct SavedChatView: View {
     @State private var successMessage = "Image saved to Photos."
     @State private var errorMessage = "There was an error saving the image. Please verify, in Settings, this app has permission to save to Photos."
     
+    // ALERT TITLES AND MESSAGES
+    
+    // Delete Alert
+    // Alert Title
+    @State private var showingDeleteAlert = false
+    var deleteAlertTitle: Text {
+        switch engine {
+        case .DALLE: return Text("Delete Image")
+        default: return Text("Delete Chat")
+        }
+    }
+    // Alert Message
+    var deleteAlertMessage: Text {
+        switch engine {
+        case .DALLE: return Text("Are you sure you want to delete this image? This action cannot be undone.")
+        default: return Text("Are you sure you want to delete this chat? This cannot be undone.")
+        }
+    }
+    
+    @State private var saveComplete = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
+                    // Chat Header
                     engineImage
                     chatTitle
                     Divider()
+                        .padding(.bottom)
+                    
+                    // Action Buttons
+                    chatActions
+                    Divider()
                         .padding(.top, -4)
+                    
+                    // Chat Detail
                     requestMessage
                     responseMessage
-                        .contextMenu {
-                            
-                            // Context Menu presented after a press-and-hold gesture
-                            // User may toggle favorite status or detele chat
-                            
-                            // Mark/Unmark as favorite
-                            Button {
-                                // Save image to Photos
-                                saveImage()
-                            } label: {
-                                Label("Save to Photos", systemImage: "photo.on.rectangle")
-                            }
-                        }
-                        .disabled(chat.engine != .DALLE)
                 }
                 .padding(.horizontal)
             }
+            // Save Image Completion Alert
             .alert("Save Complete", isPresented: $showingSaveSuccess) {
-                Button("OK") {}
+                Button("OK") {
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        saveComplete = true
+                    }
+                }
             } message: {
                 Text(successMessage)
             }
+            // Save Image Error Alert
             .alert("Error", isPresented: $showingSaveError) {
                 Button("OK") {}
             } message: {
                 Text(errorMessage)
             }
+            // Delete Chat Error Alert
+            .alert(isPresented: $showingDeleteAlert, content: {
+                Alert(
+                    title: deleteAlertTitle,
+                    message: deleteAlertMessage,
+                    primaryButton: .default(Text("Cancel")),
+                    secondaryButton: .destructive(Text("Delete"), action:  {
+                        savedChats.delete(chat)
+                    }
+                                                 ))
+            })
         }
         .navigationTitle(Text(chat.date, format: .dateTime.month().day().year()))
         .navigationBarTitleDisplayMode(.inline)
@@ -67,13 +100,11 @@ struct SavedChatView: View {
 extension SavedChatView {
     // Engine Image
     // Draggable image and conditional favorite badge
+    // Image is draggable, and resets on release
     private var engineImage: some View {
-        // ChatGPT Engine logo
-        // Conditionally visible 'favorite' checkmark
-        // Image is draggable, and resets on release
         CircleImage(imageName: engine.name, width: 150, height: 150)
             .padding(8)
-            .padding(.top, 6)
+            .padding(.top, 10)
             .overlay {
                 Image(systemName: "checkmark.seal.fill")
                     .resizable()
@@ -109,6 +140,77 @@ extension SavedChatView {
         .fontWeight(.medium)
     }
     
+    // Toolbar
+    // Save, Favorite/Unmark, Delete buttons
+    private var chatActions: some View {
+        HStack {
+            if chat.engine == .DALLE{
+                Button {
+                    saveImage()
+                } label: {
+                    Label(title: {
+                        Text("Save")
+                            .foregroundColor(.primary)
+                    }, icon: {
+                        Image(systemName: saveComplete
+                              ? "square.and.arrow.down.fill"
+                              : "square.and.arrow.down")
+                        .renderingMode(.template)
+                        .foregroundColor(.blue)
+                    } )
+                    .padding(5)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.secondary.opacity(0.1))
+                Spacer()
+                
+            }
+            Button {
+                chat.isFavorite.toggle()
+            } label: {
+                Label(title: {
+                    Text(chat.isFavorite
+                         ? "Unmark"
+                         : "Favorite")
+                    .foregroundColor(.primary)
+                }, icon: {
+                    Image(systemName: chat.isFavorite
+                          ? "checkmark.seal"
+                          : "checkmark.seal.fill")
+                    .renderingMode(.template)
+                    .foregroundColor(.yellow)
+                    
+                } )
+                .padding(5)
+                
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.secondary.opacity(0.1))
+            if chat.engine == .DALLE {
+                Spacer()
+            }
+            
+            Button {
+                showingDeleteAlert = true
+            } label: {
+                Label(title: {
+                    Text("Delete")
+                        .foregroundColor(.primary)
+                }, icon: {
+                    Image(systemName: "trash")
+                        .renderingMode(.template)
+                        .foregroundColor(.red)
+                } )
+                .padding(5)
+                
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.secondary.opacity(0.1))
+        }
+        .padding(.top, -20)
+        .padding(.vertical, 10)
+    }
+    
     // Request text
     private var requestMessage: some View {
         VStack(alignment: .leading) {
@@ -136,6 +238,7 @@ extension SavedChatView {
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10)
+                        .shadow(radius: 7)
                         .padding()
                         .background(
                             ZStack {
@@ -188,7 +291,7 @@ extension SavedChatView {
 struct SavedChatView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SavedChatView(chat: Chat.dallEExample,engine: .DALLE)
+            SavedChatView(chat: Chat.dallEExample, savedChats: SavedChats(),engine: .DALLE)
         }
     }
 }

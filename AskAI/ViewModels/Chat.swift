@@ -54,7 +54,7 @@ class Chat: Identifiable, Codable, ObservableObject {
         try container.encode(engine, forKey: .engine)
         try container.encode(generatedImage, forKey: .generatedImage)
         try container.encode(isFavorite, forKey: .isFavorite)
-        print("Chat encoded")
+        print("Chat encoded_")
     }
     
     static let chatGPTExample = Chat(request: "This is a really interesting chat request example", response: "This response example is, inconceivably so, even more interesting than the request.", engine: .davinci, isFavorite: true)

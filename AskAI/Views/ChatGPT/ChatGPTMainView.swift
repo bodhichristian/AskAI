@@ -101,7 +101,7 @@ extension ChatGPTMainView {
         } else {
             ForEach(filteredChats.sorted(by: { $0.date < $1.date }).reversed()) { chat in
                 NavigationLink {
-                    SavedChatView(chat: chat, engine: chat.engine)
+                    SavedChatView(chat: chat, savedChats: savedChats, engine: chat.engine)
                 } label: {
                     SavedChatLabel(chat: chat, showingDeleteAlert: $showingDeleteAlert, engine: chat.engine)
                 }

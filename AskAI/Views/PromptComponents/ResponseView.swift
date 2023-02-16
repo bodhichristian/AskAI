@@ -25,7 +25,7 @@ struct ResponseView: View {
     var deleteAlertMessage: Text {
         switch engine {
         case .DALLE: return Text("Are you sure you want to delete this image? This cannot be undone.")
-        default: return Text("Are you sure you want to delete this image? This cannoth be undone.")
+        default: return Text("Are you sure you want to delete this chat? This cannot be undone.")
         }
     }
     
