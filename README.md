@@ -25,5 +25,4 @@ From the ChatGPT tab, users may begin a new chat with one of the four available 
 
 Future Updates:
 * Migrate to Core Data for data persistence 
-* Allow users to upload or choose an avatar
 * Optional biometric authentication at sign-in
