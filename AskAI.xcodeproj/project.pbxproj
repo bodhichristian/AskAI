@@ -47,6 +47,7 @@
 		AAD98F7029710CFA00954C6F /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6A29710CFA00954C6F /* Instruction.swift */; };
 		AAD98F7129710CFA00954C6F /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD98F6B29710CFA00954C6F /* Command.swift */; };
 		AAD98F7429710F3200954C6F /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = AAD98F7329710F3200954C6F /* OpenAISwift */; };
+		AAE888EA29A56ED9002840E8 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = AAE888E929A56ED9002840E8 /* Shimmer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE888EA29A56ED9002840E8 /* Shimmer in Frameworks */,
 				AAD98F7429710F3200954C6F /* OpenAISwift in Frameworks */,
 				AA23347929935463007B0953 /* OpenAIKit in Frameworks */,
 			);
@@ -298,6 +300,7 @@
 			packageProductDependencies = (
 				AAD98F7329710F3200954C6F /* OpenAISwift */,
 				AA23347829935463007B0953 /* OpenAIKit */,
+				AAE888E929A56ED9002840E8 /* Shimmer */,
 			);
 			productName = OpenAIProject;
 			productReference = AAD98F5429710CC100954C6F /* OpenAIProject.app */;
@@ -330,6 +333,7 @@
 			packageReferences = (
 				AAD98F7229710F3200954C6F /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 				AA23347729935463007B0953 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
+				AAE888E829A56ED9002840E8 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = AAD98F5529710CC100954C6F /* Products */;
 			projectDirPath = "";
@@ -617,6 +621,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		AAE888E829A56ED9002840E8 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -629,6 +641,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AAD98F7229710F3200954C6F /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
+		};
+		AAE888E929A56ED9002840E8 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAE888E829A56ED9002840E8 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

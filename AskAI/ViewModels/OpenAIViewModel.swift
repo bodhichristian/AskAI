@@ -45,15 +45,18 @@ let config = Configuration(organization: "Personal", apiKey: apiKey)
     
     // Sends request to ChatGPT, using enging specified, and engine-appropriate max tokens
     func submitRequest(_ request: String, engine: Engine) async -> () {
+        inProgress = true
         do {
             let result = try await chatGPT.sendCompletion(
                 with: request, model: .gpt3(engine.model),
                 maxTokens: engine.model == .davinci ? davinciMaxTokens : maxTokens
             )
             response = result.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            inProgress = false
             complete = true
         } catch {
             response = error.localizedDescription
+            inProgress = false
             complete = true
         }
     }

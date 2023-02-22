@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct ResponseView: View {
     @ObservedObject var viewModel: OpenAIViewModel
@@ -18,6 +19,13 @@ struct ResponseView: View {
         switch engine {
         case .DALLE: return "Image will appear here."
         default: return "Response will appear here."
+        }
+    }
+    
+    var inProgressMessage: String {
+        switch engine {
+        case .DALLE: return "DALL·E is generating an image."
+        default: return "ChatGPT is generating a response."
         }
     }
     
@@ -50,7 +58,7 @@ struct ResponseView: View {
         default: return Text("View in Saved Chats")
         }
     }
- 
+    
     var body: some View {
         responseBlock
             .overlay {
@@ -84,7 +92,7 @@ extension ResponseView {
                             .resizable()
                             .cornerRadius(10)
                             .aspectRatio(contentMode: .fill)
-                    // If text has been returned
+                        // If text has been returned
                     } else {
                         ScrollView {
                             Text(viewModel.response)

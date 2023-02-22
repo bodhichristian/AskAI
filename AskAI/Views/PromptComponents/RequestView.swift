@@ -29,8 +29,8 @@ struct RequestView: View {
                     .cornerRadius(10)
                     .shadow(color: .secondary.opacity(0.5), radius: 8, y: 0)
                     .padding(.bottom, 8)
-                    // Ask <Engine> overlay
-                    // Opacity is 0 when user focuses TextEditor
+                // Ask <Engine> overlay
+                // Opacity is 0 when user focuses TextEditor
                     .overlay {
                         withAnimation {
                             Text("Ask \(engine.name.capitalizeFirst())")
@@ -40,11 +40,11 @@ struct RequestView: View {
                                 .fontWeight(.semibold)
                         }
                     }
-                    // When TextEditor is focused, isEditing is true
+                // When TextEditor is focused, isEditing is true
                     .focused($isEditing)
-                    // TextEditor is disabled after request is submitted
+                // TextEditor is disabled after request is submitted
                     .disabled(viewModel.inProgress || viewModel.complete)
-                    // Text font color turns gray after request is submitted
+                // Text font color turns gray after request is submitted
                     .foregroundColor(viewModel.inProgress || viewModel.complete ? .gray : .primary)
                 // Call to action
                 Text(promptSuggestion)

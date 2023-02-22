@@ -39,6 +39,7 @@ struct ProgressButton: View {
         }
     }
     
+    // Starting offset for drop down animation
     @State private var baseHeight: CGFloat = 50
 
     var body: some View {
@@ -56,7 +57,7 @@ struct ProgressButton: View {
                         // Await image response
                         await viewModel.generateImage(prompt: viewModel.request)
                     }
-                    // If requesting text
+                // If requesting text
                 } else {
                     Task {
                         // Await text response
@@ -64,10 +65,10 @@ struct ProgressButton: View {
                     }
                 }
             } label: {
+                // Three rounded rectangles representing task progress
+                // As each state is triggered, offset value changes
+                // Each button animates down on in front of the previous
                 VStack(spacing: 0) {
-                    // Three rounded rectangles representing task progress
-                    // As each state is triggered, offset value changes
-                    // Each button animates down on in front of the previous
                     baseInternalView(type: .complete)
                     baseInternalView(type: .inProgress)
                     baseInternalView(type: .submit)
