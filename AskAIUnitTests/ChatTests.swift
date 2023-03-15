@@ -60,7 +60,7 @@ final class ChatTests: XCTestCase {
     }
     
     // Test ObservableObject functionality
-    func test_ObservableObject() {
+    func test_observableObject_propertyPublishing() {
         let chat = Chat(request: "Hello", response: "Hi", engine: .davinci)
         
         // Test isFavorite property can be set and its value changes when using @Published
@@ -83,3 +83,8 @@ final class ChatTests: XCTestCase {
         wait(for: [expectation2], timeout: 1.0)
     }
 }
+
+
+
+
+
