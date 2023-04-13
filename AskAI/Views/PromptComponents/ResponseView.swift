@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Shimmer
 
 struct ResponseView: View {
     @ObservedObject var viewModel: OpenAIViewModel
